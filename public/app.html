@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Planner - TrainHub</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-black text-gray-100 min-h-screen">
+
+    <!-- ===== NAVBAR (Responsive) ===== -->
+    <nav class="bg-gray-900 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="app.html" class="text-2xl font-bold text-white">
+                    Train<span class="text-orange-500">Hub</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-6 desktop-nav">
+                    <a href="app.html" class="text-orange-500 font-semibold transition-colors">AI Planner</a>
+                    <a href="plans.html" class="text-gray-300 hover:text-white transition-colors">My Plans</a>
+                    <a href="calendar.html" class="text-gray-300 hover:text-white transition-colors">Calendar</a>
+                </div>
+
+                <!-- User Actions (Desktop) -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <span class="text-gray-300 text-sm">
+                        Hi, <span id="username-display" class="font-medium text-white">User</span>!
+                    </span>
+                    <button id="logout-btn" class="btn btn-danger btn-sm">
+                        Logout
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-toggle" class="md:hidden text-gray-300 mobile-menu-btn">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="app.html" class="active">AI Planner</a>
+            <a href="plans.html">My Plans</a>
+            <a href="calendar.html">Calendar</a>
+            <div class="border-t border-gray-700 mt-4 pt-4">
+                <p class="text-gray-400 text-sm mb-2">
+                    Hi, <span id="username-display-mobile" class="font-medium text-white">User</span>!
+                </p>
+                <button id="logout-btn-mobile" class="btn btn-danger w-full">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
+                AI Workout Planner
+            </h1>
+            <p class="text-gray-400">
+                Biarkan AI membuat rencana latihan personal untuk Anda
+            </p>
+        </div>
+
+        <!-- AI Generator Card -->
+        <div class="card max-w-4xl">
+            <!-- Icon & Title -->
+            <div class="flex items-center gap-3 mb-4">
+                <div
+                    class="w-12 h-12 bg-orange-900/30 text-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+                        </path>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold text-white">Generate Rencana Latihan</h2>
+                    <p class="text-sm text-gray-400">Powered by AI</p>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="bg-blue-900/20 border border-blue-800 rounded-lg p-4 mb-6">
+                <div class="flex items-start gap-3">
+                    <svg class="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div class="flex-1">
+                        <h3 class="text-blue-400 font-semibold mb-1">Tips Prompt yang Bagus:</h3>
+                        <ul class="text-sm text-gray-300 space-y-1">
+                            <li>• Sebutkan tujuan Anda (bulking, cutting, fat loss, dll)</li>
+                            <li>• Berapa hari dalam seminggu Anda bisa latihan</li>
+                            <li>• Area fokus atau target muscle group</li>
+                            <li>• Contoh: "Buatkan 4 hari plan untuk muscle gain fokus upper body"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prompt Input -->
+            <div class="form-group">
+                <label for="ai-prompt" class="form-label">
+                    Ceritakan Goal & Target Latihan Anda:
+                </label>
+                <textarea id="ai-prompt" rows="4" class="form-textarea"
+                    placeholder="Contoh: Buatkan saya rencana latihan 3 hari untuk fat loss dengan fokus ke cardio dan full body workout. Saya punya akses ke gym lengkap..."></textarea>
+            </div>
+
+            <!-- Generate Button -->
+            <div class="flex gap-2">
+                <button id="ai-generate-btn" class="btn btn-primary flex-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                    Generate Rencana
+                </button>
+                <button onclick="clearPrompt()" class="btn btn-secondary">
+                    Clear
+                </button>
+            </div>
+
+            <!-- AI Result Container -->
+            <div id="ai-result" class="mt-8">
+                <!-- Hasil AI akan muncul di sini -->
+            </div>
+
+            <!-- Quick Examples (Optional) -->
+            <div class="mt-8 max-w-4xl">
+                <h3 class="text-lg font-semibold text-white mb-4">Atau Coba Contoh Prompt Ini:</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <button
+                        onclick="useExamplePrompt('Buatkan 3 hari plan untuk bulking dengan fokus upper body dan lower body')"
+                        class="text-left p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-orange-600 rounded-lg transition-all group">
+                        <p class="text-sm text-gray-300 group-hover:text-white">
+                            💪 Bulking 3 hari (Upper/Lower Split)
+                        </p>
+                    </button>
+
+                    <button
+                        onclick="useExamplePrompt('Buatkan 4 hari plan untuk cutting dengan cardio dan weight training')"
+                        class="text-left p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-orange-600 rounded-lg transition-all group">
+                        <p class="text-sm text-gray-300 group-hover:text-white">
+                            🔥 Cutting 4 hari (Cardio + Weights)
+                        </p>
+                    </button>
+
+                    <button
+                        onclick="useExamplePrompt('Buatkan 2 hari plan untuk pemula dengan latihan dasar full body')"
+                        class="text-left p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-orange-600 rounded-lg transition-all group">
+                        <p class="text-sm text-gray-300 group-hover:text-white">
+                            🌟 Pemula 2 hari (Full Body)
+                        </p>
+                    </button>
+
+                    <button
+                        onclick="useExamplePrompt('Buatkan 5 hari plan untuk strength training dengan progressive overload')"
+                        class="text-left p-4 bg-gray-800/50 hover:bg-gray-800 border border-gray-700 hover:border-orange-600 rounded-lg transition-all group">
+                        <p class="text-sm text-gray-300 group-hover:text-white">
+                            💯 Strength 5 hari (Progressive Overload)
+                        </p>
+                    </button>
+                </div>
+            </div>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/planner.js"></script>
+
+    <!-- Quick Example Function -->
+    <script>
+        function clearPrompt() {
+            document.getElementById('ai-prompt').value = '';
+            document.getElementById('ai-result').innerHTML = '';
+            Toast.info('Prompt dikosongkan');
+        }
+
+        function useExamplePrompt(promptText) {
+            document.getElementById('ai-prompt').value = promptText;
+            document.getElementById('ai-prompt').focus();
+            Toast.info('Prompt contoh digunakan. Klik Generate!');
+
+            // Scroll ke prompt
+            document.getElementById('ai-prompt').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }
+    </script>
+</body>
+
+</html>

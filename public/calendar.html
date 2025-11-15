@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar - TrainHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-black text-gray-100 min-h-screen">
+
+    <nav class="bg-gray-900 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="app.html" class="text-2xl font-bold text-white">
+                    Train<span class="text-orange-500">Hub</span>
+                </a>
+                <div class="space-x-6">
+                    <a href="app.html" class="text-gray-300 hover:text-white">AI Planner</a>
+                    <a href="plans.html" class="text-gray-300 hover:text-white">My Plans</a>
+                    <a href="calendar.html" class="text-orange-500 font-semibold">Calendar</a>
+                </div>
+                <button id="logout-btn"
+                    class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg text-sm">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-3xl font-bold text-white">Kalender Latihan</h1>
+            <div class="flex items-center gap-4">
+                <!-- Tombol Today -->
+                <button onclick="goToToday()" class="btn btn-secondary btn-sm flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    Hari Ini
+                </button>
+
+                <button id="prev-month" class="btn btn-secondary btn-sm">
+                    ← Prev
+                </button>
+                <span id="current-month" class="text-xl font-semibold text-white min-w-[200px] text-center">
+                    November 2025
+                </span>
+                <button id="next-month" class="btn btn-secondary btn-sm">
+                    Next →
+                </button>
+            </div>
+        </div>
+
+        <!-- Calendar Grid -->
+        <div class="bg-gray-900 p-6 rounded-lg border border-gray-800">
+            <div class="grid grid-cols-7 gap-2 text-center mb-4">
+                <div class="text-gray-500 font-semibold">SEN</div>
+                <div class="text-gray-500 font-semibold">SEL</div>
+                <div class="text-gray-500 font-semibold">RAB</div>
+                <div class="text-gray-500 font-semibold">KAM</div>
+                <div class="text-gray-500 font-semibold">JUM</div>
+                <div class="text-gray-500 font-semibold">SAB</div>
+                <div class="text-gray-500 font-semibold">MIN</div>
+            </div>
+
+            <div id="calendar-grid" class="grid grid-cols-7 gap-2">
+                <!-- Akan diisi oleh JS -->
+            </div>
+        </div>
+
+        <!-- Modal untuk assign plan ke tanggal -->
+        <div id="schedule-modal"
+            class="fixed inset-0 bg-black bg-opacity-75 hidden flex items-center justify-center z-50">
+            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 max-w-md w-full">
+                <h3 class="text-2xl font-bold text-white mb-4">Jadwalkan Latihan</h3>
+                <p class="text-gray-400 mb-4">Tanggal: <span id="selected-date" class="text-white"></span></p>
+
+                <label class="block text-sm font-medium text-gray-300 mb-2">Pilih Plan:</label>
+                <select id="plan-select" class="w-full bg-gray-800 border-gray-700 rounded-md p-3 text-white mb-4">
+                    <!-- Akan diisi oleh JS -->
+                </select>
+
+                <div class="flex gap-2">
+                    <button id="save-schedule-btn"
+                        class="flex-1 bg-orange-600 hover:bg-orange-700 text-white py-2 px-4 rounded">
+                        Simpan
+                    </button>
+                    <button id="cancel-modal-btn" class="bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded">
+                        Batal
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="js/main.js"></script>
+    <script src="js/calendar.js"></script>
+</body>
+
+</html>

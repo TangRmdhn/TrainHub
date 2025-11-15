@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Plans - TrainHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style> body { font-family: 'Inter', sans-serif; } </style>
+</head>
+<body class="bg-black text-gray-100 min-h-screen">
+    
+    <!-- Navbar (sama kayak app.html) -->
+    <nav class="bg-gray-900 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="app.html" class="text-2xl font-bold text-white">
+                    Train<span class="text-orange-500">Hub</span>
+                </a>
+                <div class="space-x-6">
+                    <a href="app.html" class="text-gray-300 hover:text-white">AI Planner</a>
+                    <a href="plans.html" class="text-orange-500 font-semibold">My Plans</a>
+                    <a href="calendar.html" class="text-gray-300 hover:text-white">Calendar</a>
+                </div>
+                <button id="logout-btn" class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg text-sm">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 class="text-3xl font-bold text-white mb-6">Rencana Latihan Saya</h1>
+        
+        <div id="plans-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Akan diisi oleh JS -->
+        </div>
+    </main>
+    <script src="js/main.js"></script>
+    <script src="js/plans.js"></script>
+</body>
+</html>
