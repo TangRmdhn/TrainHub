@@ -2,15 +2,11 @@
 // ============================================
 // TrainHub - Authentication Controller
 // ============================================
-
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../config/jwt.php';
+
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
-
-// JWT Config
-define('JWT_SECRET_KEY', 'KUNCI_RAHASIA_SUPER_AMAN_LU_TANG_2024');
-define('JWT_ALGORITHM', 'HS256');
-define('JWT_EXPIRATION', 60 * 60 * 24);
 
 // === REGISTER ===
 function registerUser($db_connection) {

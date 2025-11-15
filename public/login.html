@@ -31,11 +31,13 @@
             </div>
             <div>
                 <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
+
+                <!-- Container input + eye -->
                 <div class="relative">
-                    <input id="password" type="password" class="form-input pr-10">
+                    <input id="password" name="password" type="password" class="form-input pr-10">
 
                     <button type="button" onclick="togglePassword()"
-                        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
 
                         <!-- Eye -->
                         <svg id="eye" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -58,6 +60,8 @@
                     </button>
                 </div>
 
+                <!-- Di sinilah indicator otomatis muncul -->
+                <!-- JS akan append ke parent <div> yang ini -->
             </div>
 
             <button type="submit"

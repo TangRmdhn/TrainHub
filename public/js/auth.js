@@ -3,8 +3,41 @@
 // Login & Register functionality
 // ============================================
 
+// / ✅ HARDCODE PATH (untuk testing)
+const API_BASE_URL = "/trainhub/api";
+
+// === TEST API AVAILABILITY ===
+console.group('🔧 API Configuration');
+console.log('Current URL:', window.location.href);
+console.log('API Base URL:', API_BASE_URL);
+
+// Test ping API
+fetch(API_BASE_URL + '/auth/login')
+    .then(res => {
+        console.log('API Status:', res.status);
+        console.log('Content-Type:', res.headers.get('Content-Type'));
+        return res.text();
+    })
+    .then(text => {
+        console.log('API Response (first 200 chars):', text.substring(0, 200));
+        
+        // Check if HTML or JSON
+        if (text.startsWith('<!DOCTYPE') || text.startsWith('<html')) {
+            console.error('❌ API returning HTML instead of JSON!');
+            console.error('Possible causes:');
+            console.error('1. .htaccess not working');
+            console.error('2. mod_rewrite not enabled');
+            console.error('3. PHP error in api/index.php');
+        } else {
+            console.log('✅ API returning JSON');
+        }
+    })
+    .catch(err => {
+        console.error('❌ API Connection Failed:', err);
+    });
+console.groupEnd();
 // === CONFIG ===
-const API_BASE_URL = "/api";
+// const API_BASE_URL = "/api";
 
 console.log('Current URL:', window.location.href);
 console.log('API Base:', API_BASE_URL);

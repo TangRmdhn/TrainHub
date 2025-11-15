@@ -1,11 +1,13 @@
 <?php
-// File: api/middleware/auth_middleware.php
-
+// File: api/core/auth_middleware.php
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../config/jwt.php';
+
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key;
 
 function checkAuth() {
+ 
     // 1. Ambil header Authorization
     $headers = apache_request_headers();
     $authHeader = $headers['Authorization'] ?? $headers['authorization'] ?? null;
@@ -25,20 +27,20 @@ function checkAuth() {
         return null;
     }
 
-    // 3. (PENTING) Kunci ini HARUS SAMA kayak di auth_controller.php
-    $secret_key = "KUNCI_RAHASIA_SUPER_AMAN_LU_TANG";
-
     try {
-        // 4. Decode tokennya
-        $decoded = JWT::decode($jwt, new Key($secret_key, 'HS256'));
+        // 3. Decode tokennya
+        $decoded = JWT::decode($jwt, new Key(JWT_SECRET_KEY, JWT_ALGORITHM));
         
-        // 5. Kalo berhasil, kirim data user-nya (terutama ID)
+        // 4. Return user data
         return (array) $decoded->data; 
 
     } catch (Exception $e) {
-        // Kalo token-nya expired atau palsu
+        // Token invalid atau expired
         http_response_code(401);
-        echo json_encode(['status' => 'error', 'message' => 'Token tidak valid atau expired: ' . $e->getMessage()]);
+        echo json_encode([
+            'status' => 'error', 
+            'message' => 'Token tidak valid atau expired: ' . $e->getMessage()
+        ]);
         return null;
     }
 }
