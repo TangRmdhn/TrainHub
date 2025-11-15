@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar - TrainHub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-black text-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-gray-900 p-8 rounded-lg border border-gray-800 shadow-xl w-full max-w-md">
+        <h1 class="text-3xl font-bold text-center text-white mb-2">
+            Train<span class="text-orange-500">Hub</span>
+        </h1>
+        <p class="text-center text-gray-400 mb-6">Buat akun baru</p>
+
+        <form id="register-form" class="space-y-4" action="regist_controller.php" method="POST">
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-300">Username</label>
+                <input type="text" id="username" name="username" required
+                    class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md p-3 text-white focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                <input type="email" id="email" name="email" required
+                    class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md p-3 text-white focus:ring-orange-500 focus:border-orange-500">
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-300">Password</label>
+
+                <!-- Container input + eye -->
+                <div class="relative">
+                    <input id="password" name="password" type="password" class="form-input pr-10">
+
+                    <button type="button" onclick="togglePassword()"
+                        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
+
+                        <!-- Eye -->
+                        <svg id="eye" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.522 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.478 0-8.268-2.943-9.542-7z" />
+                        </svg>
+
+                        <!-- Eye Slash -->
+                        <svg id="eye-slash" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a9.947 9.947 0 012.293-3.95" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6.18 6.18L3 3m3.18 3.18L18.82 18.82" />
+                        </svg>
+
+                    </button>
+                </div>
+            </div>
+
+
+
+            <button type="submit"
+                class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                Daftar
+            </button>
+
+            <div id="message" class="text-center text-sm pt-2"></div>
+        </form>
+
+        <p class="text-center text-sm text-gray-400 mt-6">
+            Sudah punya akun?
+            <a href="login.php" class="font-medium text-orange-500 hover:text-orange-400">Masuk di sini</a>
+        </p>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+
+</html>
