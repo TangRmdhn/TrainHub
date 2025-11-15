@@ -116,7 +116,7 @@ class Navbar {
 // === API HELPER ===
 class API {
     constructor() {
-        this.baseURL = '/api';
+        this.baseURL = window.location.origin + '/trainhub/api';
         this.token = localStorage.getItem('jwt_token');
     }
     

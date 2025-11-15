@@ -3,7 +3,7 @@
 
 // Set header global
 header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *"); 
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 
@@ -11,13 +11,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit(0);
 }
 
+// Ambil REQUEST_URI
+$uri = $_SERVER['REQUEST_URI'];
+
+// Hilangkan query string (?x=y)
+$uri = explode('?', $uri)[0];
+
+// Hilangkan /trainhub/api/
+$basePath = '/trainhub/api/';
+if (strpos($uri, $basePath) === 0) {
+    $path = substr($uri, strlen($basePath));
+} else {
+    $path = '';
+}
+
 // Bawa koneksi DB dan Middleware
-require_once 'config/database.php'; 
+require_once 'config/database.php';
 require_once 'core/auth_middleware.php';
 
 $path = $_GET['path'] ?? '';
+$path = ltrim($path, '/');
 $request_method = $_SERVER['REQUEST_METHOD'];
-$auth_data = null; 
+$auth_data = null;
 
 // Router
 switch ($path) {
@@ -28,7 +43,7 @@ switch ($path) {
             loginUser($db_connection);
         }
         break;
-        
+
     case 'auth/register':
         if ($request_method == 'POST') {
             require_once 'controllers/auth_controller.php';
@@ -41,7 +56,7 @@ switch ($path) {
         $auth_data = checkAuth();
         if ($auth_data && $request_method == 'POST') {
             require_once 'controllers/ai_controller.php';
-            generateAIPlan($db_connection); 
+            generateAIPlan($db_connection);
         }
         break;
 
@@ -63,13 +78,12 @@ switch ($path) {
 
             if ($request_method == 'POST') {
                 saveWorkoutPlan($db_connection, $user_id);
-            } 
-            elseif ($request_method == 'GET') {
+            } elseif ($request_method == 'GET') {
                 getWorkoutPlans($db_connection, $user_id);
             }
         }
         break;
-    
+
     // === [BARU] Plans Management Endpoints (Protected) ===
     case 'plans':
         $auth_data = checkAuth();
@@ -91,7 +105,7 @@ switch ($path) {
             }
         }
         break;
-        
+
     // === Calendar Endpoints (Fitur 5) (Protected) ===
     case 'calendar':
         $auth_data = checkAuth();
@@ -101,8 +115,7 @@ switch ($path) {
 
             if ($request_method == 'POST') {
                 schedulePlanToDate($db_connection, $user_id);
-            } 
-            elseif ($request_method == 'GET' && isset($_GET['month'])) {
+            } elseif ($request_method == 'GET' && isset($_GET['month'])) {
                 getSchedulesForMonth($db_connection, $user_id, $_GET['month']);
             }
         }
@@ -117,9 +130,20 @@ switch ($path) {
         }
         break;
 
+    case 'planner/generate':
+        $auth_data = checkAuth();
+        if ($auth_data && $request_method === 'POST') {
+            require_once 'controllers/ai_controller.php';
+            generateAIPlan($db_connection);
+        }
+        break;
+
     default:
         http_response_code(404);
         echo json_encode(['error' => 'Endpoint not found']);
         break;
 }
+
+file_put_contents("debug_router.txt", "PATH_INFO = " . ($_SERVER['PATH_INFO'] ?? 'null') . "\n", FILE_APPEND);
+file_put_contents("debug_router.txt", "REQUEST_URI = " . $_SERVER['REQUEST_URI'] . "\n", FILE_APPEND);
 

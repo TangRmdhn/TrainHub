@@ -584,6 +584,97 @@ h4 { font-size: var(--font-size-lg); }
     outline-offset: 2px;
 }
 
+/* Calendar cell hover effect */
+.calendar-cell[data-date] {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.calendar-cell[data-date]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+}
+
+.calendar-cell[data-date]:active {
+    transform: translateY(0);
+}
+
+/* Complete button */
+.complete-btn {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.calendar-cell:hover .complete-btn {
+    opacity: 1;
+}
+
+/* Auto-schedule banner animations */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+}
+
+.animate-slideDown {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Available slot highlight (more prominent) */
+.calendar-cell.available-slot {
+    border: 2px dashed #f97316 !important;
+    background: rgba(249, 115, 22, 0.15);
+    position: relative;
+}
+
+.calendar-cell.available-slot::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    animation: pulseGlow 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: inset 0 0 0 0 rgba(249, 115, 22, 0.3);
+    }
+    50% {
+        box-shadow: inset 0 0 10px 2px rgba(249, 115, 22, 0.5);
+    }
+}
+
+.calendar-cell.available-slot:hover {
+    background: rgba(249, 115, 22, 0.25);
+    border-color: #ea580c !important;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
+}
+
+/* Make sure cells are always clickable */
+.calendar-cell[data-date] {
+    cursor: pointer !important;
+    z-index: 1;
+    position: relative;
+}
+
 /* === PRINT STYLES === */
 @media print {
     nav,

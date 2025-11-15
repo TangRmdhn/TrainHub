@@ -232,6 +232,7 @@ function closePlanModal() {
 }
 
 function schedulePlanToCalendar(planId) {
+    closePlanModal();
     window.location.href = `calendar.html?schedule_plan=${planId}`;
 }
 

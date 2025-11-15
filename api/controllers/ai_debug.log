@@ -1,0 +1,30 @@
+{
+  "candidates": [
+    {
+      "content": {
+        "parts": [
+          {
+            "text": "```json\n{\n  \"plan_name\": \"3-Day Bulking: Upper & Lower Focus\",\n  \"notes\": \"This 3-day bulking plan emphasizes compound movements for muscle growth, targeting both upper and lower body. Aim for progressive overload by gradually increasing weight or reps over time. Ensure adequate calorie intake and protein for optimal muscle gain. Rest on non-training days and prioritize sleep for recovery.\",\n  \"schedule\": [\n    {\n      \"day\": \"Day 1: Upper Body Focus\",\n      \"exercises\": [\n        { \"exercise_name\": \"Bench Press\", \"sets\": 3, \"reps\": 8 },\n        { \"exercise_name\": \"Incline Dumbbell Press\", \"sets\": 3, \"reps\": 10 },\n        { \"exercise_name\": \"Bent-Over Row\", \"sets\": 3, \"reps\": 8 },\n        { \"exercise_name\": \"Pull-ups\", \"sets\": 3, \"reps\": \"AMRAP (As Many Reps As Possible)\" },\n        { \"exercise_name\": \"Overhead Press\", \"sets\": 3, \"reps\": 10 },\n        { \"exercise_name\": \"Dumbbell Lateral Raise\", \"sets\": 3, \"reps\": 12 },\n        { \"exercise_name\": \"Barbell Curl\", \"sets\": 3, \"reps\": 10 },\n        { \"exercise_name\": \"Tricep Pushdown\", \"sets\": 3, \"reps\": 10 },\n        { \"exercise_name\": \"Plank\", \"sets\": 3, \"reps\": \"30-60 sec hold\" }\n      ]\n    },\n    {\n      \"day\": \"Day 2: Lower Body Focus\",\n      \"exercises\": [\n        { \"exercise_name\": \"Squat\", \"sets\": 3, \"reps\": 8 },\n        { \"exercise_name\": \"Leg Press\", \"sets\": 3, \"reps\": 10 },\n        { \"exercise_name\": \"Romanian Deadlift\", \"sets\": 3, \"reps\": 10 },\n        { \"exercise_name\": \"Leg Extension\", \"sets\": 3, \"reps\": 12 },\n        { \"exercise_name\": \"Leg Curl\", \"sets\": 3, \"reps\": 12 },\n        { \"exercise_name\": \"Calf Raise\", \"sets\": 3, \"reps\": 15 },\n        { \"exercise_name\": \"Hanging Leg Raise\", \"sets\": 3, \"reps\": 12 }\n      ]\n    },\n    {\n      \"day\": \"Day 3: Full Body Compound Day\",\n      \"exercises\": [\n        { \"exercise_name\": \"Deadlift\", \"sets\": 3, \"reps\": 6 },\n        { \"exercise_name\": \"Dips\", \"sets\": 3, \"reps\": 10 },\n        { \"exercise_name\": \"Lat Pulldown\", \"sets\": 3, \"reps\": 10 },\n        { \"exercise_name\": \"Arnold Press\", \"sets\": 3, \"reps\": 10 },\n        { \"exercise_name\": \"Walking Lunges\", \"sets\": 3, \"reps\": \"10 per leg\" },\n        { \"exercise_name\": \"Hammer Curl\", \"sets\": 3, \"reps\": 10 },\n        { \"exercise_name\": \"Overhead Tricep Extension\", \"sets\": 3, \"reps\": 10 },\n        { \"exercise_name\": \"Cable Crunch\", \"sets\": 3, \"reps\": 15 }\n      ]\n    }\n  ]\n}\n```"
+          }
+        ],
+        "role": "model"
+      },
+      "finishReason": "STOP",
+      "index": 0
+    }
+  ],
+  "usageMetadata": {
+    "promptTokenCount": 411,
+    "candidatesTokenCount": 851,
+    "totalTokenCount": 2459,
+    "promptTokensDetails": [
+      {
+        "modality": "TEXT",
+        "tokenCount": 411
+      }
+    ],
+    "thoughtsTokenCount": 1197
+  },
+  "modelVersion": "gemini-2.5-flash",
+  "responseId": "dYgYac_5Cqrp4-EP3JmU6Qk"
+}

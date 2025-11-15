@@ -116,7 +116,7 @@ header('Content-Type: text/html; charset=utf-8');
     </div>
 
     <script>
-        const API_BASE = '/trainhub/api';
+        const API_BASE = 'api';
         
         // Helper: Display result
         function displayResult(elementId, data, isSuccess = true) {

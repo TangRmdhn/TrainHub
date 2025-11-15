@@ -1,15 +1,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    
-    # Enable rewrite logging (untuk debug)
-    # RewriteLog "C:/xampp/logs/rewrite.log"
-    
-    # Arahkan /api/... ke api/index.php
+    RewriteBase /trainhub/
+
+    # 1. JIKA PATH DIAWALI /api → arahkan ke api/index.php
+    RewriteCond %{REQUEST_URI} ^/trainhub/api/
     RewriteRule ^api/(.*)$ api/index.php?path=$1 [QSA,L]
-    
-    # Arahkan front-end ke public/
+
+    # 2. Selain itu → arahkan ke public/
+    RewriteCond %{REQUEST_URI} !^/trainhub/api/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} !^/api
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>

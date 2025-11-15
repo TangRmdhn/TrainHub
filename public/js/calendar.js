@@ -50,11 +50,131 @@ async function init() {
 }
 
 /**
+ * Check if ada query param untuk auto-schedule
+ * Contoh: calendar.html?schedule_plan=123
+ * 
+ * @returns {boolean} True jika ada auto-schedule
+ */
+function checkAutoSchedule() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const planIdToSchedule = urlParams.get('schedule_plan');
+    
+    if (!planIdToSchedule) {
+        return false; // Nggak ada auto-schedule
+    }
+    
+    console.group('📅 Auto-Schedule Mode');
+    console.log('Plan ID:', planIdToSchedule);
+    
+    // 1. Pre-select plan di dropdown
+    planSelect.value = planIdToSchedule;
+    
+    // 2. Validate plan exists
+    const planExists = allPlans.some(p => p.plan_id == planIdToSchedule);
+    
+    if (!planExists) {
+        console.error('❌ Plan not found');
+        Toast.error('Plan tidak ditemukan');
+        Loading.hide();
+        console.groupEnd();
+        return false;
+    }
+    
+    // 3. Get plan name untuk display
+    const plan = allPlans.find(p => p.plan_id == planIdToSchedule);
+    console.log('Plan:', plan.plan_name);
+    
+    // 4. Clean URL (remove query param)
+    window.history.replaceState({}, document.title, window.location.pathname);
+    
+    // 5. Show helper UI
+    showAutoScheduleHelper(plan);
+    
+    // 6. Highlight available dates
+    highlightAvailableDates();
+    
+    console.log('✅ Ready - User can click any date');
+    console.groupEnd();
+    
+    return true;
+}
+
+/**
+ * Show helper banner untuk auto-schedule mode
+ */
+function showAutoScheduleHelper(plan) {
+    // Create helper banner
+    const banner = document.createElement('div');
+    banner.id = 'auto-schedule-banner';
+    banner.className = 'fixed top-20 left-1/2 transform -translate-x-1/2 z-50 animate-slideDown';
+    banner.innerHTML = `
+        <div class="bg-orange-600 text-white px-6 py-3 rounded-lg shadow-xl flex items-center gap-3 max-w-lg">
+            <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            <div class="flex-1">
+                <p class="font-semibold">Jadwalkan: ${plan.plan_name}</p>
+                <p class="text-sm opacity-90">Klik tanggal di kalender untuk menjadwalkan plan ini</p>
+            </div>
+            <button onclick="closeAutoScheduleBanner()" class="text-white hover:text-gray-200 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(banner);
+    
+    // Auto-hide after 8 seconds
+    setTimeout(() => {
+        closeAutoScheduleBanner();
+    }, 8000);
+}
+
+/**
+ * Close auto-schedule banner
+ */
+function closeAutoScheduleBanner() {
+    const banner = document.getElementById('auto-schedule-banner');
+    if (banner) {
+        banner.style.animation = 'slideUp 0.3s ease-out';
+        setTimeout(() => banner.remove(), 300);
+    }
+}
+
+/**
+ * Highlight available dates (visual cue)
+ */
+function highlightAvailableDates() {
+    const cells = calendarGrid.querySelectorAll('.calendar-cell[data-date]');
+    const today = new Date().toISOString().split('T')[0];
+    
+    cells.forEach(cell => {
+        const dateStr = cell.getAttribute('data-date');
+        const schedule = schedules[dateStr];
+        
+        // Highlight empty cells di future (termasuk hari ini)
+        if (!schedule && dateStr >= today) {
+            cell.classList.add('available-slot');
+            
+            // Add tooltip
+            cell.setAttribute('title', 'Klik untuk jadwalkan');
+            
+            // Make it more obvious
+            cell.style.borderColor = '#f97316';
+            cell.style.borderWidth = '2px';
+            cell.style.borderStyle = 'dashed';
+        }
+    });
+}
+/**
  * Load semua plans untuk dropdown
  */
 async function loadPlans() {
     try {
         const result = await window.api.get('/plans');
+
         allPlans = result.data || [];
         
         // Populate dropdown
@@ -96,6 +216,9 @@ async function loadSchedules() {
     }
 }
 
+/**
+ * Render calendar grid
+ */
 /**
  * Render calendar grid
  */
@@ -166,8 +289,9 @@ function renderCalendar() {
             if (!schedule.is_completed && !isPast) {
                 content += `
                     <button 
-                        onclick="event.stopPropagation(); markAsComplete(${schedule.schedule_id}, '${dateStr}')"
-                        class="mt-2 w-full bg-green-600 hover:bg-green-700 text-white text-xs py-1 px-2 rounded transition-colors"
+                        class="complete-btn mt-2 w-full bg-green-600 hover:bg-green-700 text-white text-xs py-1 px-2 rounded transition-colors"
+                        data-schedule-id="${schedule.schedule_id}"
+                        data-date="${dateStr}"
                         title="Tandai selesai"
                     >
                         ✓ Selesai
@@ -182,10 +306,46 @@ function renderCalendar() {
             `;
         }
         
-        html += `<div class="${cellClass}" onclick="openScheduleModal('${dateStr}')">${content}</div>`;
+        // ✅ FIX: Pake data-date attribute instead of onclick
+        html += `<div class="${cellClass}" data-date="${dateStr}">${content}</div>`;
     }
     
     calendarGrid.innerHTML = html;
+    
+    // ✅ FIX: Attach event listeners AFTER render
+    attachCellEventListeners();
+}
+
+/**
+ * Attach click event listeners ke calendar cells
+ */
+function attachCellEventListeners() {
+    console.group('🔧 Attaching Event Listeners');
+    
+    const cells = calendarGrid.querySelectorAll('.calendar-cell[data-date]');
+    console.log('Found cells:', cells.length);
+    
+    cells.forEach((cell, index) => {
+        const dateStr = cell.getAttribute('data-date');
+        console.log(`Attaching listener to cell ${index}:`, dateStr);
+        
+        cell.addEventListener('click', (e) => {
+            console.log('Cell clicked:', dateStr);
+            
+            if (e.target.classList.contains('complete-btn')) {
+                console.log('Complete button clicked, ignoring cell click');
+                return;
+            }
+            
+            console.log('Opening modal for:', dateStr);
+            openScheduleModal(dateStr);
+        });
+        
+        cell.style.cursor = 'pointer';
+        cell.style.border = '1px solid #ff6600'; // Visual debug
+    });
+    
+    console.groupEnd();
 }
 
 /**
@@ -274,6 +434,9 @@ document.addEventListener('keydown', (e) => {
 /**
  * Mark schedule as complete
  */
+/**
+ * Mark schedule as complete
+ */
 async function markAsComplete(scheduleId, dateStr) {
     const schedule = schedules[dateStr];
     
@@ -303,7 +466,7 @@ async function markAsComplete(scheduleId, dateStr) {
         // Re-render calendar
         renderCalendar();
         
-        // Bisa tambahin confetti effect di sini 🎉
+        // Celebration effect
         showCelebration();
         
     } catch (error) {
@@ -313,7 +476,6 @@ async function markAsComplete(scheduleId, dateStr) {
         Loading.hide();
     }
 }
-
 /**
  * Show celebration animation (bonus UX)
  */
