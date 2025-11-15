@@ -123,5 +123,3 @@ switch ($path) {
         break;
 }
 
-// Tutup koneksi DB di akhir script
-$db_connection->close();

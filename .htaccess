@@ -1,9 +1,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    # Arahkan semua request ke /api/... ke file api/index.php
+    
+    # Arahkan /api/... ke api/index.php
     RewriteRule ^api/(.*)$ api/index.php?path=$1 [QSA,L]
     
-    # Arahkan semua request front-end ke index.html (buat SPA)
+    # Arahkan semua request front-end ke index.html
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} !^/api

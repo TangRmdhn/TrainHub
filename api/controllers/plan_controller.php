@@ -111,4 +111,3 @@ function deletePlan($db_connection, $user_id, $plan_id) {
     }
     $stmt->close();
 }
-?>

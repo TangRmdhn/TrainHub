@@ -6,6 +6,9 @@
 // === CONFIG ===
 const API_BASE_URL = "/api";
 
+console.log('Current URL:', window.location.href);
+console.log('API Base:', API_BASE_URL);
+
 // === DETECT PAGE ===
 const isRegisterPage = !!document.getElementById('register-form');
 const isLoginPage = !!document.getElementById('login-form');
