@@ -7,43 +7,25 @@
  * URL: /api/calendar
  * BODY: { "plan_id": 123, "date": "2025-11-20" }
  */
-// function schedulePlanToDate($db_connection, $user_id) {
-//     $data = json_decode(file_get_contents('php://input'), true);
-
-//     if (empty($data['plan_id']) || empty($data['date'])) {
-//         http_response_code(400);
-//         echo json_encode(['status' => 'error', 'message' => 'Butuh "plan_id" dan "date".']);
-//         return;
-//     }
-
-//     $plan_id = $data['plan_id'];
-//     $date = $data['date']; // Format YYYY-MM-DD
-
-//     // Cek dulu jangan-jangan udah ada jadwal di tanggal itu (dari SQL UNIQUE KEY)
-//     $stmt = $db_connection->prepare(
-//         "INSERT INTO user_schedules (user_id, plan_id, scheduled_date) 
-//          VALUES (?, ?, ?)
-//          ON DUPLICATE KEY UPDATE plan_id = VALUES(plan_id)" // Kalo udah ada, timpa aja
-//     );
-//     $stmt->bind_param("iis", $user_id, $plan_id, $date);
-
-//     if ($stmt->execute()) {
-//         http_response_code(201); // Created (atau 200 OK kalo update)
-//         echo json_encode(['status' => 'success', 'message' => 'Jadwal berhasil disimpan.']);
-//     } else {
-//         http_response_code(500);
-//         echo json_encode(['status' => 'error', 'message' => 'Gagal simpan jadwal: ' . $stmt->error]);
-//     }
-//     $stmt->close();
-// }
 function schedulePlanToDate($db, $user_id) {
-    $plan_id = $_POST['plan_id'] ?? null;
-    $scheduled_date = $_POST['scheduled_date'] ?? null;
+    // ✅ FIX: Parse JSON body, bukan $_POST
+    $data = json_decode(file_get_contents('php://input'), true);
+    
+    $plan_id = $data['plan_id'] ?? null;
+    $scheduled_date = $data['date'] ?? null; // ⚠️ Key: 'date'
+
+    // Debug log
+    error_log("=== SCHEDULE PLAN ===");
+    error_log("User ID: $user_id");
+    error_log("Plan ID: $plan_id");
+    error_log("Date: $scheduled_date");
+    error_log("Raw input: " . file_get_contents('php://input'));
 
     if (!$plan_id || !$scheduled_date) {
+        http_response_code(400);
         echo json_encode([
             'status' => 'error',
-            'message' => 'plan_id dan scheduled_date diperlukan.'
+            'message' => 'plan_id dan date diperlukan.'
         ]);
         return;
     }
@@ -59,10 +41,27 @@ function schedulePlanToDate($db, $user_id) {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        echo json_encode([
-            'status' => 'error',
-            'message' => 'Kamu sudah memiliki jadwal workout pada tanggal ini.'
-        ]);
+        // ✅ UPDATE existing schedule instead of error
+        $stmt = $db->prepare("
+            UPDATE user_schedules 
+            SET plan_id = ?
+            WHERE user_id = ? AND scheduled_date = ?
+        ");
+        $stmt->bind_param("iis", $plan_id, $user_id, $scheduled_date);
+        
+        if ($stmt->execute()) {
+            http_response_code(200);
+            echo json_encode([
+                'status' => 'success',
+                'message' => 'Schedule berhasil diupdate.'
+            ]);
+        } else {
+            http_response_code(500);
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Gagal update schedule: ' . $stmt->error
+            ]);
+        }
         return;
     }
 
@@ -74,14 +73,19 @@ function schedulePlanToDate($db, $user_id) {
     $stmt->bind_param("iis", $user_id, $plan_id, $scheduled_date);
 
     if ($stmt->execute()) {
+        http_response_code(201);
         echo json_encode([
             'status' => 'success',
-            'message' => 'Workout berhasil dijadwalkan.'
+            'message' => 'Workout berhasil dijadwalkan.',
+            'schedule_id' => $stmt->insert_id
         ]);
+        error_log("Schedule created successfully. ID: " . $stmt->insert_id);
     } else {
+        http_response_code(500);
+        error_log("Insert error: " . $stmt->error);
         echo json_encode([
             'status' => 'error',
-            'message' => 'Gagal menyimpan jadwal.'
+            'message' => 'Gagal menyimpan jadwal: ' . $stmt->error
         ]);
     }
 }
@@ -91,39 +95,15 @@ function schedulePlanToDate($db, $user_id) {
  * METHOD: GET
  * URL: /api/calendar?month=2025-11
  */
-// function getSchedulesForMonth($db_connection, $user_id, $month) {
-//     // $month formatnya "YYYY-MM"
-//     // Kita cari yang awalnya kayak gitu
-//     $date_start = $month . "-01";
-//     $date_end = $month . "-31"; // (Cara simpel, MySQL bakal handle)
-
-//     $stmt = $db_connection->prepare(
-//         "SELECT 
-//             s.schedule_id, s.scheduled_date, s.is_completed,
-//             p.plan_id, p.plan_name 
-//          FROM user_schedules s
-//          JOIN workout_plans p ON s.plan_id = p.plan_id
-//          WHERE s.user_id = ? 
-//          AND s.scheduled_date BETWEEN ? AND ?"
-//     );
-//     $stmt->bind_param("iss", $user_id, $date_start, $date_end);
-//     $stmt->execute();
-//     $result = $stmt->get_result();
-
-//     $schedules = [];
-//     while ($row = $result->fetch_assoc()) {
-//         $schedules[] = $row;
-//     }
-//     $stmt->close();
-
-//     http_response_code(200);
-//     echo json_encode(['status' => 'success', 'data' => $schedules]);
-// }
-
 function getSchedulesForMonth($db, $user_id, $month) {
+    
+    error_log("=== GET SCHEDULES ===");
+    error_log("User ID: $user_id");
+    error_log("Month: $month");
 
     // Validasi format YYYY-MM
     if (!preg_match('/^\d{4}-\d{2}$/', $month)) {
+        http_response_code(400);
         echo json_encode([
             'status' => 'error',
             'message' => 'Format month harus YYYY-MM.'
@@ -134,10 +114,12 @@ function getSchedulesForMonth($db, $user_id, $month) {
     $start = $month . "-01";
     $end = date("Y-m-t", strtotime($start)); // t = last day of month
 
+    error_log("Date range: $start to $end");
+
     $stmt = $db->prepare("
         SELECT s.schedule_id, s.plan_id, s.scheduled_date,
                s.is_completed, s.workout_notes, s.completed_at,
-               p.plan_name, p.description
+               p.plan_name, p.notes as description
         FROM user_schedules s
         JOIN workout_plans p ON s.plan_id = p.plan_id
         WHERE s.user_id = ?
@@ -154,10 +136,14 @@ function getSchedulesForMonth($db, $user_id, $month) {
         $schedules[] = $row;
     }
 
+    error_log("Found schedules: " . count($schedules));
+    error_log("Schedules: " . json_encode($schedules));
+
+    http_response_code(200);
     echo json_encode([
         'status' => 'success',
         'month' => $month,
-        'schedules' => $schedules
+        'data' => $schedules  // ✅ FIX: Key 'data', bukan 'schedules'!
     ]);
 }
 
@@ -170,6 +156,11 @@ function markScheduleAsComplete($db, $user_id, $schedule_id) {
 
     $payload = json_decode(file_get_contents("php://input"), true);
     $notes = $payload["notes"] ?? null;
+
+    error_log("=== MARK COMPLETE ===");
+    error_log("User ID: $user_id");
+    error_log("Schedule ID: $schedule_id");
+    error_log("Notes: $notes");
 
     $stmt = $db->prepare("
         UPDATE user_schedules
@@ -189,12 +180,14 @@ function markScheduleAsComplete($db, $user_id, $schedule_id) {
                 "status"  => "success",
                 "message" => "Workout berhasil ditandai selesai!"
             ]);
+            error_log("Schedule marked as complete");
         } else {
             http_response_code(404);
             echo json_encode([
                 "status"  => "error",
                 "message" => "Jadwal tidak ditemukan atau bukan milikmu."
             ]);
+            error_log("Schedule not found or unauthorized");
         }
 
     } else {
@@ -203,9 +196,8 @@ function markScheduleAsComplete($db, $user_id, $schedule_id) {
             "status"  => "error",
             "message" => "Gagal update jadwal: " . $stmt->error
         ]);
+        error_log("Update error: " . $stmt->error);
     }
 
     $stmt->close();
 }
-
-?>
