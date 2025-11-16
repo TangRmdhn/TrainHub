@@ -1,9 +1,7 @@
 <?php
-// echo "AI Controller Loaded<br>";
-// flush();
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
+require __DIR__ . '/vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 function generateAIPlan($db_connection)
 {
@@ -56,8 +54,8 @@ Respond ONLY with JSON.
 ";
 
   // Gemini API
-  $GEMINI_API_KEY = "AIzaSyAfw7W-_eKZPWDTs9JGG4N5F16gpErqAVE";
-  $GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" . $GEMINI_API_KEY;
+  $GEMINI_API_KEY = getenv('GEMINI_API_KEY');
+  $GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' .  $GEMINI_API_KEY;
 
   $postData = [
     'contents' => [

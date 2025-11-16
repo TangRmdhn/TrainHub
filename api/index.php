@@ -29,7 +29,9 @@ if (strpos($uri, $basePath) === 0) {
 require_once 'config/database.php';
 require_once 'core/auth_middleware.php';
 
-$path = $_GET['path'] ?? '';
+if (empty($path)) {
+    $path = $_GET['path'] ?? '';
+}
 $path = ltrim($path, '/');
 $request_method = $_SERVER['REQUEST_METHOD'];
 $auth_data = null;

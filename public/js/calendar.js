@@ -202,30 +202,31 @@ async function loadSchedules() {
     
     console.group('📅 Loading Schedules');
     console.log('Month:', month);
-    console.log('API Base URL:', window.api.baseURL);
-    console.log('Full URL:', `${window.api.baseURL}/calendar?month=${month}`);
-    console.log('Token:', localStorage.getItem('jwt_token') ? 'EXISTS' : 'MISSING');
     
     try {
         const result = await window.api.get(`/calendar?month=${month}`);
         
         console.log('✅ API Response:', result);
-        console.log('Response.status:', result.status);
-        console.log('Response.data:', result.data);
-        
-        if (!result.data) {
-            console.error('❌ result.data is undefined!');
-            console.error('Full result object:', result);
-        }
+        console.log('Raw data:', result.data);
         
         // Convert array ke object dengan key = tanggal
         schedules = {};
         const dataArray = result.data || [];
-        console.log('Data array length:', dataArray.length);
         
-        dataArray.forEach((s, index) => {
-            console.log(`Adding schedule ${index}:`, s);
-            schedules[s.scheduled_date] = s;
+        dataArray.forEach((s) => {
+            // ✅ FIX: Normalize date format (remove timestamp if exists)
+            const dateOnly = s.scheduled_date.split(' ')[0]; // "2025-11-16 00:00:00" -> "2025-11-16"
+            
+            // ✅ FIX: Convert is_completed to proper boolean
+            const isCompleted = s.is_completed === 1 || s.is_completed === '1' || s.is_completed === true;
+            
+            schedules[dateOnly] = {
+                ...s,
+                scheduled_date: dateOnly,
+                is_completed: isCompleted
+            };
+            
+            console.log(`Added schedule for ${dateOnly}:`, schedules[dateOnly]);
         });
         
         console.log('📊 Final schedules object:', schedules);
@@ -234,10 +235,6 @@ async function loadSchedules() {
         
     } catch (error) {
         console.error('❌ Error loading schedules:', error);
-        console.error('Error details:', {
-            message: error.message,
-            stack: error.stack
-        });
         console.groupEnd();
         schedules = {};
     }
@@ -310,7 +307,7 @@ function renderCalendar() {
             `;
             
             // ✅ FIX: Add complete button jika belum selesai DAN bukan hari yang sudah lewat
-            if (!schedule.is_completed && dateStr >= today) {
+            if (schedule.is_completed === false && dateStr >= today) {
                 content += `
                     <button 
                         class="complete-btn mt-2 w-full bg-green-600 hover:bg-green-700 text-white text-xs py-1 px-2 rounded transition-colors"

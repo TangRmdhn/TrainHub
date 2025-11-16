@@ -1,6 +1,11 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteBase /trainhub/api/
+
+    # Don't rewrite if file/directory exists
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Pass everything to index.php as 'path' parameter
     RewriteRule ^(.*)$ index.php?path=$1 [QSA,L]
 </IfModule>
