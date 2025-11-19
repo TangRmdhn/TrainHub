@@ -27,28 +27,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Kalau data masih kosong, arahkan ke Screening
                 echo "<script>
                         alert('Login berhasil! Yuk, lengkapi data latihanmu dulu agar AI bisa bekerja.');
-                        window.location.href='screening.php';
+                        window.location.href='../views/screening.php';
                       </script>";
             } else {
                 // Kalau data sudah ada, langsung gass ke Dashboard
-                header("Location: app.php");
+                header("Location: ../views/app.php");
             }
             exit;
         } else {
             // Password salah
             echo "<script>
                     alert('Password salah bro! Coba inget-inget lagi.');
-                    window.location.href='login.php';
+                    window.location.href='../views/login.php';
                   </script>";
         }
     } else {
         // Email tidak ditemukan
         echo "<script>
                 alert('Email belum terdaftar. Daftar dulu gih!');
-                window.location.href='login.php';
+                window.location.href='../views/login.php';
               </script>";
     }
 
     $koneksi->close();
 }
 ?>
+

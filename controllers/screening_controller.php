@@ -4,7 +4,7 @@ include '../koneksi.php';
 
 // Pastikan user sudah login
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
-    header("Location: login.php");
+    header("Location: ../views/login.php");
     exit;
 }
 
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($koneksi->query($sql) === TRUE) {
         // Sukses simpan data, arahkan ke dashboard
         // Nanti di dashboard (app.php) kita tinggal fetch data ini buat dikirim ke Python
-        header("Location: app.php");
+        header("Location: ../views/app.php");
     } else {
         echo "Error updating record: " . $koneksi->error;
     }
@@ -48,3 +48,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $koneksi->close();
 }
 ?>
+

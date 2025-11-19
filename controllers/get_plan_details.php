@@ -102,3 +102,4 @@ echo json_encode([
     'finish_date' => $plan['finish_date'],
     'timeline' => $timeline
 ]);
+

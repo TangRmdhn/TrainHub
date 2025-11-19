@@ -100,3 +100,4 @@ $stmt->close();
 $koneksi->close();
 
 echo json_encode($events);
+

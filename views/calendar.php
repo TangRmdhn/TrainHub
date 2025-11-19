@@ -13,7 +13,7 @@ $user_id = $_SESSION['user_id'];
 $sql = "SELECT username, fitness_goal FROM users WHERE id = '$user_id'";
 $result = $koneksi->query($sql);
 if ($result->num_rows == 0) {
-    header("Location: logout.php");
+    header("Location: ../controllers/logout.php");
     exit;
 }
 $user = $result->fetch_assoc();
@@ -561,5 +561,7 @@ $user = $result->fetch_assoc();
 </body>
 
 </html>
+
+
 
 

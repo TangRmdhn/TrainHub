@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($koneksi->query($sql) === TRUE) {
         echo "<script>
                 alert('Registrasi berhasil! Silakan login.');
-                window.location.href='login.php';
+                window.location.href='../views/login.php';
               </script>";
     } else {
         echo "Error: " . $sql . "<br>" . $koneksi->error;
@@ -39,3 +39,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $koneksi->close();
 }
 ?>
+

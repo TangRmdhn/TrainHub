@@ -1,0 +1,21 @@
+# Redirect old URLs to new structure
+RewriteEngine On
+
+# Redirect view pages to views folder
+RewriteRule ^app\.php$ views/app.php [L]
+RewriteRule ^plans\.php$ views/plans.php [L]
+RewriteRule ^calendar\.php$ views/calendar.php [L]
+RewriteRule ^stats\.php$ views/stats.php [L]
+RewriteRule ^login\.php$ views/login.php [L]
+RewriteRule ^register\.php$ views/register.php [L]
+RewriteRule ^screening\.php$ views/screening.php [L]
+
+# Redirect API/controller files to controllers folder
+RewriteRule ^api_calendar\.php$ controllers/api_calendar.php [L]
+RewriteRule ^api_stats\.php$ controllers/api_stats.php [L]
+RewriteRule ^mark_complete\.php$ controllers/mark_complete.php [L]
+RewriteRule ^get_plan_details\.php$ controllers/get_plan_details.php [L]
+RewriteRule ^delete_plan\.php$ controllers/delete_plan.php [L]
+RewriteRule ^save_plan\.php$ controllers/save_plan.php [L]
+RewriteRule ^update_plan_date\.php$ controllers/update_plan_date.php [L]
+RewriteRule ^logout\.php$ controllers/logout.php [L]

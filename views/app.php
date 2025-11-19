@@ -13,7 +13,7 @@ $user_id = $_SESSION['user_id'];
 $sql = "SELECT * FROM users WHERE id = '$user_id'";
 $result = $koneksi->query($sql);
 if ($result->num_rows == 0) {
-    header("Location: logout.php");
+    header("Location: ../controllers/logout.php");
     exit;
 }
 $user = $result->fetch_assoc();
@@ -517,7 +517,7 @@ $user_profile_json = json_encode($profile_for_api);
 
             // 3. Form Save Plan
             html += `
-                <form id="savePlanForm" action="save_plan.php" method="POST" class="mt-8 p-6 bg-gray-800 rounded-xl border border-gray-700 shadow-xl">
+                <form id="savePlanForm" action="../controllers/save_plan.php" method="POST" class="mt-8 p-6 bg-gray-800 rounded-xl border border-gray-700 shadow-xl">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4">
                         <div>
                             <h3 class="text-lg font-bold text-white">Simpan Program Ini?</h3>
@@ -651,7 +651,7 @@ $user_profile_json = json_encode($profile_for_api);
 
             try {
                 const formData = new FormData(form);
-                const response = await fetch('save_plan.php', {
+                const response = await fetch('../controllers/save_plan.php', {
                     method: 'POST',
                     body: formData
                 });
@@ -692,5 +692,7 @@ $user_profile_json = json_encode($profile_for_api);
 </body>
 
 </html>
+
+
 
 

@@ -86,3 +86,4 @@ echo json_encode([
     'chart_labels' => $chart_labels,
     'chart_data' => $chart_data
 ]);
+
