@@ -1,0 +1,13 @@
+<?php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db = "trainhub_db";
+$port = 3306; // Default MySQL port
+
+$koneksi = new mysqli($host, $user, $pass, $db, $port);
+
+if ($koneksi->connect_error) {
+    die("Connection failed: " . $koneksi->connect_error);
+}
+?>
