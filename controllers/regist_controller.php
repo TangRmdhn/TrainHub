@@ -1,7 +1,7 @@
 <?php
 // regist_controller.php
 session_start();
-include 'koneksi.php';
+include '../koneksi.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($koneksi, $_POST['username']);

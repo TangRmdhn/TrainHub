@@ -1,7 +1,7 @@
 <?php
 session_start();
 header('Content-Type: application/json');
-include 'koneksi.php';
+include '../koneksi.php';
 
 $response = ['success' => false, 'message' => 'Permintaan tidak valid.'];
 

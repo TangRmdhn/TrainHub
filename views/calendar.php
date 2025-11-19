@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../koneksi.php';
 
 // 1. Cek Login
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
@@ -143,7 +143,7 @@ $user = $result->fetch_assoc();
 
                 <!-- Right: Logout (Desktop) -->
                 <div class="hidden md:flex">
-                    <a href="logout.php" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
+                    <a href="../controllers/logout.php" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
                         Logout
                     </a>
                 </div>
@@ -165,7 +165,7 @@ $user = $result->fetch_assoc();
                 <a href="calendar.php" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Calendar</a>
                 <a href="stats.php" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
                 <div class="pt-3 border-t border-gray-700">
-                    <a href="logout.php" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
+                    <a href="../controllers/logout.php" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
                         Logout
                     </a>
                 </div>
@@ -532,7 +532,7 @@ $user = $result->fetch_assoc();
             if (!confirm('Tandai latihan ini sebagai selesai?')) return;
 
             try {
-                const response = await fetch('mark_complete.php', {
+                const response = await fetch('../controllers/mark_complete.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -561,3 +561,5 @@ $user = $result->fetch_assoc();
 </body>
 
 </html>
+
+

@@ -45,7 +45,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 
                 <!-- Right: Logout (Desktop) -->
                 <div class="hidden md:flex">
-                    <a href="logout.php" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
+                    <a href="../controllers/logout.php" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
                         Logout</a>
                 </div>
 
@@ -66,7 +66,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
                 <a href="calendar.php" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
                 <a href="stats.php" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Statistics</a>
                 <div class="pt-3 border-t border-gray-700">
-                    <a href="logout.php" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
+                    <a href="../controllers/logout.php" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
                         Logout
                     </a>
                 </div>
@@ -135,7 +135,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
             const ctx = document.getElementById('activityChart').getContext('2d');
 
             try {
-                const response = await fetch('api_stats.php');
+                const response = await fetch('../controllers/api_stats.php');
                 const data = await response.json();
 
                 if (data.error) {
@@ -221,3 +221,5 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 </body>
 
 </html>
+
+

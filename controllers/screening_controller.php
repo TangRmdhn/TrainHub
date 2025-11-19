@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../koneksi.php';
 
 // Pastikan user sudah login
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {

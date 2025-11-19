@@ -41,7 +41,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 
     <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 shadow-2xl w-full max-w-2xl">
         
-        <form id="screeningForm" action="screening_controller.php" method="POST">
+        <form id="screeningForm" action="../controllers/screening_controller.php" method="POST">
             
             <div class="step-content active" data-step="1">
                 <h2 class="text-2xl font-bold text-white mb-2">Ceritakan Sedikit Tentang Diri Anda</h2>
@@ -295,3 +295,5 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
     </script>
 </body>
 </html>
+
+

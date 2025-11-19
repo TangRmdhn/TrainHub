@@ -23,7 +23,7 @@
         </h1>
         <p class="text-center text-gray-400 mb-6">Buat akun baru</p>
 
-        <form id="register-form" class="space-y-4" action="regist_controller.php" method="POST">
+        <form id="register-form" class="space-y-4" action="../controllers/regist_controller.php" method="POST">
             <div>
                 <label for="username" class="block text-sm font-medium text-gray-300">Username</label>
                 <input type="text" id="username" name="username" required
@@ -86,3 +86,5 @@
 </body>
 
 </html>
+
+

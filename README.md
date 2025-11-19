@@ -136,23 +136,37 @@ The AI service will be available at `http://localhost:8000`
 
 ```
 trainhub/
-├── AI/                      # Python FastAPI service
-│   ├── main.py             # FastAPI application
-│   ├── requirements.txt    # Python dependencies
-│   └── .env               # API keys (not in repo)
-├── css/                    # Stylesheets
-├── app.php                # Dashboard page
-├── calendar.php           # Calendar view
-├── plans.php              # Plans management
-├── stats.php              # Statistics page
-├── login.php              # Login page
-├── register.php           # Registration page
-├── koneksi.php            # Database connection
-├── api_calendar.php       # Calendar API
-├── api_stats.php          # Statistics API
-├── mark_complete.php      # Workout completion API
-├── get_plan_details.php   # Plan details API
-└── trainhub_db.sql        # Database schema
+├── AI/                         # Python FastAPI service
+│   ├── main.py                # FastAPI application
+│   ├── requirements.txt       # Python dependencies
+│   └── .env                   # API keys (not in repo)
+├── views/                      # Frontend pages
+│   ├── css/                   # Stylesheets
+│   │   └── style.css
+│   ├── app.php                # Dashboard page
+│   ├── calendar.php           # Calendar view
+│   ├── plans.php              # Plans management
+│   ├── stats.php              # Statistics page
+│   ├── login.php              # Login page
+│   ├── register.php           # Registration page
+│   └── screening.php          # User screening form
+├── controllers/                # Backend API endpoints
+│   ├── api_calendar.php       # Calendar API
+│   ├── api_stats.php          # Statistics API
+│   ├── mark_complete.php      # Workout completion API
+│   ├── get_plan_details.php   # Plan details API
+│   ├── delete_plan.php        # Delete plan API
+│   ├── save_plan.php          # Save plan API
+│   ├── update_plan_date.php   # Update plan dates API
+│   ├── login_controller.php   # Login handler
+│   ├── regist_controller.php  # Registration handler
+│   ├── screening_controller.php # Screening handler
+│   └── logout.php             # Logout handler
+├── index.php                   # Landing page
+├── koneksi.php                 # Database connection
+├── koneksi.php.example         # DB config template
+├── trainhub_db.sql            # Database schema
+└── README.md                   # Documentation
 ```
 
 ## Troubleshooting

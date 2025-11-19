@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'koneksi.php';
+include '../koneksi.php';
 
 // 1. Cek Login
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
@@ -223,7 +223,7 @@ $user_profile_json = json_encode($profile_for_api);
                         <div class="text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
                         <div class="text-xs text-gray-400"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
                     </div>
-                    <a href="logout.php" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
+                    <a href="../controllers/logout.php" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
                         Logout
                     </a>
                 </div>
@@ -247,7 +247,7 @@ $user_profile_json = json_encode($profile_for_api);
                 <div class="pt-3 border-t border-gray-700">
                     <div class="px-3 py-2 text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
                     <div class="px-3 pb-2 text-xs text-gray-400"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
-                    <a href="logout.php" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
+                    <a href="../controllers/logout.php" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
                         Logout
                     </a>
                 </div>
@@ -692,3 +692,5 @@ $user_profile_json = json_encode($profile_for_api);
 </body>
 
 </html>
+
+
