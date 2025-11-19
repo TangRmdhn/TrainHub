@@ -358,7 +358,7 @@ $user = $result->fetch_assoc();
             const endStr = endDate.toISOString().split('T')[0];
 
             try {
-                const response = await fetch(`api_calendar.php?start=${startStr}&end=${endStr}`);
+                const response = await fetch(`../controllers/api_calendar.php?start=${startStr}&end=${endStr}`);
                 const data = await response.json();
 
                 // Reset events
@@ -561,7 +561,3 @@ $user = $result->fetch_assoc();
 </body>
 
 </html>
-
-
-
-

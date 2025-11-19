@@ -281,7 +281,7 @@ $result = $stmt->get_result();
             `;
 
             try {
-                const response = await fetch(`get_plan_details.php?plan_id=${planId}`);
+                const response = await fetch(`../controllers/get_plan_details.php?plan_id=${planId}`);
                 const data = await response.json();
 
                 if (data.error) {
@@ -373,7 +373,3 @@ $result = $stmt->get_result();
 </body>
 
 </html>
-
-
-
-
