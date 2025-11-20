@@ -26,6 +26,7 @@ $user = $result->fetch_assoc();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalender Latihan - TrainHub</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
@@ -38,7 +39,6 @@ $user = $result->fetch_assoc();
             grid-template-columns: repeat(7, 1fr);
             gap: 1px;
             background-color: #374151;
-            /* Border color */
             border: 1px solid #374151;
         }
 
@@ -49,6 +49,8 @@ $user = $result->fetch_assoc();
             position: relative;
             transition: background-color 0.2s;
             vertical-align: top;
+            display: table-cell;
+            /* Override style.css flex */
         }
 
         .calendar-cell:hover {
@@ -102,10 +104,8 @@ $user = $result->fetch_assoc();
 
         .event-pill.completed {
             background-color: #22c55e;
-            /* Green-500 */
             color: white;
             border-left-color: #15803d;
-            /* Green-700 */
         }
 
         /* Ensure calendar has minimum width on mobile */
@@ -114,7 +114,6 @@ $user = $result->fetch_assoc();
             .calendar-grid,
             .grid.grid-cols-7.bg-gray-800 {
                 min-width: 480px;
-                /* Force minimum width to prevent crushing */
             }
         }
 
@@ -123,7 +122,6 @@ $user = $result->fetch_assoc();
             .calendar-grid,
             .grid.grid-cols-7.bg-gray-800 {
                 min-width: 420px;
-                /* Slightly smaller but still readable */
             }
         }
 
@@ -256,11 +254,11 @@ $user = $result->fetch_assoc();
     <div id="workoutModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
         <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-75"></div>
 
-        <div class="modal-container bg-gray-800 w-11/12 md:max-w-md mx-auto rounded-xl shadow-2xl z-50 overflow-y-auto transform scale-95 transition-transform duration-300 border border-gray-700">
+        <div class="modal-container bg-gray-800 w-11/12 md:max-w-md mx-auto rounded-xl shadow-2xl z-50 transform scale-95 transition-transform duration-300 border border-gray-700 flex flex-col max-h-[90vh] overflow-hidden">
 
-            <div class="modal-content py-4 text-left px-6">
+            <div class="modal-content flex flex-col w-full flex-1 min-h-0 text-left custom-scrollbar">
                 <!-- Title -->
-                <div class="flex justify-between items-center pb-3 border-b border-gray-700">
+                <div class="flex justify-between items-center p-6 pb-4 border-b border-gray-700 flex-shrink-0">
                     <div>
                         <p class="text-2xl font-bold text-white" id="modal-plan-name">Plan Name</p>
                         <p class="text-sm text-gray-400" id="modal-date">Date</p>
@@ -273,7 +271,7 @@ $user = $result->fetch_assoc();
                 </div>
 
                 <!-- Body -->
-                <div class="my-5">
+                <div class="p-6 overflow-y-auto flex-grow">
                     <div class="mb-4">
                         <p class="text-sm text-gray-400 uppercase tracking-wider font-bold mb-2">Status</p>
                         <div id="modal-status">
@@ -290,7 +288,7 @@ $user = $result->fetch_assoc();
                 </div>
 
                 <!-- Footer -->
-                <div class="flex justify-end pt-2 border-t border-gray-700">
+                <div class="flex justify-end p-6 pt-4 border-t border-gray-700 flex-shrink-0">
                     <!-- Buttons injected by JS -->
                 </div>
             </div>

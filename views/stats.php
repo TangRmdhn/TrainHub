@@ -83,7 +83,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="mb-8">
             <h1 class="text-3xl font-bold text-white">Statistik Latihan</h1>
-            <p class="text-gray-400 mt-2">Pantau progress dan konsistensi latihan lo disini.</p>
+            <p class="text-gray-400 mt-2">Pantau progress dan konsistensi latihanmu disini.</p>
         </div>
 
         <!-- Quick Stats Grid -->
@@ -221,7 +221,3 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 </body>
 
 </html>
-
-
-
-

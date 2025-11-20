@@ -271,7 +271,7 @@ $user_profile_json = json_encode($profile_for_api);
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4 border-b border-gray-800 pb-6">
             <div>
                 <h1 class="text-3xl font-bold text-white">Dashboard Latihan</h1>
-                <p class="text-gray-400 mt-2">Selamat datang, <span class="text-orange-400 font-semibold"><?php echo htmlspecialchars($user['username']); ?></span>! AI siap bantu goal <span class="text-white"><?php echo htmlspecialchars($user['fitness_goal']); ?></span> lu.</p>
+                <p class="text-gray-400 mt-2">Selamat datang, <span class="text-orange-400 font-semibold"><?php echo htmlspecialchars($user['username']); ?></span>! AI siap bantu goal <span class="text-white"><?php echo htmlspecialchars($user['fitness_goal']); ?></span> kamu.</p>
             </div>
             <a href="screening.php" class="text-xs font-medium text-gray-500 hover:text-orange-400 transition flex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
@@ -326,8 +326,17 @@ $user_profile_json = json_encode($profile_for_api);
                             <div>
                                 <label class="block text-xs text-gray-400 mb-1">Durasi Program</label>
                                 <select id="plan-duration" class="w-full bg-gray-800 border border-gray-700 text-white text-sm rounded-lg p-2.5 focus:ring-orange-500 focus:border-orange-500">
+                                    <option value="1">1 Minggu</option>
+                                    <option value="2">2 Minggu</option>
+                                    <option value="3">3 Minggu</option>
                                     <option value="4">4 Minggu</option>
+                                    <option value="5">5 Minggu</option>
+                                    <option value="6">6 Minggu</option>
+                                    <option value="7">7 Minggu</option>
                                     <option value="8">8 Minggu</option>
+                                    <option value="9">9 Minggu</option>
+                                    <option value="10">10 Minggu</option>
+                                    <option value="11">11 Minggu</option>
                                     <option value="12">12 Minggu</option>
                                 </select>
                             </div>
@@ -692,7 +701,3 @@ $user_profile_json = json_encode($profile_for_api);
 </body>
 
 </html>
-
-
-
-
