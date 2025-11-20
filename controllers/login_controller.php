@@ -6,15 +6,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = mysqli_real_escape_string($koneksi, $_POST['email']);
     $password = $_POST['password'];
 
-    // 1. Cari user berdasarkan email
-    $sql = "SELECT * FROM users WHERE email = '$email'";
-    $result = $koneksi->query($sql);
+    // 1. Cari user berdasarkan email (Prepared Statement)
+    $stmt = $koneksi->prepare("SELECT id, username, email, password, fitness_goal FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
         // 2. Verifikasi Password
         if (password_verify($password, $row['password'])) {
+            // Prevent Session Fixation
+            session_regenerate_id(true);
+
             // Set Session Login
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['username'] = $row['username'];
@@ -51,5 +56,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $koneksi->close();
 }
-?>
-

@@ -8,6 +8,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 ?>
 <!DOCTYPE html>
 <html lang="id" class="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,18 +16,40 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .step-content { display: none; }
-        .step-content.active { display: block; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .step-content {
+            display: none;
+        }
+
+        .step-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Custom Radio Button Style */
-        .radio-card:checked + div {
-            border-color: #ea580c; /* orange-600 */
+        .radio-card:checked+div {
+            border-color: #ea580c;
+            /* orange-600 */
             background-color: rgba(234, 88, 12, 0.1);
         }
     </style>
 </head>
+
 <body class="bg-black text-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
 
     <div class="w-full max-w-2xl mb-8">
@@ -40,13 +63,13 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
     </div>
 
     <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 shadow-2xl w-full max-w-2xl">
-        
+
         <form id="screeningForm" action="../controllers/screening_controller.php" method="POST">
-            
+
             <div class="step-content active" data-step="1">
                 <h2 class="text-2xl font-bold text-white mb-2">Ceritakan Sedikit Tentang Diri Anda</h2>
                 <p class="text-gray-400 mb-6">Data ini membantu AI menghitung kebutuhan kalori dan batas aman latihan Anda.</p>
-                
+
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-300 mb-2">Jenis Kelamin</label>
@@ -194,7 +217,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
                         <label class="block text-sm font-medium text-gray-300 mb-2">Tuliskan cedera atau kondisi medis (jika ada)</label>
                         <textarea name="injuries" rows="4" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 focus:border-orange-500 focus:outline-none placeholder-gray-600" placeholder="Contoh: Sakit pinggang bawah, lutut kanan sering bunyi, asma... (Kosongkan jika sehat)"></textarea>
                     </div>
-                    
+
                     <div class="bg-orange-900/20 border border-orange-800/50 rounded-lg p-4 flex items-start gap-3 mt-4">
                         <span class="text-xl">🤖</span>
                         <p class="text-xs text-orange-200/80">
@@ -222,7 +245,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
     <script>
         let currentStep = 1;
         const totalSteps = 4;
-        
+
         const stepLabel = document.getElementById('step-label');
         const stepPercent = document.getElementById('step-percent');
         const progressBar = document.getElementById('progress-bar');
@@ -234,7 +257,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
         function updateUI() {
             // Update Steps Visibility
             steps.forEach(step => {
-                if(step.dataset.step == currentStep) {
+                if (step.dataset.step == currentStep) {
                     step.classList.add('active');
                 } else {
                     step.classList.remove('active');
@@ -248,13 +271,13 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
             stepLabel.innerText = `Langkah ${currentStep} dari ${totalSteps}`;
 
             // Update Buttons
-            if(currentStep === 1) {
+            if (currentStep === 1) {
                 prevBtn.classList.add('hidden');
             } else {
                 prevBtn.classList.remove('hidden');
             }
 
-            if(currentStep === totalSteps) {
+            if (currentStep === totalSteps) {
                 nextBtn.classList.add('hidden');
                 submitBtn.classList.remove('hidden');
             } else {
@@ -277,14 +300,14 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
                Kalau mau idupin, uncomment if di bawah ini */
             // if(!valid) { alert('Mohon lengkapi data dulu bro!'); return; }
 
-            if(currentStep < totalSteps) {
+            if (currentStep < totalSteps) {
                 currentStep++;
                 updateUI();
             }
         });
 
         prevBtn.addEventListener('click', () => {
-            if(currentStep > 1) {
+            if (currentStep > 1) {
                 currentStep--;
                 updateUI();
             }
@@ -294,8 +317,5 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
         updateUI();
     </script>
 </body>
+
 </html>
-
-
-
-

@@ -1,5 +1,14 @@
+# Disable Directory Listing
+Options -Indexes
+
 # Redirect old URLs to new structure
 RewriteEngine On
+
+# Force HTTPS
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:CF-Visitor} !{"scheme":"https"}
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Redirect view pages to views folder
 RewriteRule ^app\.php$ views/app.php [L]

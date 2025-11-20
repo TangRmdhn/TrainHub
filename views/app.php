@@ -44,10 +44,12 @@ $user_profile_json = json_encode($profile_for_api);
 <!DOCTYPE html>
 <html lang="id" class="dark">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - TrainHub</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏋️</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -383,7 +385,7 @@ $user_profile_json = json_encode($profile_for_api);
         // Data dari PHP
         const userProfile = <?php echo $user_profile_json; ?>;
         // URL API Python (Localhost)
-        const API_URL = "http://localhost:8000/generate-plan";
+        const API_URL = "https://indraprhmbd-trainhub-ai.hf.space/generate-plan";
 
         // Variabel Hari (PENTING! INI YANG BIKIN ERROR KEMARIN)
         const days = ['MIN', 'SEN', 'SEL', 'RAB', 'KAM', 'JUM', 'SAB'];
