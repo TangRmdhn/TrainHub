@@ -18,6 +18,8 @@ RewriteRule ^stats$ views/stats.php [L]
 RewriteRule ^login$ views/login.php [L]
 RewriteRule ^register$ views/register.php [L]
 RewriteRule ^screening$ views/screening.php [L]
+RewriteRule ^about$ views/about.php [L]
+RewriteRule ^changelog$ views/changelog.php [L]
 
 # Redirect API/controller files to controllers folder
 RewriteRule ^api_calendar$ controllers/api_calendar.php [L]
