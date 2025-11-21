@@ -1,5 +1,5 @@
 # TrainHub - AI-Powered Workout Planner
-[trainhub.web.id](trainhub.web.id) 
+
 TrainHub is a web application that helps users generate personalized weekly workout plans using AI (Google Gemini). It features a dashboard for plan management, a calendar view for tracking workouts, statistics tracking, and an AI-powered plan generator.
 
 ## Live Demo
