@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       </script>";
             } else {
                 // Kalau data sudah ada, langsung gass ke Dashboard
-                header("Location: ../views/app.php");
+                header("Location: /app");
             }
             exit;
         } else {

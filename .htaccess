@@ -1,30 +1,33 @@
 # Disable Directory Listing
 Options -Indexes
 
-# Redirect old URLs to new structure
+# Enable URL Rewriting
 RewriteEngine On
 
-# Force HTTPS
+# Force HTTPS (for production deployment)
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteCond %{HTTPS} off
 RewriteCond %{HTTP:CF-Visitor} !{"scheme":"https"}
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Redirect view pages to views folder
-RewriteRule ^app\.php$ views/app.php [L]
-RewriteRule ^plans\.php$ views/plans.php [L]
-RewriteRule ^calendar\.php$ views/calendar.php [L]
-RewriteRule ^stats\.php$ views/stats.php [L]
-RewriteRule ^login\.php$ views/login.php [L]
-RewriteRule ^register\.php$ views/register.php [L]
-RewriteRule ^screening\.php$ views/screening.php [L]
+RewriteRule ^app$ views/app.php [L]
+RewriteRule ^plans$ views/plans.php [L]
+RewriteRule ^calendar$ views/calendar.php [L]
+RewriteRule ^stats$ views/stats.php [L]
+RewriteRule ^login$ views/login.php [L]
+RewriteRule ^register$ views/register.php [L]
+RewriteRule ^screening$ views/screening.php [L]
 
 # Redirect API/controller files to controllers folder
-RewriteRule ^api_calendar\.php$ controllers/api_calendar.php [L]
-RewriteRule ^api_stats\.php$ controllers/api_stats.php [L]
-RewriteRule ^mark_complete\.php$ controllers/mark_complete.php [L]
-RewriteRule ^get_plan_details\.php$ controllers/get_plan_details.php [L]
-RewriteRule ^delete_plan\.php$ controllers/delete_plan.php [L]
-RewriteRule ^save_plan\.php$ controllers/save_plan.php [L]
-RewriteRule ^update_plan_date\.php$ controllers/update_plan_date.php [L]
-RewriteRule ^logout\.php$ controllers/logout.php [L]
+RewriteRule ^api_calendar$ controllers/api_calendar.php [L]
+RewriteRule ^api_stats$ controllers/api_stats.php [L]
+RewriteRule ^mark_complete$ controllers/mark_complete.php [L]
+RewriteRule ^get_plan_details$ controllers/get_plan_details.php [L]
+RewriteRule ^delete_plan$ controllers/delete_plan.php [L]
+RewriteRule ^save_plan$ controllers/save_plan.php [L]
+RewriteRule ^update_plan_date$ controllers/update_plan_date.php [L]
+RewriteRule ^logout$ controllers/logout.php [L]
+RewriteRule ^login_controller$ controllers/login_controller.php [L]
+RewriteRule ^regist_controller$ controllers/regist_controller.php [L]
+RewriteRule ^screening_controller$ controllers/screening_controller.php [L]

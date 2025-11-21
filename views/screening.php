@@ -2,7 +2,7 @@
 session_start();
 // Cek login, kalau belum login lempar balik
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
-    header("Location: login.php");
+    header("Location: /login");
     exit;
 }
 ?>

@@ -4,7 +4,7 @@ include '../koneksi.php';
 
 // 1. Cek Login
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
-    header("Location: login.php");
+    header("Location: /login");
     exit;
 }
 $user_id = $_SESSION['user_id'];
@@ -13,14 +13,14 @@ $user_id = $_SESSION['user_id'];
 $sql = "SELECT * FROM users WHERE id = '$user_id'";
 $result = $koneksi->query($sql);
 if ($result->num_rows == 0) {
-    header("Location: ../controllers/logout.php");
+    header("Location: /logout");
     exit;
 }
 $user = $result->fetch_assoc();
 
 // Cek kalau belum screening
 if (empty($user['fitness_goal'])) {
-    header("Location: screening.php");
+    header("Location: /screening");
     exit;
 }
 
@@ -206,17 +206,17 @@ $user_profile_json = json_encode($profile_for_api);
             <div class="flex items-center justify-between h-16">
                 <!-- Left: Logo -->
                 <div class="flex items-center">
-                    <a href="app.php" class="text-2xl font-bold text-white tracking-tight">
+                    <a href="/app" class="text-2xl font-bold text-white tracking-tight">
                         Train<span class="text-orange-500">Hub</span>
                     </a>
                 </div>
 
                 <!-- Center: Desktop Links -->
                 <div class="hidden md:flex space-x-6">
-                    <a href="app.php" class="text-orange-500 font-semibold">Dashboard</a>
-                    <a href="plans.php" class="text-gray-300 hover:text-white transition">My Plans</a>
-                    <a href="calendar.php" class="text-gray-300 hover:text-white transition">Calendar</a>
-                    <a href="stats.php" class="text-gray-300 hover:text-white transition">Statistics</a>
+                    <a href="/app" class="text-orange-500 font-semibold">Dashboard</a>
+                    <a href="/plans" class="text-gray-300 hover:text-white transition">My Plans</a>
+                    <a href="/calendar" class="text-gray-300 hover:text-white transition">Calendar</a>
+                    <a href="/stats" class="text-gray-300 hover:text-white transition">Statistics</a>
                 </div>
 
                 <!-- Right: User/Logout (Desktop) -->
@@ -225,7 +225,7 @@ $user_profile_json = json_encode($profile_for_api);
                         <div class="text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
                         <div class="text-xs text-gray-400"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
                     </div>
-                    <a href="../controllers/logout.php" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
+                    <a href="/logout" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
                         Logout
                     </a>
                 </div>
@@ -242,14 +242,14 @@ $user_profile_json = json_encode($profile_for_api);
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
             <div class="px-4 py-3 space-y-3">
-                <a href="app.php" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Dashboard</a>
-                <a href="plans.php" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
-                <a href="calendar.php" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
-                <a href="stats.php" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
+                <a href="/app" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Dashboard</a>
+                <a href="/plans" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
+                <a href="/calendar" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
+                <a href="/stats" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
                 <div class="pt-3 border-t border-gray-700">
                     <div class="px-3 py-2 text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
                     <div class="px-3 pb-2 text-xs text-gray-400"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
-                    <a href="../controllers/logout.php" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
+                    <a href="/logout" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
                         Logout
                     </a>
                 </div>
@@ -275,7 +275,7 @@ $user_profile_json = json_encode($profile_for_api);
                 <h1 class="text-3xl font-bold text-white">Dashboard Latihan</h1>
                 <p class="text-gray-400 mt-2">Selamat datang, <span class="text-orange-400 font-semibold"><?php echo htmlspecialchars($user['username']); ?></span>! AI siap bantu goal <span class="text-white"><?php echo htmlspecialchars($user['fitness_goal']); ?></span> kamu.</p>
             </div>
-            <a href="screening.php" class="text-xs font-medium text-gray-500 hover:text-orange-400 transition flex items-center gap-1">
+            <a href="/screening" class="text-xs font-medium text-gray-500 hover:text-orange-400 transition flex items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
                     <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
                     <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />

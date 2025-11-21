@@ -8,7 +8,7 @@ $response = ['success' => false, 'message' => 'Permintaan tidak valid.'];
 if (!isset($_SESSION['user_id'])) {
     $response['message'] = 'Sesi tidak valid, silakan login ulang.';
     echo json_encode($response);
-    header("Location: ../login.php");
+    header("Location: /login");
     exit;
 }
 $user_id = $_SESSION['user_id'];

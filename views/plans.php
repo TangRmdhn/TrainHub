@@ -2,7 +2,7 @@
 session_start();
 include '../koneksi.php';
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
-    header("Location: login.php");
+    header("Location: /login");
     exit;
 }
 $user_id = $_SESSION['user_id'];
@@ -42,22 +42,22 @@ $result = $stmt->get_result();
             <div class="flex items-center justify-between h-16">
                 <!-- Left: Logo -->
                 <div class="flex items-center">
-                    <a href="app.php" class="text-2xl font-bold text-white">
+                    <a href="/app" class="text-2xl font-bold text-white">
                         Train<span class="text-orange-500">Hub</span>
                     </a>
                 </div>
 
                 <!-- Center: Desktop Links -->
                 <div class="hidden md:flex space-x-6">
-                    <a href="app.php" class="text-gray-300 hover:text-white transition">Dashboard</a>
-                    <a href="plans.php" class="text-orange-500 font-semibold">My Plans</a>
-                    <a href="calendar.php" class="text-gray-300 hover:text-white transition">Calendar</a>
-                    <a href="stats.php" class="text-gray-300 hover:text-white transition">Statistics</a>
+                    <a href="/app" class="text-gray-300 hover:text-white transition">Dashboard</a>
+                    <a href="/plans" class="text-orange-500 font-semibold">My Plans</a>
+                    <a href="/calendar" class="text-gray-300 hover:text-white transition">Calendar</a>
+                    <a href="/stats" class="text-gray-300 hover:text-white transition">Statistics</a>
                 </div>
 
                 <!-- Right: Logout (Desktop) -->
                 <div class="hidden md:flex">
-                    <a href="../controllers/logout.php" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
+                    <a href="/logout" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
                         Logout
                     </a>
                 </div>
@@ -74,12 +74,12 @@ $result = $stmt->get_result();
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
             <div class="px-4 py-3 space-y-3">
-                <a href="app.php" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Dashboard</a>
-                <a href="plans.php" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">My Plans</a>
-                <a href="calendar.php" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
-                <a href="stats.php" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
+                <a href="/app" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Dashboard</a>
+                <a href="/plans" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">My Plans</a>
+                <a href="/calendar" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
+                <a href="/stats" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
                 <div class="pt-3 border-t border-gray-700">
-                    <a href="../controllers/logout.php" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
+                    <a href="/logout" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
                         Logout
                     </a>
                 </div>
@@ -97,7 +97,7 @@ $result = $stmt->get_result();
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-3xl font-bold text-white">Koleksi Rencana Latihan</h1>
-            <a href="app.php" class="bg-orange-600 hover:bg-orange-700 text-white px-5 py-2 rounded-lg text-sm font-semibold transition">
+            <a href="/app" class="bg-orange-600 hover:bg-orange-700 text-white px-5 py-2 rounded-lg text-sm font-semibold transition">
                 + Buat Rencana Baru
             </a>
         </div>
@@ -134,7 +134,7 @@ $result = $stmt->get_result();
                         </div>
                         <div class="text-xs text-gray-500 pt-4 border-t border-gray-800 flex justify-between items-center">
                             <div class="flex gap-3">
-                                <a href="calendar.php" class="text-orange-500 hover:text-orange-400 font-medium">Lihat di Kalender</a>
+                                <a href="/calendar" class="text-orange-500 hover:text-orange-400 font-medium">Lihat di Kalender</a>
                                 <button onclick="openPlanDetails(<?php echo $plan['id']; ?>)" class="text-blue-500 hover:text-blue-400 font-medium">
                                     Lihat Detail
                                 </button>

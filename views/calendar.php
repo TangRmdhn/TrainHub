@@ -4,7 +4,7 @@ include '../koneksi.php';
 
 // 1. Cek Login
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
-    header("Location: login.php");
+    header("Location: /login");
     exit;
 }
 $user_id = $_SESSION['user_id'];
@@ -13,7 +13,7 @@ $user_id = $_SESSION['user_id'];
 $sql = "SELECT username, fitness_goal FROM users WHERE id = '$user_id'";
 $result = $koneksi->query($sql);
 if ($result->num_rows == 0) {
-    header("Location: ../controllers/logout.php");
+    header("Location: /logout");
     exit;
 }
 $user = $result->fetch_assoc();
@@ -145,22 +145,22 @@ $user = $result->fetch_assoc();
             <div class="flex items-center justify-between h-16">
                 <!-- Left: Logo -->
                 <div class="flex items-center">
-                    <a href="app.php" class="text-2xl font-bold text-white tracking-tight">
+                    <a href="/app" class="text-2xl font-bold text-white tracking-tight">
                         Train<span class="text-orange-500">Hub</span>
                     </a>
                 </div>
 
                 <!-- Center: Desktop Links -->
                 <div class="hidden md:flex space-x-6">
-                    <a href="app.php" class="text-gray-300 hover:text-white transition">Dashboard</a>
-                    <a href="plans.php" class="text-gray-300 hover:text-white transition">My Plans</a>
-                    <a href="calendar.php" class="text-orange-500 font-semibold">Calendar</a>
-                    <a href="stats.php" class="text-gray-300 hover:text-white transition">Statistics</a>
+                    <a href="/app" class="text-gray-300 hover:text-white transition">Dashboard</a>
+                    <a href="/plans" class="text-gray-300 hover:text-white transition">My Plans</a>
+                    <a href="/calendar" class="text-orange-500 font-semibold">Calendar</a>
+                    <a href="/stats" class="text-gray-300 hover:text-white transition">Statistics</a>
                 </div>
 
                 <!-- Right: Logout (Desktop) -->
                 <div class="hidden md:flex">
-                    <a href="../controllers/logout.php" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
+                    <a href="/logout" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
                         Logout
                     </a>
                 </div>
@@ -177,12 +177,12 @@ $user = $result->fetch_assoc();
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
             <div class="px-4 py-3 space-y-3">
-                <a href="app.php" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Dashboard</a>
-                <a href="plans.php" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
-                <a href="calendar.php" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Calendar</a>
-                <a href="stats.php" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
+                <a href="/app" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Dashboard</a>
+                <a href="/plans" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
+                <a href="/calendar" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Calendar</a>
+                <a href="/stats" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
                 <div class="pt-3 border-t border-gray-700">
-                    <a href="../controllers/logout.php" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
+                    <a href="/logout" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
                         Logout
                     </a>
                 </div>
