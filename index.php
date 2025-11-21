@@ -247,7 +247,7 @@
                         </p>
                     </div>
 
-                    <!-- Fitur 2: Exercise Library -->
+                    <!-- Fitur 2: My Plans -->
                     <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 shadow-lg">
                         <div class="w-12 h-12 bg-brand-dark text-brand-light rounded-lg flex items-center justify-center mb-4">
                             <!-- Heroicon: book-open -->
@@ -255,9 +255,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18c-2.305 0-4.408.867-6 2.292m0-14.25v14.25" />
                             </svg>
                         </div>
-                        <h3 class="text-xl font-semibold text-white mb-2">Pustaka Latihan</h3>
+                        <h3 class="text-xl font-semibold text-white mb-2">My Plans</h3>
                         <p class="text-gray-400">
-                            Ratusan gerakan dengan instruksi jelas dan video, dikategorikan untuk pencarian mudah.
+                            Simpan, kelola, dan akses semua rencana latihan yang Anda buat atau terima dari AI, kapan saja.
                         </p>
                     </div>
 
@@ -271,7 +271,7 @@
                         </div>
                         <h3 class="text-xl font-semibold text-white mb-2">Kalender Interaktif</h3>
                         <p class="text-gray-400">
-                            Rencanakan, pindahkan, dan tandai latihan Anda sebagai 'selesai' dalam tampilan kalender visual.
+                            Rencanakan dan tandai latihan Anda sebagai 'selesai' dalam tampilan kalender visual.
                         </p>
                     </div>
 

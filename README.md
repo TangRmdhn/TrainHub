@@ -6,6 +6,8 @@ TrainHub is a web application that helps users generate personalized weekly work
 
 🚀 **[Visit Live Website](https://trainhub.web.id)**
 
+🤖 **[Try Our AI Service on Huggingface](https://huggingface.co/spaces/indraprhmbd/trainhub-ai)**
+
 ## Features
 
 - **AI Workout Generation**: Generates personalized 7-day workout templates based on user profile (fitness goal, level, equipment, etc.)
