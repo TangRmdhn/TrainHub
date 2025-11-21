@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>TrainHub - Rencana Latihan Personal Berbasis AI</title>
 
     <!-- Load Tailwind CSS -->
@@ -33,7 +34,6 @@
     <!-- Load Google Font (Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="views/css/style.css">
 
@@ -61,21 +61,17 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex-shrink-0">
-                    <a href="#" class="text-2xl font-bold text-white">
+                    <a href="" class="text-2xl font-bold text-white">
                         Train<span class="text-brand-light">Hub</span>
                     </a>
                 </div>
 
-                <!-- Nav Links (Desktop) -->
-                <div class="hidden md:flex md:items-center md:space-x-8">
+                <!-- Nav links & Tombol CTA (Desktop) -->
+                <div class="hidden md:flex items-center space-x-8">
                     <a href="#fitur" class="text-gray-300 hover:text-white transition-colors duration-200">Fitur</a>
                     <a href="#cara-kerja" class="text-gray-300 hover:text-white transition-colors duration-200">Cara Kerja</a>
-                </div>
-
-                <!-- Tombol CTA (Desktop) -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="views/login.php" class="text-gray-300 hover:text-white transition-colors duration-200">Masuk</a>
-                    <a href="views/register.php" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
+                    <a href="/login" class="text-gray-300 hover:text-white transition-colors duration-200">Masuk</a>
+                    <a href="/register" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
                         Daftar Gratis
                     </a>
                 </div>
@@ -95,10 +91,9 @@
         <div id="mobile-menu" class="md:hidden hidden bg-gray-900">
             <a href="#fitur" class="block py-2 px-4 text-gray-300 hover:bg-gray-800">Fitur</a>
             <a href="#cara-kerja" class="block py-2 px-4 text-gray-300 hover:bg-gray-800">Cara Kerja</a>
-            <a href="#" class="block py-2 px-4 text-gray-300 hover:bg-gray-800">Harga</a>
             <div class="border-t border-gray-700 p-4 space-y-2">
-                <a href="#" class="block w-full text-center text-gray-300 hover:text-white transition-colors duration-200">Masuk</a>
-                <a href="#" class="block w-full text-center bg-brand-DEFAULT hover:bg-brand-dark text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
+                <a href="/login" class="block w-full text-center text-gray-300 hover:text-white transition-colors duration-200">Masuk</a>
+                <a href="/register" class="block w-full text-center bg-brand-DEFAULT hover:bg-brand-dark text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
                     Daftar Gratis
                 </a>
             </div>
@@ -130,7 +125,7 @@
                             Stop menebak-nebak di gym. TrainHub menganalisis target Anda untuk membuat jadwal latihan paling efektif, khusus untuk Anda, setiap hari.
                         </p>
                         <div class="flex justify-center lg:justify-start items-center gap-x-4">
-                            <a href="views/app.php" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-semibold py-3 px-8 rounded-full text-lg transition-colors duration-300 shadow-lg shadow-brand-dark/30">
+                            <a href="/app" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-semibold py-3 px-8 rounded-full text-lg transition-colors duration-300 shadow-lg shadow-brand-dark/30">
                                 Mulai Gratis
                             </a>
                             <a href="#fitur" class="text-gray-300 hover:text-white font-medium py-3 px-6 rounded-full transition-colors duration-300">
@@ -257,7 +252,7 @@
                         </div>
                         <h3 class="text-xl font-semibold text-white mb-2">My Plans</h3>
                         <p class="text-gray-400">
-                            Simpan, kelola, dan akses semua rencana latihan yang Anda buat atau terima dari AI, kapan saja.
+                            Simpan, kelola, dan akses semua rencana latihan yang Anda terima dari AI, kapan saja.
                         </p>
                     </div>
 
@@ -345,10 +340,10 @@
                 </h2>
                 <p class="text-lg text-gray-300 mt-4 mb-8">
                     Bergabunglah dengan TrainHub hari ini dan biarkan AI memandu perjalanan fitness Anda.
-                    </D>
-                    <a href="#" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-semibold py-3 px-8 rounded-full text-lg transition-colors duration-300 shadow-lg shadow-brand-dark/30">
-                        Daftar Sekarang, Gratis
-                    </a>
+                </p>
+                <a href="/register" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-semibold py-3 px-8 rounded-full text-lg transition-colors duration-300 shadow-lg shadow-brand-dark/30">
+                    Daftar Sekarang, Gratis
+                </a>
             </div>
         </section>
     </main>
@@ -356,7 +351,7 @@
     <!-- ===== Footer ===== -->
     <footer class="py-16 bg-gray-950 border-t border-gray-800/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Kolom 1: Logo & Social -->
                 <div>
                     <a href="#" class="text-2xl font-bold text-white">
@@ -373,26 +368,16 @@
                     <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider">Produk</h4>
                     <ul class="mt-4 space-y-2">
                         <li><a href="#fitur" class="text-gray-400 hover:text-white text-sm transition-colors">Fitur</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Harga</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Changelog</a></li>
+                        <li><a href="/changelog" class="text-gray-400 hover:text-white text-sm transition-colors">Changelog</a></li>
                     </ul>
                 </div>
 
-                <!-- Kolom 3: Perusahaan -->
+                <!-- Kolom 3: KREATOR -->
                 <div>
-                    <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider">Perusahaan</h4>
+                    <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider">KREATOR</h4>
                     <ul class="mt-4 space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Tentang Kami</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Kontak</a></li>
-                    </ul>
-                </div>
-
-                <!-- Kolom 4: Legal -->
-                <div>
-                    <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider">Legal</h4>
-                    <ul class="mt-4 space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Kebijakan Privasi</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Syarat & Ketentuan</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-white text-sm transition-colors">Tentang Kami</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-white text-sm transition-colors">Kontak</a></li>
                     </ul>
                 </div>
             </div>
@@ -400,7 +385,7 @@
             <!-- Copyright -->
             <div class="mt-12 pt-8 border-t border-gray-800/50 text-center">
                 <p class="text-sm text-gray-500">
-                    &copy; 2025 TrainHub. Dibuat dengan 🔥 oleh Bintang.
+                    &copy; 2025 TrainHub
                 </p>
             </div>
         </div>
