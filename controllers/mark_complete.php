@@ -5,6 +5,7 @@ include '../koneksi.php';
 
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['success' => false, 'message' => 'Unauthorized']);
+    header("Location: ../login.php");
     exit;
 }
 
@@ -36,4 +37,3 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $koneksi->close();
-

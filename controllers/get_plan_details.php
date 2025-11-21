@@ -5,6 +5,7 @@ include '../koneksi.php';
 
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['error' => 'Unauthorized']);
+    header("Location: ../login.php");
     exit;
 }
 
@@ -102,4 +103,3 @@ echo json_encode([
     'finish_date' => $plan['finish_date'],
     'timeline' => $timeline
 ]);
-

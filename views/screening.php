@@ -296,9 +296,10 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
                 }
             });
 
-            /* Note: validasi dimatiin dulu biar lu gampang ngetes. 
-               Kalau mau idupin, uncomment if di bawah ini */
-            // if(!valid) { alert('Mohon lengkapi data dulu bro!'); return; }
+            if (!valid) {
+                alert('Mohon lengkapi data dahulu!');
+                return;
+            }
 
             if (currentStep < totalSteps) {
                 currentStep++;

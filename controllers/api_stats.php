@@ -5,6 +5,7 @@ include '../koneksi.php';
 
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['error' => 'Unauthorized']);
+    header("Location: ../login.php");
     exit;
 }
 
@@ -86,4 +87,3 @@ echo json_encode([
     'chart_labels' => $chart_labels,
     'chart_data' => $chart_data
 ]);
-

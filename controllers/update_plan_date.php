@@ -8,6 +8,7 @@ $response = ['success' => false, 'message' => 'Permintaan tidak valid.'];
 if (!isset($_SESSION['user_id'])) {
     $response['message'] = 'Sesi tidak valid, silakan login ulang.';
     echo json_encode($response);
+    header("Location: ../login.php");
     exit;
 }
 $user_id = $_SESSION['user_id'];
@@ -18,7 +19,7 @@ $plan_id = $data['plan_id'] ?? null;
 $new_date = $data['new_date'] ?? null;
 
 if ($plan_id && $new_date) {
-    
+
     // 1. Cek dulu, tanggal baru udah keisi belum?
     $check = "SELECT id FROM user_plans WHERE user_id = ? AND plan_date = ?";
     $stmt_check = $koneksi->prepare($check);
@@ -34,7 +35,7 @@ if ($plan_id && $new_date) {
         $sql = "UPDATE user_plans SET plan_date = ? WHERE id = ? AND user_id = ?";
         $stmt_update = $koneksi->prepare($sql);
         $stmt_update->bind_param("sii", $new_date, $plan_id, $user_id);
-        
+
         if ($stmt_update->execute()) {
             if ($stmt_update->affected_rows > 0) {
                 $response['success'] = true;
@@ -48,12 +49,9 @@ if ($plan_id && $new_date) {
         $stmt_update->close();
     }
     $stmt_check->close();
-
 } else {
     $response['message'] = 'Data plan ID atau tanggal baru tidak lengkap.';
 }
 
 $koneksi->close();
 echo json_encode($response);
-?>
-

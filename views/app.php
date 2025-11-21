@@ -384,7 +384,7 @@ $user_profile_json = json_encode($profile_for_api);
     <script>
         // Data dari PHP
         const userProfile = <?php echo $user_profile_json; ?>;
-        // URL API Python (Localhost)
+        // URL API Python huggingface
         const API_URL = "https://indraprhmbd-trainhub-ai.hf.space/generate-plan";
 
         // Variabel Hari (PENTING! INI YANG BIKIN ERROR KEMARIN)

@@ -8,6 +8,7 @@ $response = ['success' => false, 'message' => 'Permintaan tidak valid.'];
 if (!isset($_SESSION['user_id'])) {
     $response['message'] = 'Sesi tidak valid, silakan login ulang.';
     echo json_encode($response);
+    header("Location: ../login.php");
     exit;
 }
 $user_id = $_SESSION['user_id'];
@@ -21,7 +22,7 @@ if ($plan_id) {
     $sql = "DELETE FROM user_plans WHERE id = ? AND user_id = ?";
     $stmt = $koneksi->prepare($sql);
     $stmt->bind_param("ii", $plan_id, $user_id);
-    
+
     if ($stmt->execute()) {
         if ($stmt->affected_rows > 0) {
             $response['success'] = true;
@@ -39,5 +40,3 @@ if ($plan_id) {
 
 $koneksi->close();
 echo json_encode($response);
-?>
-
