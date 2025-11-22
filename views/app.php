@@ -194,6 +194,12 @@ $user_profile_json = json_encode($profile_for_api);
             background: #374151;
             flex-grow: 1;
         }
+
+        /* Date picker icon color fix */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
     </style>
 </head>
 
