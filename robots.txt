@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Allow Google to crawl everything
+User-agent: Googlebot
+Allow: /
+
+# Disallow private pages
+Disallow: /app
+Disallow: /calendar
+Disallow: /plans
+Disallow: /stats
+Disallow: /screening
+Disallow: /controllers/
+
+# Sitemap location
+Sitemap: https://trainhub.web.id/sitemap.xml
