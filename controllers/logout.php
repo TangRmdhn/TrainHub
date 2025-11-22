@@ -1,6 +1,7 @@
 <?php
 // logout.php
 session_start();
+include '../config.php';
 
 // Hancurkan semua data session
 $_SESSION = array();
@@ -23,5 +24,5 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Arahkan kembali ke halaman login
-header("Location: /login");
+header("Location: " . url("/login"));
 exit;

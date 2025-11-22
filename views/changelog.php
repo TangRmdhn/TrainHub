@@ -1,5 +1,6 @@
 <?php
 session_start();
+include '../config.php';
 ?>
 <!DOCTYPE html>
 <html lang="id" class="dark">
@@ -8,7 +9,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Changelog - TrainHub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="<?php echo asset('/views/css/tailwind.css'); ?>" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -95,7 +96,7 @@ session_start();
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-8">
-                    <a href="app.php" class="text-2xl font-bold text-white tracking-tight">
+                    <a href="<?php echo url('/'); ?>" class="text-2xl font-bold text-white tracking-tight">
                         Train<span class="text-orange-500">Hub</span>
                     </a>
                     <div class="hidden md:flex items-center gap-2 text-sm text-gray-400">

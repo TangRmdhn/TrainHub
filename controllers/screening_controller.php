@@ -1,10 +1,11 @@
 <?php
 session_start();
 include '../koneksi.php';
+include '../config.php';
 
 // Pastikan user sudah login
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
-    header("Location: /login");
+    header("Location: " . url("/login"));
     exit;
 }
 
@@ -39,8 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($koneksi->query($sql) === TRUE) {
         // Sukses simpan data, arahkan ke dashboard
-        // Nanti di dashboard (app.php) kita tinggal fetch data ini buat dikirim ke Python
-        header("Location: /app");
+        header("Location: " . url("/app"));
     } else {
         echo "Error updating record: " . $koneksi->error;
     }

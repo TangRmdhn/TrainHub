@@ -120,7 +120,55 @@ The AI service will be available at `http://localhost:8000`
 - Ensure the web server is running on `http://localhost` or your preferred domain
 - Make sure PHP and MySQL are properly configured
 
-### 5. Access the Application
+### 5. Tailwind CSS Setup
+
+The project uses Tailwind CSS for styling. You need to build the CSS file before running the application.
+
+#### Option A: Using Standalone CLI (No Node.js required)
+
+1. Download Tailwind CLI executable:
+
+   - **Windows**: [tailwindcss-windows-x64.exe](https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-windows-x64.exe)
+   - **macOS**: [tailwindcss-macos-x64](https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-x64)
+   - **Linux**: [tailwindcss-linux-x64](https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64)
+
+2. Rename to `tailwindcss.exe` (Windows) or `tailwindcss` (macOS/Linux) and place in project root
+
+3. Build CSS:
+
+   ```powershell
+   # Windows
+   .\tailwindcss.exe -i .\src\input.css -o .\views\css\tailwind.css --minify
+
+   # macOS/Linux
+   ./tailwindcss -i ./src/input.css -o ./views/css/tailwind.css --minify
+   ```
+
+   Or use the provided script:
+
+   ```powershell
+   # Windows
+   .\build-css.ps1
+   ```
+
+#### Option B: Using npm (if you have Node.js)
+
+```bash
+npm install -D tailwindcss
+npx tailwindcss -i ./src/input.css -o ./views/css/tailwind.css --minify
+```
+
+#### Development Mode (Auto-rebuild on changes)
+
+```powershell
+# Windows
+.\watch-css.ps1
+
+# Or manually
+.\tailwindcss.exe -i .\src\input.css -o .\views\css\tailwind.css --watch
+```
+
+### 6. Access the Application
 
 - Open your browser and navigate to `http://localhost/trainhub`
 - Register a new account or login

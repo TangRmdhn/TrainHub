@@ -1,7 +1,7 @@
 <?php
-// regist_controller.php
 session_start();
 include '../koneksi.php';
+include '../config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($koneksi, $_POST['username']);
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         echo "<script>
                 alert('Email sudah terdaftar! Silakan gunakan email lain.');
-                window.location.href='register.php';
+                window.location.href='" . url("/register") . "';
               </script>";
         exit;
     }
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmtInsert->execute()) {
         echo "<script>
                 alert('Registrasi berhasil! Silakan login.');
-                window.location.href='../views/login.php';
+                window.location.href='" . url("/login") . "';
               </script>";
     } else {
         echo "Error: " . $sql . "<br>" . $koneksi->error;

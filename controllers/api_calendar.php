@@ -2,23 +2,25 @@
 session_start();
 header('Content-Type: application/json');
 include '../koneksi.php';
+include '../config.php';
 
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['error' => 'Unauthorized']);
-    header("Location: /login");
+    header("Location: " . url("/login"));
     exit;
 }
+
 $user_id = $_SESSION['user_id'];
 
 $start_date = $_GET['start'] ?? date('Y-m-d');
 $end_date = $_GET['end'] ?? date('Y-m-d', strtotime($start_date . ' +6 days'));
 
 // Ambil Template Plan yang aktif dalam rentang request
-$sql = "SELECT id, start_date, finish_date, plan_name, monday, tuesday, wednesday, thursday, friday, saturday, sunday 
-        FROM user_plans 
-        WHERE user_id = ? 
-        AND start_date <= ? 
-        AND finish_date >= ?";
+$sql = "SELECT id, start_date, finish_date, plan_name, monday, tuesday, wednesday, thursday, friday, saturday, sunday
+FROM user_plans
+WHERE user_id = ?
+AND start_date <= ?
+    AND finish_date>= ?";
 
 $stmt = $koneksi->prepare($sql);
 $stmt->bind_param("iss", $user_id, $end_date, $start_date);

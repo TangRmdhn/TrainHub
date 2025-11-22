@@ -1,7 +1,8 @@
 <?php
 session_start();
+include '../config.php';
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
-    header("Location: /login");
+    header("Location: " . url("/login"));
     exit;
 }
 ?>
@@ -12,7 +13,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Statistics - TrainHub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="<?php echo asset('/views/css/tailwind.css'); ?>" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/style.css">
@@ -30,22 +31,22 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
             <div class="flex items-center justify-between h-16">
                 <!-- Left: Logo -->
                 <div class="flex items-center">
-                    <a href="/app" class="text-2xl font-bold text-white">
+                    <a href="<?php echo url('/app'); ?>" class="text-2xl font-bold text-white">
                         Train<span class="text-orange-500">Hub</span>
                     </a>
                 </div>
 
                 <!-- Center: Desktop Links -->
                 <div class="hidden md:flex space-x-6">
-                    <a href="/app" class="text-gray-300 hover:text-white transition">Dashboard</a>
-                    <a href="/plans" class="text-gray-300 hover:text-white transition">My Plans</a>
-                    <a href="/calendar" class="text-gray-300 hover:text-white transition">Calendar</a>
-                    <a href="/stats" class="text-orange-500 font-semibold">Statistics</a>
+                    <a href="<?php echo url('/app'); ?>" class="text-gray-300 hover:text-white transition">Dashboard</a>
+                    <a href="<?php echo url('/plans'); ?>" class="text-gray-300 hover:text-white transition">My Plans</a>
+                    <a href="<?php echo url('/calendar'); ?>" class="text-gray-300 hover:text-white transition">Calendar</a>
+                    <a href="<?php echo url('/stats'); ?>" class="text-orange-500 font-semibold">Statistics</a>
                 </div>
 
                 <!-- Right: Logout (Desktop) -->
                 <div class="hidden md:flex">
-                    <a href="/logout" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
+                    <a href="<?php echo url('/logout'); ?>" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
                         Logout</a>
                 </div>
 
@@ -61,12 +62,12 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
             <div class="px-4 py-3 space-y-3">
-                <a href="/app" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Dashboard</a>
-                <a href="/plans" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
-                <a href="/calendar" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
-                <a href="/stats" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Statistics</a>
+                <a href="<?php echo url('/app'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Dashboard</a>
+                <a href="<?php echo url('/plans'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
+                <a href="<?php echo url('/calendar'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
+                <a href="<?php echo url('/stats'); ?>" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Statistics</a>
                 <div class="pt-3 border-t border-gray-700">
-                    <a href="/logout" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
+                    <a href="<?php echo url('/logout'); ?>" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
                         Logout
                     </a>
                 </div>
@@ -135,7 +136,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
             const ctx = document.getElementById('activityChart').getContext('2d');
 
             try {
-                const response = await fetch('../controllers/api_stats.php');
+                const response = await fetch('<?php echo url('/controllers/api_stats.php'); ?>');
                 const data = await response.json();
 
                 if (data.error) {

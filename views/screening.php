@@ -1,8 +1,9 @@
 <?php
 session_start();
+include '../config.php';
 // Cek login, kalau belum login lempar balik
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
-    header("Location: /login");
+    header("Location: " . url("/login"));
     exit;
 }
 ?>
@@ -13,7 +14,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setup Profil - TrainHub</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="<?php echo asset('/views/css/tailwind.css'); ?>" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
@@ -64,7 +65,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 
     <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 shadow-2xl w-full max-w-2xl">
 
-        <form id="screeningForm" action="../controllers/screening_controller.php" method="POST">
+        <form id="screeningForm" action="<?php echo url('/controllers/screening_controller.php'); ?>" method="POST">
 
             <div class="step-content active" data-step="1">
                 <h2 class="text-2xl font-bold text-white mb-2">Ceritakan Sedikit Tentang Diri Anda</h2>

@@ -2,10 +2,11 @@
 session_start();
 header('Content-Type: application/json');
 include '../koneksi.php';
+include '../config.php';
 
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['error' => 'Unauthorized']);
-    header("Location: /login");
+    header("Location: " . url("/login"));
     exit;
 }
 

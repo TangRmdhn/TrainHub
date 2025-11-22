@@ -1,35 +1,32 @@
-# Disable Directory Listing
-Options -Indexes
-
-# Enable URL Rewriting
 RewriteEngine On
 
-# Force HTTPS (for production deployment)
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
+# 1. Force HTTPS (Production Only)
+# Checks if the host is trainhub.web.id AND HTTPS is off
+RewriteCond %{HTTP_HOST} ^(www\.)?trainhub\.web\.id [NC]
 RewriteCond %{HTTPS} off
-RewriteCond %{HTTP:CF-Visitor} !{"scheme":"https"}
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Redirect view pages to views folder
-RewriteRule ^app$ views/app.php [L]
-RewriteRule ^plans$ views/plans.php [L]
-RewriteRule ^calendar$ views/calendar.php [L]
-RewriteRule ^stats$ views/stats.php [L]
-RewriteRule ^login$ views/login.php [L]
-RewriteRule ^register$ views/register.php [L]
-RewriteRule ^screening$ views/screening.php [L]
-RewriteRule ^about$ views/about.php [L]
-RewriteRule ^changelog$ views/changelog.php [L]
+# 2. Specific Routing (Map clean URLs to actual files)
 
-# Redirect API/controller files to controllers folder
-RewriteRule ^api_calendar$ controllers/api_calendar.php [L]
-RewriteRule ^api_stats$ controllers/api_stats.php [L]
-RewriteRule ^mark_complete$ controllers/mark_complete.php [L]
-RewriteRule ^get_plan_details$ controllers/get_plan_details.php [L]
-RewriteRule ^delete_plan$ controllers/delete_plan.php [L]
-RewriteRule ^save_plan$ controllers/save_plan.php [L]
-RewriteRule ^update_plan_date$ controllers/update_plan_date.php [L]
-RewriteRule ^logout$ controllers/logout.php [L]
-RewriteRule ^login_controller$ controllers/login_controller.php [L]
-RewriteRule ^regist_controller$ controllers/regist_controller.php [L]
-RewriteRule ^screening_controller$ controllers/screening_controller.php [L]
+# Auth & App Views
+RewriteRule ^login/?$ views/login.php [L]
+RewriteRule ^register/?$ views/register.php [L]
+RewriteRule ^app/?$ views/app.php [L]
+RewriteRule ^calendar/?$ views/calendar.php [L]
+RewriteRule ^stats/?$ views/stats.php [L]
+RewriteRule ^plans/?$ views/plans.php [L]
+RewriteRule ^screening/?$ views/screening.php [L]
+RewriteRule ^about/?$ views/about.php [L]
+RewriteRule ^changelog/?$ views/changelog.php [L]
+
+# Controllers (Shortcuts if needed, mostly for logout)
+RewriteRule ^logout/?$ controllers/logout.php [L]
+
+# 3. General "Pretty URL" Fallback
+# If a file exists in root with .php extension, use it (e.g. index.php)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+# 4. Handle 404 (Optional, but good practice)
+# ErrorDocument 404 /trainhub/views/404.php

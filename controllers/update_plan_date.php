@@ -2,13 +2,14 @@
 session_start();
 header('Content-Type: application/json');
 include '../koneksi.php';
+include '../config.php';
 
 $response = ['success' => false, 'message' => 'Permintaan tidak valid.'];
 
 if (!isset($_SESSION['user_id'])) {
     $response['message'] = 'Sesi tidak valid, silakan login ulang.';
     echo json_encode($response);
-    header("Location: /login");
+    header("Location: " . url("/login"));
     exit;
 }
 $user_id = $_SESSION['user_id'];

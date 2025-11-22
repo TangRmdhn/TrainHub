@@ -23,3 +23,7 @@ koneksi.php
 # Dependencies
 node_modules/
 vendor/
+
+# Tailwind CSS
+tailwindcss.exe
+views/css/tailwind.css

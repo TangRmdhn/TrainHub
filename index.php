@@ -1,3 +1,4 @@
+<?php include 'config.php'; ?>
 <!DOCTYPE html>
 <html lang="id" class="scroll-smooth dark">
 
@@ -8,7 +9,7 @@
     <title>TrainHub - Rencana Latihan Personal Berbasis AI</title>
 
     <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="<?php echo asset('/views/css/tailwind.css'); ?>" rel="stylesheet">
 
     <!-- Konfigurasi Tailwind (Opsional, tapi bagus untuk font) -->
     <script>
@@ -70,8 +71,8 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#fitur" class="text-gray-300 hover:text-white transition-colors duration-200">Fitur</a>
                     <a href="#cara-kerja" class="text-gray-300 hover:text-white transition-colors duration-200">Cara Kerja</a>
-                    <a href="/login" class="text-gray-300 hover:text-white transition-colors duration-200">Masuk</a>
-                    <a href="/register" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
+                    <a href="<?php echo url('/login'); ?>" class="text-gray-300 hover:text-white transition-colors duration-200">Masuk</a>
+                    <a href="<?php echo url('/register'); ?>" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
                         Daftar Gratis
                     </a>
                 </div>
@@ -92,8 +93,8 @@
             <a href="#fitur" class="block py-2 px-4 text-gray-300 hover:bg-gray-800">Fitur</a>
             <a href="#cara-kerja" class="block py-2 px-4 text-gray-300 hover:bg-gray-800">Cara Kerja</a>
             <div class="border-t border-gray-700 p-4 space-y-2">
-                <a href="/login" class="block w-full text-center text-gray-300 hover:text-white transition-colors duration-200">Masuk</a>
-                <a href="/register" class="block w-full text-center bg-brand-DEFAULT hover:bg-brand-dark text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
+                <a href="<?php echo url('/login'); ?>" class="block w-full text-center text-gray-300 hover:text-white transition-colors duration-200">Masuk</a>
+                <a href="<?php echo url('/register'); ?>" class="block w-full text-center bg-brand-DEFAULT hover:bg-brand-dark text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300">
                     Daftar Gratis
                 </a>
             </div>
@@ -125,7 +126,7 @@
                             Stop menebak-nebak di gym. TrainHub menganalisis target Anda untuk membuat jadwal latihan paling efektif, khusus untuk Anda, setiap hari.
                         </p>
                         <div class="flex justify-center lg:justify-start items-center gap-x-4">
-                            <a href="/app" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-semibold py-3 px-8 rounded-full text-lg transition-colors duration-300 shadow-lg shadow-brand-dark/30">
+                            <a href="<?php echo url('/app'); ?>" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-semibold py-3 px-8 rounded-full text-lg transition-colors duration-300 shadow-lg shadow-brand-dark/30">
                                 Mulai Gratis
                             </a>
                             <a href="#fitur" class="text-gray-300 hover:text-white font-medium py-3 px-6 rounded-full transition-colors duration-300">
@@ -341,7 +342,7 @@
                 <p class="text-lg text-gray-300 mt-4 mb-8">
                     Bergabunglah dengan TrainHub hari ini dan biarkan AI memandu perjalanan fitness Anda.
                 </p>
-                <a href="/register" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-semibold py-3 px-8 rounded-full text-lg transition-colors duration-300 shadow-lg shadow-brand-dark/30">
+                <a href="<?php echo url('/register'); ?>" class="bg-brand-DEFAULT hover:bg-brand-dark text-white font-semibold py-3 px-8 rounded-full text-lg transition-colors duration-300 shadow-lg shadow-brand-dark/30">
                     Daftar Sekarang, Gratis
                 </a>
             </div>
@@ -368,7 +369,7 @@
                     <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider">Produk</h4>
                     <ul class="mt-4 space-y-2">
                         <li><a href="#fitur" class="text-gray-400 hover:text-white text-sm transition-colors">Fitur</a></li>
-                        <li><a href="/changelog" class="text-gray-400 hover:text-white text-sm transition-colors">Changelog</a></li>
+                        <li><a href="<?php echo url('/changelog'); ?>" class="text-gray-400 hover:text-white text-sm transition-colors">Changelog</a></li>
                     </ul>
                 </div>
 
@@ -376,8 +377,8 @@
                 <div>
                     <h4 class="text-sm font-semibold text-gray-200 uppercase tracking-wider">KREATOR</h4>
                     <ul class="mt-4 space-y-2">
-                        <li><a href="/about" class="text-gray-400 hover:text-white text-sm transition-colors">Tentang Kami</a></li>
-                        <li><a href="/about" class="text-gray-400 hover:text-white text-sm transition-colors">Kontak</a></li>
+                        <li><a href="<?php echo url('/about'); ?>" class="text-gray-400 hover:text-white text-sm transition-colors">Tentang Kami</a></li>
+                        <li><a href="<?php echo url('/about'); ?>" class="text-gray-400 hover:text-white text-sm transition-colors">Kontak</a></li>
                     </ul>
                 </div>
             </div>
