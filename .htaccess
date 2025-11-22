@@ -1,17 +1,28 @@
 RewriteEngine On
 
-# 0. Allow existing files and directories (Critical for assets)
+# 0. Protect sensitive PHP files from direct URL access
+<FilesMatch "^(koneksi|config)\.php$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# 1. Allow existing files and directories (Critical for assets)
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# 1. Force HTTPS (Production Only)
+# 2. Force HTTPS (Production Only)
 # Checks if the host is trainhub.web.id AND HTTPS is off
 RewriteCond %{HTTP_HOST} ^(www\.)?trainhub\.web\.id [NC]
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 2. Specific Routing (Map clean URLs to actual files)
+# 3. Specific Routing (Map clean URLs to actual files)
 
 # Auth & App Views
 RewriteRule ^login/?$ views/login.php [L]
@@ -27,11 +38,11 @@ RewriteRule ^changelog/?$ views/changelog.php [L]
 # Controllers (Shortcuts if needed, mostly for logout)
 RewriteRule ^logout/?$ controllers/logout.php [L]
 
-# 3. General "Pretty URL" Fallback
+# 4. General "Pretty URL" Fallback
 # If a file exists in root with .php extension, use it (e.g. index.php)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
-# 4. Handle 404 (Optional, but good practice)
+# 5. Handle 404 (Optional, but good practice)
 # ErrorDocument 404 /trainhub/views/404.php
