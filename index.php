@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TrainHub - Platform latihan fitness berbasis AI yang membuat rencana workout personal sesuai goal, level, dan peralatan Anda. Gratis dan mudah digunakan!">
+    <meta name="keywords" content="workout planner, AI fitness, rencana latihan, personal trainer, gym workout, fitness app, latihan gym">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>TrainHub - Rencana Latihan Personal Berbasis AI</title>
 

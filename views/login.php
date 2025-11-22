@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Masuk ke TrainHub untuk mengakses rencana latihan personal berbasis AI Anda. Kelola workout dan pantau progress fitness Anda.">
     <title>Masuk - TrainHub</title>
     <link href="<?php echo asset('/views/css/tailwind.css'); ?>" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
