@@ -54,7 +54,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 <body class="bg-black text-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
 
     <div class="w-full max-w-2xl mb-8">
-        <div class="flex justify-between text-xs uppercase text-gray-500 font-semibold tracking-wider mb-2">
+        <div class="flex justify-between text-xs uppercase text-gray-400 font-semibold tracking-wider mb-2">
             <span id="step-label">Langkah 1 dari 4</span>
             <span id="step-percent">25%</span>
         </div>
@@ -69,7 +69,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 
             <div class="step-content active" data-step="1">
                 <h2 class="text-2xl font-bold text-white mb-2">Ceritakan Sedikit Tentang Diri Anda</h2>
-                <p class="text-gray-400 mb-6">Data ini membantu AI menghitung kebutuhan kalori dan batas aman latihan Anda.</p>
+                <p class="text-gray-300 mb-6">Data ini membantu AI menghitung kebutuhan kalori dan batas aman latihan Anda.</p>
 
                 <div class="space-y-4">
                     <div>
@@ -109,7 +109,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 
             <div class="step-content" data-step="2">
                 <h2 class="text-2xl font-bold text-white mb-2">Apa Target Utama Anda?</h2>
-                <p class="text-gray-400 mb-6">Pilih target yang paling prioritas saat ini.</p>
+                <p class="text-gray-300 mb-6">Pilih target yang paling prioritas saat ini.</p>
 
                 <div class="space-y-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -117,28 +117,28 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
                             <input type="radio" name="fitness_goal" value="Fat Loss" class="hidden radio-card" required>
                             <div class="border border-gray-700 bg-gray-800 rounded-lg p-4 hover:border-orange-500 transition-all">
                                 <div class="font-semibold text-white">🔥 Fat Loss</div>
-                                <div class="text-xs text-gray-400">Turunkan berat badan & bakar lemak</div>
+                                <div class="text-xs text-gray-300">Turunkan berat badan & bakar lemak</div>
                             </div>
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" name="fitness_goal" value="Muscle Gain" class="hidden radio-card">
                             <div class="border border-gray-700 bg-gray-800 rounded-lg p-4 hover:border-orange-500 transition-all">
                                 <div class="font-semibold text-white">💪 Muscle Gain</div>
-                                <div class="text-xs text-gray-400">Bangun massa otot & kekuatan</div>
+                                <div class="text-xs text-gray-300">Bangun massa otot & kekuatan</div>
                             </div>
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" name="fitness_goal" value="Endurance" class="hidden radio-card">
                             <div class="border border-gray-700 bg-gray-800 rounded-lg p-4 hover:border-orange-500 transition-all">
                                 <div class="font-semibold text-white">🏃 Endurance</div>
-                                <div class="text-xs text-gray-400">Tingkatkan stamina & kardio</div>
+                                <div class="text-xs text-gray-300">Tingkatkan stamina & kardio</div>
                             </div>
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" name="fitness_goal" value="Keep Fit" class="hidden radio-card">
                             <div class="border border-gray-700 bg-gray-800 rounded-lg p-4 hover:border-orange-500 transition-all">
                                 <div class="font-semibold text-white">🧘 Keep Fit</div>
-                                <div class="text-xs text-gray-400">Jaga kesehatan umum & mobilitas</div>
+                                <div class="text-xs text-gray-300">Jaga kesehatan umum & mobilitas</div>
                             </div>
                         </label>
                     </div>
@@ -171,7 +171,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 
             <div class="step-content" data-step="3">
                 <h2 class="text-2xl font-bold text-white mb-2">Ketersediaan & Fasilitas</h2>
-                <p class="text-gray-400 mb-6">Sesuaikan dengan jadwal dan alat yang Anda punya.</p>
+                <p class="text-gray-300 mb-6">Sesuaikan dengan jadwal dan alat yang Anda punya.</p>
 
                 <div class="space-y-5">
                     <div>
@@ -211,7 +211,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 
             <div class="step-content" data-step="4">
                 <h2 class="text-2xl font-bold text-white mb-2">Terakhir, Ada Cedera?</h2>
-                <p class="text-gray-400 mb-6">Penting agar AI tidak memberikan gerakan yang membahayakan.</p>
+                <p class="text-gray-300 mb-6">Penting agar AI tidak memberikan gerakan yang membahayakan.</p>
 
                 <div class="space-y-4">
                     <div>
@@ -229,7 +229,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
             </div>
 
             <div class="flex justify-between mt-8 pt-6 border-t border-gray-800">
-                <button type="button" id="prevBtn" class="text-gray-400 hover:text-white font-medium px-4 py-2 hidden">
+                <button type="button" id="prevBtn" class="text-gray-300 hover:text-white font-medium px-4 py-2 hidden">
                     Kembali
                 </button>
                 <button type="button" id="nextBtn" class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-8 rounded-full transition-all shadow-lg shadow-orange-700/20">

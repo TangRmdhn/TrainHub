@@ -40,7 +40,7 @@
         <h1 class="text-3xl font-bold text-center text-white mb-2">
             Train<span class="text-orange-500">Hub</span>
         </h1>
-        <p class="text-center text-gray-400 mb-6">Buat akun baru</p>
+        <p class="text-center text-gray-300 mb-6">Buat akun baru</p>
 
         <form id="register-form" class="space-y-4" action="<?php echo url('/controllers/regist_controller.php'); ?>" method="POST">
             <div>
@@ -60,7 +60,7 @@
                         class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md p-3 pr-10 text-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition">
 
                     <button type="button" onclick="togglePassword()"
-                        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-300 transition">
+                        class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-300 transition">
                         <svg id="eye" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.522 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.478 0-8.268-2.943-9.542-7z" />
@@ -81,7 +81,7 @@
             <div id="message" class="text-center text-sm mt-4"></div>
         </form>
 
-        <p class="text-center text-sm text-gray-400 mt-6">
+        <p class="text-center text-sm text-gray-300 mt-6">
             Sudah punya akun?
             <a href="<?php echo url('/login'); ?>" class="font-medium text-orange-500 hover:text-orange-400 transition">Masuk di sini</a>
         </p>

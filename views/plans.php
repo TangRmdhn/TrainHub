@@ -63,7 +63,7 @@ $result = $stmt->get_result();
                 </div>
 
                 <!-- Mobile: Hamburger Button -->
-                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition">
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -130,9 +130,9 @@ $result = $stmt->get_result();
                                 <span class="bg-green-600/20 text-green-500 px-3 py-1 rounded-full text-xs font-bold">Active</span>
                             </div>
                             <h3 class="text-xl font-bold text-white mb-2"><?php echo htmlspecialchars($plan['plan_name']); ?></h3>
-                            <p class="text-sm text-gray-400 mb-4 line-clamp-2">"<?php echo htmlspecialchars($coach_note); ?>"</p>
+                            <p class="text-sm text-gray-300 mb-4 line-clamp-2">"<?php echo htmlspecialchars($coach_note); ?>"</p>
                         </div>
-                        <div class="text-xs text-gray-500 pt-4 border-t border-gray-800 flex justify-between items-center">
+                        <div class="text-xs text-gray-400 pt-4 border-t border-gray-800 flex justify-between items-center">
                             <div class="flex gap-3">
                                 <a href="<?php echo url('/calendar'); ?>" class="text-orange-500 hover:text-orange-400 font-medium">Lihat di Kalender</a>
                                 <button onclick="openPlanDetails(<?php echo $plan['id']; ?>)" class="text-blue-500 hover:text-blue-400 font-medium">
@@ -149,7 +149,7 @@ $result = $stmt->get_result();
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
-                <div class="md:col-span-2 lg:col-span-3 text-center text-gray-500 p-10 bg-gray-900 border border-gray-800 rounded-lg">
+                <div class="md:col-span-2 lg:col-span-3 text-center text-gray-400 p-10 bg-gray-900 border border-gray-800 rounded-lg">
                     <span class="text-3xl">📭</span>
                     <h3 class="text-xl font-semibold text-gray-300 mt-4">Belum Ada Rencana</h3>
                     <p class="mt-2">Kamu belum menyimpan rencana apapun. Buat satu di halaman Dashboard!</p>
@@ -170,11 +170,11 @@ $result = $stmt->get_result();
                         <h3 class="text-lg leading-6 font-medium text-white" id="modal-plan-name">
                             Loading...
                         </h3>
-                        <p class="mt-1 max-w-2xl text-sm text-gray-400" id="modal-plan-date">
+                        <p class="mt-1 max-w-2xl text-sm text-gray-300" id="modal-plan-date">
                             ...
                         </p>
                     </div>
-                    <button type="button" class="text-gray-400 hover:text-white" onclick="closePlanDetails()">
+                    <button type="button" class="text-gray-300 hover:text-white" onclick="closePlanDetails()">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
@@ -337,11 +337,11 @@ $result = $stmt->get_result();
                         icon = '❌';
                         break;
                     case 'rest':
-                        statusColor = 'bg-gray-800 text-gray-500 border border-gray-700 border-dashed';
+                        statusColor = 'bg-gray-800 text-gray-400 border border-gray-700 border-dashed';
                         icon = '💤';
                         break;
                     default: // upcoming
-                        statusColor = 'bg-gray-800 text-gray-400 border border-gray-700';
+                        statusColor = 'bg-gray-800 text-gray-300 border border-gray-700';
                         icon = '📅';
                 }
 

@@ -51,7 +51,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
                 </div>
 
                 <!-- Mobile: Hamburger Button -->
-                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition">
+                <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-800 transition">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -84,7 +84,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="mb-8">
             <h1 class="text-3xl font-bold text-white">Statistik Latihan</h1>
-            <p class="text-gray-400 mt-2">Pantau progress dan konsistensi latihanmu disini.</p>
+            <p class="text-gray-300 mt-2">Pantau progress dan konsistensi latihanmu disini.</p>
         </div>
 
         <!-- Quick Stats Grid -->
@@ -98,9 +98,9 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
                     </svg>
                 </div>
                 <div>
-                    <p class="text-sm text-gray-400 font-medium uppercase tracking-wider">Current Streak</p>
+                    <p class="text-sm text-gray-300 font-medium uppercase tracking-wider">Current Streak</p>
                     <h3 class="text-3xl font-bold text-white" id="streak-count">...</h3>
-                    <p class="text-xs text-gray-500 mt-1">Hari berturut-turut</p>
+                    <p class="text-xs text-gray-400 mt-1">Hari berturut-turut</p>
                 </div>
             </div>
 
@@ -112,9 +112,9 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
                     </svg>
                 </div>
                 <div>
-                    <p class="text-sm text-gray-400 font-medium uppercase tracking-wider">Total Workouts</p>
+                    <p class="text-sm text-gray-300 font-medium uppercase tracking-wider">Total Workouts</p>
                     <h3 class="text-3xl font-bold text-white" id="total-workouts">...</h3>
-                    <p class="text-xs text-gray-500 mt-1">Sesi selesai</p>
+                    <p class="text-xs text-gray-400 mt-1">Sesi selesai</p>
                 </div>
             </div>
         </div>

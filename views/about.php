@@ -60,14 +60,14 @@ include '../config.php';
                     <a href="<?php echo url('/'); ?>" class="text-2xl font-bold text-white tracking-tight">
                         Train<span class="text-orange-500">Hub</span>
                     </a>
-                    <div class="hidden md:flex items-center gap-2 text-sm text-gray-400">
+                    <div class="hidden md:flex items-center gap-2 text-sm text-gray-300">
                         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
                         </svg>
                         <span>Meet The Team</span>
                     </div>
                 </div>
-                <a href="javascript:history.back();" class="text-gray-400 hover:text-white transition">
+                <a href="javascript:history.back();" class="text-gray-300 hover:text-white transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -83,7 +83,7 @@ include '../config.php';
             <h1 class="text-5xl font-bold text-white mb-4">
                 Tentang <span class="text-orange-500">Kami</span>
             </h1>
-            <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p class="text-xl text-gray-300 max-w-2xl mx-auto">
                 Tim kecil dengan semangat besar untuk membangun solusi fitness yang inovatif
             </p>
         </div>
@@ -109,7 +109,7 @@ include '../config.php';
                         </div>
 
                         <!-- Bio -->
-                        <p class="text-gray-400 mb-6 italic">"Building the future, one commit at a time 🚀"</p>
+                        <p class="text-gray-300 mb-6 italic">"Building the future, one commit at a time 🚀"</p>
 
                         <!-- Social Media -->
                         <div class="flex gap-4">
@@ -147,7 +147,7 @@ include '../config.php';
                         </div>
 
                         <!-- Bio -->
-                        <p class="text-gray-400 mb-6 italic">"Project.. aduh.. pusingnya.."</p>
+                        <p class="text-gray-300 mb-6 italic">"Project.. aduh.. pusingnya.."</p>
 
                         <!-- Social Media -->
                         <div class="flex gap-4">
@@ -204,7 +204,7 @@ include '../config.php';
 
     <!-- Footer -->
     <footer class="border-t border-gray-800 py-8 mt-16">
-        <div class="max-w-6xl mx-auto px-4 text-center text-gray-500 text-sm">
+        <div class="max-w-6xl mx-auto px-4 text-center text-gray-400 text-sm">
             <p>© 2025 TrainHub</p>
         </div>
     </footer>
