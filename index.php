@@ -13,10 +13,8 @@
     <!-- Load Tailwind CSS -->
 
 
-    <!-- Load Tailwind CSS -->
     <link href="<?php echo asset('/views/css/tailwind.css'); ?>" rel="stylesheet">
 
-    <!-- Konfigurasi Tailwind (Opsional, tapi bagus untuk font) -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -37,10 +35,8 @@
         }
     </script>
 
-    <!-- Load Google Font (Inter) - Optimized for LCP -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Reduced to 3 weights for faster loading -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript>
@@ -49,15 +45,12 @@
 
 
     <style>
-        /* Menggunakan font Inter dari config */
         body {
             font-family: 'Inter', sans-serif;
         }
 
-        /* Efek blur di background header */
         .header-blur {
             background-color: rgba(0, 0, 0, 0.8);
-            /* bg-black with 80% opacity */
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
         }
@@ -220,9 +213,6 @@
 
                 </div>
             </div>
-
-            <!-- Mockup Aplikasi yang lama (di bawah) sekarang kita HAPUS -->
-            <!-- <div class="max-w-5xl mx-auto mt-20 px-4 sm:px-6 lg:px-8"> ... </div> -->
         </section>
 
         <!-- ===== Fitur Section ===== -->
