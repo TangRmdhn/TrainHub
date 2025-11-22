@@ -26,9 +26,8 @@ $result = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Plans - TrainHub</title>
+
     <link href="<?php echo asset('/views/css/tailwind.css'); ?>" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -160,14 +159,12 @@ $result = $stmt->get_result();
     </main>
 
     <!-- Plan Details Modal -->
-    <div id="planDetailsModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div id="planDetailsModal" class="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center" aria-labelledby="modal-title" role="dialog" aria-modal="true" style="display:none;">
+        <div class="min-h-screen flex items-center justify-center">
 
-            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closePlanDetails()"></div>
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-75 transition-opacity z-40" aria-hidden="true" onclick="closePlanDetails()"></div>
 
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-            <div class="inline-block align-bottom bg-gray-900 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-gray-700">
+            <div class="modal-content bg-gray-800 w-11/12 md:max-w-md mx-auto rounded-xl shadow-2xl z-50 relative flex flex-col max-h-[90vh] overflow-hidden">
                 <div class="bg-gray-800 px-4 py-5 sm:px-6 border-b border-gray-700 flex justify-between items-center">
                     <div>
                         <h3 class="text-lg leading-6 font-medium text-white" id="modal-plan-name">
@@ -264,11 +261,13 @@ $result = $stmt->get_result();
         const modalTimeline = document.getElementById('modal-timeline');
 
         function closePlanDetails() {
-            modal.classList.add('hidden');
+            modal.style.display = 'none';
         }
 
         async function openPlanDetails(planId) {
-            modal.classList.remove('hidden');
+            console.log('openPlanDetails called with planId:', planId);
+            modal.style.display = 'block';
+            console.log('Modal display set to block');
 
             // Reset / Loading State
             modalTitle.innerText = "Loading...";

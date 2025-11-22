@@ -1,6 +1,85 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.php", "./views/**/*.php"],
+  content: ["index.php", "views/**/*.php"],
+  safelist: [
+    // Modal container
+    "fixed",
+    "inset-0",
+    "z-50",
+    "overflow-y-auto",
+    // Background overlay
+    "bg-gray-900",
+    "bg-opacity-75",
+    // Modal inner box
+    "inline-block",
+    "align-bottom",
+    "bg-gray-900",
+    "rounded-lg",
+    "text-left",
+    "overflow-hidden",
+    "shadow-xl",
+    "transform",
+    "transition-all",
+    "sm:my-8",
+    "sm:align-middle",
+    "sm:max-w-lg",
+    "sm:w-full",
+    "border",
+    "border-gray-700",
+    // Header
+    "bg-gray-800",
+    "px-4",
+    "py-5",
+    "sm:px-6",
+    "border-b",
+    "border-gray-700",
+    "flex",
+    "justify-between",
+    "items-center",
+    // Close button
+    "text-gray-400",
+    "hover:text-white",
+    // Body
+    "bg-gray-900",
+    "px-4",
+    "py-4",
+    "sm:p-6",
+    "max-h-[60vh]",
+    "overflow-y-auto",
+    "custom-scrollbar",
+    // Footer
+    "bg-gray-800",
+    "px-4",
+    "py-3",
+    "sm:px-6",
+    "sm:flex",
+    "sm:flex-row-reverse",
+    // Buttons
+    "w-full",
+    "inline-flex",
+    "justify-center",
+    "rounded-md",
+    "border",
+    "border-transparent",
+    "shadow-sm",
+    "px-4",
+    "py-2",
+    "bg-gray-700",
+    "text-base",
+    "font-medium",
+    "text-white",
+    "hover:bg-gray-600",
+    "focus:outline-none",
+    "sm:ml-3",
+    "sm:w-auto",
+    "sm:text-sm",
+    // Loading spinner
+    "animate-spin",
+    "h-8",
+    "w-8",
+    "text-orange-500",
+    "mx-auto",
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -8,9 +87,9 @@ module.exports = {
       },
       colors: {
         brand: {
-          light: "#f97316", // orange-500
-          DEFAULT: "#ea580c", // orange-600
-          dark: "#c2410c", // orange-700
+          light: "#f97316",
+          DEFAULT: "#ea580c",
+          dark: "#c2410c",
         },
       },
     },

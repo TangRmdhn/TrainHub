@@ -51,9 +51,8 @@ $user_profile_json = json_encode($profile_for_api);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - TrainHub</title>
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+
     <link href="<?php echo asset('/views/css/tailwind.css'); ?>" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;

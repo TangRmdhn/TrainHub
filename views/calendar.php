@@ -26,8 +26,8 @@ $user = $result->fetch_assoc();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendar - TrainHub</title>
+
     <link href="<?php echo asset('/views/css/tailwind.css'); ?>" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
@@ -95,6 +95,9 @@ $user = $result->fetch_assoc();
             text-overflow: ellipsis;
             display: block;
             border-left: 3px solid transparent;
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
         }
 
         .event-pill.workout {
@@ -252,7 +255,7 @@ $user = $result->fetch_assoc();
     </main>
 
     <!-- Workout Detail Modal -->
-    <div id="workoutModal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+    <div id="workoutModal" class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center z-50" style="display: none;">
         <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-75"></div>
 
         <div class="modal-container bg-gray-800 w-11/12 md:max-w-md mx-auto rounded-xl shadow-2xl z-50 transform scale-95 transition-transform duration-300 border border-gray-700 flex flex-col max-h-[90vh] overflow-hidden">
@@ -341,19 +344,22 @@ $user = $result->fetch_assoc();
 
         // Modal Logic
         function toggleModal() {
+            console.log('toggleModal called');
             const body = document.querySelector('body');
             const container = modal.querySelector('.modal-container');
 
-            modal.classList.toggle('opacity-0');
-            modal.classList.toggle('pointer-events-none');
-            body.classList.toggle('modal-active');
-
-            if (!modal.classList.contains('opacity-0')) {
+            if (modal.style.display === 'none' || modal.style.display === '') {
+                console.log('Modal opening');
+                modal.style.display = 'flex';
                 container.classList.remove('scale-95');
                 container.classList.add('scale-100');
+                body.classList.add('modal-active');
             } else {
+                console.log('Modal closing');
+                modal.style.display = 'none';
                 container.classList.remove('scale-100');
                 container.classList.add('scale-95');
+                body.classList.remove('modal-active');
             }
         }
 
@@ -493,6 +499,7 @@ $user = $result->fetch_assoc();
                     pill.innerText = event.title;
 
                     pill.addEventListener('click', (e) => {
+                        console.log('Pill clicked!', event.title);
                         e.stopPropagation();
                         openModal(event);
                     });
@@ -505,6 +512,7 @@ $user = $result->fetch_assoc();
         }
 
         function openModal(eventData) {
+            console.log('openModal called with:', eventData);
             // Parse Date
             const dateObj = new Date(eventData.start);
             const options = {

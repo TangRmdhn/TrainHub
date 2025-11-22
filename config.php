@@ -54,5 +54,9 @@ function asset($path)
     if (substr($path, 0, 1) !== '/') {
         $path = '/' . $path;
     }
+    // Only add version query string for CSS/JS files to avoid breaking API URLs
+    if (preg_match('/\.(css|js)$/i', $path)) {
+        return BASE_PATH . $path . '?v=' . time();
+    }
     return BASE_PATH . $path;
 }

@@ -1,5 +1,10 @@
 RewriteEngine On
 
+# 0. Allow existing files and directories (Critical for assets)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
 # 1. Force HTTPS (Production Only)
 # Checks if the host is trainhub.web.id AND HTTPS is off
 RewriteCond %{HTTP_HOST} ^(www\.)?trainhub\.web\.id [NC]
