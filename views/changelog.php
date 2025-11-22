@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 session_start();
 include '../config.php';
 ?>
@@ -10,7 +10,11 @@ include '../config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Changelog - TrainHub</title>
     <link href="<?php echo asset('/views/css/tailwind.css'); ?>" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
     <style>
         body {
             font-family: 'Inter', sans-serif;
