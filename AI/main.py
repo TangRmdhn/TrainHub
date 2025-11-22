@@ -158,3 +158,80 @@ async def generate_plan(user: UserProfile):
         raise HTTPException(status_code=500, detail=f"Terjadi kesalahan: {str(e)}")
 
 # Jalankan dengan: uvicorn main:app --reload
+
+# === CHATBOT SECTION ===
+
+class ChatRequest(BaseModel):
+    user_id: int
+    message: str
+    user_profile: dict  # Terima raw dict biar fleksibel
+
+# In-memory storage for short-term memory
+# Format: { user_id: [ {"role": "user", "parts": [{"text": "msg"}]}, ... ] }
+chat_sessions = {}
+
+@app.post("/chat")
+async def chat_endpoint(request: ChatRequest):
+    try:
+        user_id = request.user_id
+        user_msg = request.message
+        profile = request.user_profile
+
+        # 1. Initialize Session if not exists
+        if user_id not in chat_sessions:
+            # System Prompt
+            system_prompt = f"""
+            Kamu adalah Personal Fitness Coach AI bernama 'TrainHub Coach'.
+            Tugasmu adalah membantu user mencapai goal fitness mereka dengan ramah, memotivasi, dan ilmiah.
+            
+            DATA USER:
+            - Nama: {profile.get('username')}
+            - Gender: {profile.get('gender')}
+            - Umur: {profile.get('age')} tahun
+            - Berat/Tinggi: {profile.get('weight')}kg / {profile.get('height')}cm
+            - Goal: {profile.get('fitness_goal')}
+            - Level: {profile.get('fitness_level')}
+            - Cedera: {profile.get('injuries') or 'Tidak ada'}
+            
+            INSTRUKSI:
+            1. Jawab pertanyaan user dengan singkat, padat, dan jelas.
+            2. Selalu panggil user dengan namanya sesekali agar personal.
+            3. Jika user bertanya saran latihan/makan, sesuaikan dengan data diri mereka di atas.
+            4. Jangan berikan saran medis berbahaya.
+            5. Gaya bahasa: Santai, suportif, seperti teman gym yang pintar.
+            """
+            
+            # Fix: parts must be list of dicts with 'text' key
+            chat_sessions[user_id] = [
+                {"role": "user", "parts": [{"text": system_prompt}]},
+                {"role": "model", "parts": [{"text": "Siap! Saya mengerti. Halo! Saya siap membantu kamu mencapai goal fitnessmu. Ada yang bisa saya bantu hari ini?"}]}
+            ]
+
+        # 2. Append User Message
+        chat_sessions[user_id].append({"role": "user", "parts": [{"text": user_msg}]})
+
+        # 3. Call Gemini
+        # Limit history length to prevent token overflow (e.g., last 20 turns)
+        history_to_send = chat_sessions[user_id][-20:] 
+        
+        response = client.models.generate_content(
+            model="gemini-2.0-flash-lite",
+            contents=history_to_send,
+            config=types.GenerateContentConfig(
+                temperature=0.7
+            )
+        )
+
+        if not response.text:
+            ai_reply = "Maaf, saya sedang bingung. Bisa ulangi?"
+        else:
+            ai_reply = response.text
+
+        # 4. Append AI Reply
+        chat_sessions[user_id].append({"role": "model", "parts": [{"text": ai_reply}]})
+
+        return {"response": ai_reply}
+
+    except Exception as e:
+        print(f"CHAT ERROR: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Chat Error: {str(e)}")

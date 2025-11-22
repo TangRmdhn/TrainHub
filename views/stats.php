@@ -1,10 +1,24 @@
 ﻿<?php
 session_start();
+include '../koneksi.php';
 include '../config.php';
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
     header("Location: " . url("/login"));
     exit;
 }
+$user_id = $_SESSION['user_id'];
+
+// Ambil data profil user untuk navbar
+$sql = "SELECT username, fitness_goal FROM users WHERE id = ?";
+$stmt = $koneksi->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+if ($result->num_rows == 0) {
+    header("Location: " . url("/logout"));
+    exit;
+}
+$user = $result->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html lang="id" class="dark">
@@ -30,12 +44,12 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 
 <body class="bg-black text-gray-100 min-h-screen">
 
-    <nav class="bg-gray-900 border-b border-gray-800 sticky top-0 z-50">
+    <nav class="bg-gray-900 border-b border-gray-800 sticky top-0 z-50 backdrop-blur-md bg-opacity-80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Left: Logo -->
                 <div class="flex items-center">
-                    <a href="<?php echo url('/app'); ?>" class="text-2xl font-bold text-white">
+                    <a href="<?php echo url('/app'); ?>" class="text-2xl font-bold text-white tracking-tight">
                         Train<span class="text-orange-500">Hub</span>
                     </a>
                 </div>
@@ -46,12 +60,18 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
                     <a href="<?php echo url('/plans'); ?>" class="text-gray-300 hover:text-white transition">My Plans</a>
                     <a href="<?php echo url('/calendar'); ?>" class="text-gray-300 hover:text-white transition">Calendar</a>
                     <a href="<?php echo url('/stats'); ?>" class="text-orange-500 font-semibold">Statistics</a>
+                    <a href="<?php echo url('/chat'); ?>" class="text-gray-300 hover:text-white transition">AI Coach</a>
                 </div>
 
-                <!-- Right: Logout (Desktop) -->
-                <div class="hidden md:flex">
+                <!-- Right: User/Logout (Desktop) -->
+                <div class="hidden md:flex items-center gap-4">
+                    <div class="text-right leading-tight">
+                        <div class="text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
+                        <div class="text-xs text-gray-300"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
+                    </div>
                     <a href="<?php echo url('/logout'); ?>" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
-                        Logout</a>
+                        Logout
+                    </a>
                 </div>
 
                 <!-- Mobile: Hamburger Button -->
@@ -70,7 +90,10 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
                 <a href="<?php echo url('/plans'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
                 <a href="<?php echo url('/calendar'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
                 <a href="<?php echo url('/stats'); ?>" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Statistics</a>
+                <a href="<?php echo url('/chat'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">AI Coach</a>
                 <div class="pt-3 border-t border-gray-700">
+                    <div class="px-3 py-2 text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
+                    <div class="px-3 pb-2 text-xs text-gray-300"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
                     <a href="<?php echo url('/logout'); ?>" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
                         Logout
                     </a>

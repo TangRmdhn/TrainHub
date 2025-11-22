@@ -222,6 +222,7 @@ $user_profile_json = json_encode($profile_for_api);
                     <a href="<?php echo url('/plans'); ?>" class="text-gray-300 hover:text-white transition">My Plans</a>
                     <a href="<?php echo url('/calendar'); ?>" class="text-gray-300 hover:text-white transition">Calendar</a>
                     <a href="<?php echo url('/stats'); ?>" class="text-gray-300 hover:text-white transition">Statistics</a>
+                    <a href="<?php echo url('/chat'); ?>" class="text-gray-300 hover:text-white transition">AI Coach</a>
                 </div>
 
                 <!-- Right: User/Logout (Desktop) -->
@@ -251,6 +252,7 @@ $user_profile_json = json_encode($profile_for_api);
                 <a href="<?php echo url('/plans'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
                 <a href="<?php echo url('/calendar'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
                 <a href="<?php echo url('/stats'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
+                <a href="<?php echo url('/chat'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">AI Coach</a>
                 <div class="pt-3 border-t border-gray-700">
                     <div class="px-3 py-2 text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
                     <div class="px-3 pb-2 text-xs text-gray-300"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
@@ -294,7 +296,7 @@ $user_profile_json = json_encode($profile_for_api);
             <div class="lg:col-span-4 space-y-6">
 
                 <div class="bg-gray-900 rounded-xl border border-gray-800 p-6 shadow-lg">
-                    <h3 class="text-sm uppercase font-bold text-gray-400 tracking-wider mb-4">Parameter Anda</h3>
+                    <h3 class="text-sm uppercase font-bold text-gray-400 tracking-wider mb-4">Data Diri Anda</h3>
                     <div class="space-y-3">
                         <div class="flex justify-between items-center py-2 border-b border-gray-800">
                             <span class="text-gray-300 text-sm">Frekuensi</span>
@@ -389,8 +391,11 @@ $user_profile_json = json_encode($profile_for_api);
     <script>
         // Data dari PHP
         const userProfile = <?php echo $user_profile_json; ?>;
-        // URL API Python FASTAPI
-        const API_URL = "<?php echo API_URL; ?>";
+        // URL API Python FASTAPI HuggingFace
+        // const API_URL = "https://indraprhmbd-trainhub-ai.hf.space/generate-plan";
+
+        // URL API Python FASTAPI Local
+        const API_URL = "http://127.0.0.1:8000/generate-plan";
 
         // Variabel Hari 
         const days = ['MIN', 'SEN', 'SEL', 'RAB', 'KAM', 'JUM', 'SAB'];
