@@ -9,7 +9,8 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 $user_id = $_SESSION['user_id'];
 
 // Ambil data profil user untuk navbar
-$sql_user = "SELECT username, fitness_goal FROM users WHERE id = ?";
+// Ambil data profil user untuk navbar
+$sql_user = "SELECT u.username, p.fitness_goal FROM users u LEFT JOIN user_profiles p ON u.id = p.user_id WHERE u.id = ?";
 $stmt_user = $koneksi->prepare($sql_user);
 $stmt_user->bind_param("i", $user_id);
 $stmt_user->execute();

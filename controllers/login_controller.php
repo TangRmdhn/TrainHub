@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // 1. Cari user berdasarkan email (Prepared Statement)
-    $stmt = $koneksi->prepare("SELECT id, username, email, password, fitness_goal FROM users WHERE email = ?");
+    $stmt = $koneksi->prepare("SELECT id, username, email, password FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -28,8 +28,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['login_status'] = true;
 
             // 3. CEK SCREENING (LOGIC BARU)
-            // Kita cek apakah user sudah pernah isi screening (cek kolom fitness_goal)
-            if (empty($row['fitness_goal'])) {
+            // Cek di tabel user_profiles
+            $stmtProfile = $koneksi->prepare("SELECT fitness_goal FROM user_profiles WHERE user_id = ?");
+            $stmtProfile->bind_param("i", $row['id']);
+            $stmtProfile->execute();
+            $resultProfile = $stmtProfile->get_result();
+            
+            $hasProfile = false;
+            if ($resultProfile->num_rows > 0) {
+                $profileData = $resultProfile->fetch_assoc();
+                if (!empty($profileData['fitness_goal'])) {
+                    $hasProfile = true;
+                }
+            }
+
+            if (!$hasProfile) {
                 // Kalau data masih kosong, arahkan ke Screening
                 echo "<script>
                         alert('Login berhasil! Yuk, lengkapi data latihanmu dulu agar AI bisa bekerja.');

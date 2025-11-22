@@ -6,7 +6,6 @@ include '../config.php';
 
 if (!isset($_SESSION['user_id'])) {
     echo json_encode(['error' => 'Unauthorized']);
-    header("Location: " . url("/login"));
     exit;
 }
 
@@ -18,7 +17,7 @@ if (!$plan_id) {
     exit;
 }
 
-// 1. Ambil Data Plan
+// 1. Ambil Data Plan Header
 $sql = "SELECT * FROM user_plans WHERE id = ? AND user_id = ?";
 $stmt = $koneksi->prepare($sql);
 $stmt->bind_param("ii", $plan_id, $user_id);
@@ -32,7 +31,44 @@ if ($result->num_rows === 0) {
 
 $plan = $result->fetch_assoc();
 
-// 2. Ambil Log Completion
+// 2. Ambil Template Days & Exercises
+// Kita ambil semua hari dan exercise, lalu susun dalam array assoc berdasarkan day_number
+$days_map = [];
+
+$sqlDays = "SELECT pd.id as day_id, pd.day_number, pd.day_title, pd.is_off,
+                   pe.name as ex_name, pe.sets, pe.reps, pe.rest
+            FROM plan_days pd
+            LEFT JOIN plan_exercises pe ON pd.id = pe.day_id
+            WHERE pd.plan_id = ?
+            ORDER BY pd.day_number, pe.id";
+
+$stmtDays = $koneksi->prepare($sqlDays);
+$stmtDays->bind_param("i", $plan_id);
+$stmtDays->execute();
+$resDays = $stmtDays->get_result();
+
+while ($row = $resDays->fetch_assoc()) {
+    $dNum = $row['day_number'];
+    
+    if (!isset($days_map[$dNum])) {
+        $days_map[$dNum] = [
+            'day_title' => $row['day_title'],
+            'is_off' => (bool)$row['is_off'],
+            'exercises' => []
+        ];
+    }
+
+    if ($row['ex_name']) {
+        $days_map[$dNum]['exercises'][] = [
+            'name' => $row['ex_name'],
+            'sets' => $row['sets'],
+            'reps' => $row['reps'],
+            'rest' => $row['rest']
+        ];
+    }
+}
+
+// 3. Ambil Log Completion
 $completed_dates = [];
 $log_sql = "SELECT date FROM workout_logs WHERE plan_id = ? AND user_id = ?";
 $log_stmt = $koneksi->prepare($log_sql);
@@ -43,30 +79,29 @@ while ($row = $log_result->fetch_assoc()) {
     $completed_dates[] = $row['date'];
 }
 
-// 3. Generate Timeline
+// 4. Generate Timeline
 $timeline = [];
 $current = strtotime($plan['start_date']);
 $end = strtotime($plan['finish_date']);
 $today = date('Y-m-d');
 
+$day_names_id = [
+    1 => 'SENIN', 2 => 'SELASA', 3 => 'RABU', 4 => 'KAMIS', 5 => 'JUMAT', 6 => 'SABTU', 7 => 'MINGGU'
+];
+
 while ($current <= $end) {
     $date_str = date('Y-m-d', $current);
     $day_num = date('N', $current); // 1 (Mon) - 7 (Sun)
 
-    $day_map = [
-        1 => 'monday',
-        2 => 'tuesday',
-        3 => 'wednesday',
-        4 => 'thursday',
-        5 => 'friday',
-        6 => 'saturday',
-        7 => 'sunday'
+    // Ambil template untuk hari ini
+    $day_data = $days_map[$day_num] ?? [
+        'day_title' => 'Unknown',
+        'is_off' => false,
+        'exercises' => []
     ];
-    $col_name = $day_map[$day_num];
 
-    $day_data = json_decode($plan[$col_name], true);
-    $is_off = $day_data['is_off_day'] ?? false;
-    $session_title = $day_data['session_title'] ?? 'Unknown';
+    $is_off = $day_data['is_off'];
+    $session_title = $day_data['day_title'];
 
     // Determine Status
     $status = 'upcoming';
@@ -88,11 +123,12 @@ while ($current <= $end) {
 
     $timeline[] = [
         'date' => $date_str,
-        'day_name' => $day_data['day_name'] ?? '',
+        'day_name' => $day_names_id[$day_num],
         'session_title' => $session_title,
         'is_off' => $is_off,
         'status' => $status,
-        'status_label' => $status_label
+        'status_label' => $status_label,
+        'exercises' => $day_data['exercises'] // Optional: Include exercises if needed by frontend
     ];
 
     $current = strtotime('+1 day', $current);
@@ -102,5 +138,6 @@ echo json_encode([
     'plan_name' => $plan['plan_name'],
     'start_date' => $plan['start_date'],
     'finish_date' => $plan['finish_date'],
+    'coach_note' => $plan['coach_note'],
     'timeline' => $timeline
 ]);

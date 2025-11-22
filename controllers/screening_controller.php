@@ -24,19 +24,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $minutes_per_session = $_POST['minutes_per_session'];
     $injuries = mysqli_real_escape_string($koneksi, $_POST['injuries']);
 
-    // Query Update ke table users
-    $sql = "UPDATE users SET 
-            gender = '$gender',
-            age = '$age',
-            weight = '$weight',
-            height = '$height',
-            fitness_goal = '$fitness_goal',
-            fitness_level = '$fitness_level',
-            equipment_access = '$equipment_access',
-            days_per_week = '$days_per_week',
-            minutes_per_session = '$minutes_per_session',
-            injuries = '$injuries'
-            WHERE id = '$user_id'";
+    // Cek apakah data profile sudah ada
+    $checkSql = "SELECT id FROM user_profiles WHERE user_id = '$user_id'";
+    $checkResult = $koneksi->query($checkSql);
+
+    if ($checkResult->num_rows > 0) {
+        // Update
+        $sql = "UPDATE user_profiles SET 
+                gender = '$gender',
+                age = '$age',
+                weight = '$weight',
+                height = '$height',
+                fitness_goal = '$fitness_goal',
+                fitness_level = '$fitness_level',
+                equipment_access = '$equipment_access',
+                days_per_week = '$days_per_week',
+                minutes_per_session = '$minutes_per_session',
+                injuries = '$injuries'
+                WHERE user_id = '$user_id'";
+    } else {
+        // Insert
+        $sql = "INSERT INTO user_profiles (user_id, gender, age, weight, height, fitness_goal, fitness_level, equipment_access, days_per_week, minutes_per_session, injuries)
+                VALUES ('$user_id', '$gender', '$age', '$weight', '$height', '$fitness_goal', '$fitness_level', '$equipment_access', '$days_per_week', '$minutes_per_session', '$injuries')";
+    }
 
     if ($koneksi->query($sql) === TRUE) {
         // Sukses simpan data, arahkan ke dashboard

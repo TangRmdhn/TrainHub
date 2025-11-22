@@ -11,7 +11,8 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 $user_id = $_SESSION['user_id'];
 
 // 2. Ambil data profil user
-$sql = "SELECT * FROM users WHERE id = '$user_id'";
+// 2. Ambil data profil user
+$sql = "SELECT u.*, p.* FROM users u LEFT JOIN user_profiles p ON u.id = p.user_id WHERE u.id = '$user_id'";
 $result = $koneksi->query($sql);
 if ($result->num_rows == 0) {
     header("Location: " . url("/logout"));
