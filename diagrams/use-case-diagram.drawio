@@ -1,0 +1,130 @@
+<mxfile host="65bd71144e">
+    <diagram name="Use Case Diagram" id="use-case-trainhub">
+        <mxGraphModel dx="517" dy="587" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="conn-4" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=13;" parent="1" source="actor-user" target="uc-profile" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="500" as="sourcePoint"/>
+                        <mxPoint x="450" y="450" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="title" value="TrainHub - Use Case Diagram" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="384.5" y="30" width="400" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="actor-user" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="140" y="380" width="60" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc-register" value="Register" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="130" width="140" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc-login" value="Login" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="220" width="140" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc-logout" value="Logout" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="310" width="140" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc-profile" value="Manage Fitness Profile&#10;(Screening)" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="130" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc-generate" value="Generate Workout Plan&#10;(AI)" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9673a6;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="220" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc-calendar" value="View Calendar &amp;amp;&#10;Workout Schedule" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="180" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc-complete" value="Mark Workout&#10;as Complete" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="280" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc-stats" value="View Statistics&#10;&amp;amp; Progress" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#6c8ebf;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="380" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc-plans" value="View &amp;amp; Manage&#10;Workout Plans" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="480" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="uc-chat" value="Chat with&#10;AI Coach" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9673a6;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="580" width="160" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="conn-1" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=13;" parent="1" source="actor-user" target="uc-register" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="500" as="sourcePoint"/>
+                        <mxPoint x="450" y="450" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn-2" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=13;" parent="1" source="actor-user" target="uc-login" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="500" as="sourcePoint"/>
+                        <mxPoint x="450" y="450" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn-3" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=13;" parent="1" source="actor-user" target="uc-logout" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="500" as="sourcePoint"/>
+                        <mxPoint x="450" y="450" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn-5" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=13;" parent="1" source="actor-user" target="uc-generate" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="500" as="sourcePoint"/>
+                        <mxPoint x="450" y="450" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn-6" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=13;" parent="1" source="actor-user" target="uc-calendar" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="500" as="sourcePoint"/>
+                        <mxPoint x="450" y="450" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="700" y="290"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn-7" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=13;" parent="1" source="actor-user" target="uc-complete" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="500" as="sourcePoint"/>
+                        <mxPoint x="450" y="450" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn-8" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=13;" parent="1" source="actor-user" target="uc-stats" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="500" as="sourcePoint"/>
+                        <mxPoint x="450" y="450" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn-9" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=13;" parent="1" source="actor-user" target="uc-plans" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="500" as="sourcePoint"/>
+                        <mxPoint x="450" y="450" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="conn-10" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=13;" parent="1" source="actor-user" target="uc-chat" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="400" y="500" as="sourcePoint"/>
+                        <mxPoint x="450" y="450" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="legend-title" value="Legend:" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="605" width="160" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-auth" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#d6b656;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="630" width="30" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-auth-text" value="Authentication" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="125" y="625" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-ai" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9673a6;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="660" width="30" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-ai-text" value="AI Features" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="125" y="655" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-workout" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#82b366;strokeWidth=3;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="690" width="30" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-workout-text" value="Workout Features" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="125" y="685" width="120" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

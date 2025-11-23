@@ -1,0 +1,161 @@
+<mxfile host="65bd71144e">
+    <diagram name="System Architecture" id="sys-arch-trainhub">
+        <mxGraphModel dx="365" dy="414" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="&lt;font color=&quot;#fafafa&quot;&gt;TrainHub - System Architecture&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="334.5" y="30" width="500" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="layer-user" value="USER (Browser)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;verticalAlign=top;align=center;spacingTop=15;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="100" width="1000" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="user-icon" value="👤 User Interaction" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="480" y="130" width="200" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="layer-frontend" value="FRONTEND (HTML / JavaScript / Tailwind CSS / Bootstrap)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;verticalAlign=top;align=center;spacingTop=15;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="210" width="1000" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe-landing" value="Landing Page" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="250" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe-dashboard" value="Dashboard" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="250" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe-calendar" value="Calendar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="410" y="250" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe-plans" value="Plans" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="560" y="250" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe-stats" value="Stats" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="710" y="250" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="fe-chat" value="AI Coach Chat" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="860" y="250" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="layer-backend" value="BACKEND (PHP Controllers)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;verticalAlign=top;align=center;spacingTop=15;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="360" width="640" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="be-auth" value="Login / Register&#10;Logout" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="400" width="110" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="be-screening" value="Screening&#10;Controller" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="460" width="110" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="be-calendar" value="API Calendar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="400" width="110" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="be-stats" value="API Stats" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="240" y="450" width="110" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="be-complete" value="Mark Complete" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="400" width="110" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="be-save" value="Save Plan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="370" y="450" width="110" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="be-details" value="Get Plan Details" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="400" width="110" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="be-update" value="Update Plan Date" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="500" y="450" width="110" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="be-delete" value="Delete Plan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="630" y="425" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="layer-ai" value="AI SERVICE (Python FastAPI)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;verticalAlign=top;align=center;spacingTop=15;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="750" y="360" width="330" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="ai-generate" value="/generate-plan&#10;(Google Gemini 2.0)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fad7ac;strokeColor=#b46504;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="780" y="400" width="130" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="ai-chat" value="/chat&#10;(Google Gemini 2.0 Lite)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fad7ac;strokeColor=#b46504;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="780" y="460" width="130" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="ai-gemini" value="🤖 Google&#10;Gemini API" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff;strokeColor=#666;fontStyle=1;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="940" y="410" width="110" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="layer-db" value="DATABASE (MySQL)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;fontSize=14;fontStyle=1;verticalAlign=top;align=center;spacingTop=15;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="540" width="640" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="db-users" value="users" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#cdeb8b;strokeColor=#36393d;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="580" width="80" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="db-profiles" value="user_&#10;profiles" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#cdeb8b;strokeColor=#36393d;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="580" width="80" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="db-plans" value="user_&#10;plans" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#cdeb8b;strokeColor=#36393d;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="310" y="580" width="80" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="db-days" value="plan_&#10;days" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#cdeb8b;strokeColor=#36393d;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="410" y="580" width="80" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="db-exercises" value="plan_&#10;exercises" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#cdeb8b;strokeColor=#36393d;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="510" y="580" width="80" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="db-logs" value="workout_&#10;logs" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#cdeb8b;strokeColor=#36393d;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="580" width="80" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#080808;" parent="1" source="layer-user" target="layer-frontend" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow1-label" value="HTTP Request" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontSize=11;fontColor=#080808;" parent="arrow1" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2" y="2" relative="1" as="geometry">
+                        <mxPoint x="40" y="-2" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="arrow2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#080808;" parent="1" source="layer-frontend" target="layer-backend" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow2-label" value="API Calls" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontSize=11;fontColor=#080808;" parent="arrow2" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2" y="2" relative="1" as="geometry">
+                        <mxPoint x="30" y="-2" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="arrow3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#d5e8d4;strokeColor=#9673a6;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;fontColor=#080808;" parent="1" source="layer-frontend" target="layer-ai" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="830" y="345"/>
+                            <mxPoint x="915" y="345"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="arrow3-label" value="AI Request" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontSize=11;fontColor=#080808;" parent="arrow3" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2" y="2" relative="1" as="geometry">
+                        <mxPoint x="5" y="-8" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="arrow4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#080808;" parent="1" source="layer-backend" target="layer-db" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow4-label" value="SQL Queries" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontSize=11;fontColor=#080808;" parent="arrow4" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2" y="2" relative="1" as="geometry">
+                        <mxPoint x="35" y="-2" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="arrow5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#f8cecc;strokeColor=#b85450;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=#080808;" parent="1" source="ai-generate" target="ai-gemini" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow-box" value="SIMPLIFIED REQUEST FLOW:" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=13;fontStyle=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=10;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="760" y="560" width="310" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow-1" value="1️⃣ User → Frontend (HTML/JS)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="585" width="290" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow-2" value="2️⃣ Frontend → PHP Backend / AI Service" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="605" width="290" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow-3" value="3️⃣ PHP Backend → MySQL Database" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="625" width="290" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow-4" value="4️⃣ AI Service → Google Gemini API" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="645" width="290" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="flow-5" value="5️⃣ Response → Frontend → User" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#080808;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="665" width="290" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
