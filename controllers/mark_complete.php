@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Jakarta'); // Set timezone ke WIB (UTC+7)
 header('Content-Type: application/json');
 include '../koneksi.php';
 include '../config.php';
@@ -21,7 +22,7 @@ if (!isset($data['plan_id']) || !isset($data['date'])) {
 $plan_id = $data['plan_id'];
 $date = $data['date'];
 
-// Insert or Ignore (if already completed)
+// Insert atau Ignore (kalo udah selesai)
 $sql = "INSERT IGNORE INTO workout_logs (user_id, plan_id, date, status) VALUES (?, ?, ?, 'completed')";
 $stmt = $koneksi->prepare($sql);
 $stmt->bind_param("iis", $user_id, $plan_id, $date);

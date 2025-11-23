@@ -6,6 +6,7 @@ module.exports = {
     "fixed",
     "inset-0",
     "z-50",
+    "z-[60]",
     "overflow-y-auto",
     // Background overlay
     "bg-gray-900",

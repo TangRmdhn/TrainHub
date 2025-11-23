@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Jakarta'); // Set timezone ke WIB (UTC+7)
 header('Content-Type: application/json');
 include '../koneksi.php';
 include '../config.php';
@@ -14,7 +15,7 @@ $user_id = $_SESSION['user_id'];
 $start_date = $_GET['start'] ?? date('Y-m-d');
 $end_date = $_GET['end'] ?? date('Y-m-d', strtotime($start_date . ' +6 days'));
 
-// 1. Ambil Template Plan yang aktif dalam rentang request
+// 1. Ambil Template Rencana yang aktif dalam rentang request
 $sql = "SELECT id, start_date, finish_date, plan_name
         FROM user_plans
         WHERE user_id = ?
@@ -33,9 +34,9 @@ while ($plan = $result->fetch_assoc()) {
     $plan_start = $plan['start_date'];
     $plan_finish = $plan['finish_date'];
 
-    // 2. Ambil Detail Hari & Exercise untuk Plan ini
-    // Optimization: Bisa di-cache atau di-query sekali saja jika struktur kompleks.
-    // Tapi untuk simpel, kita query per plan (biasanya cuma 1 plan aktif).
+    // 2. Ambil Detail Hari & Latihan buat Rencana ini
+    // Optimasi: Bisa di-cache atau di-query sekali aja kalo struktur kompleks.
+    // Tapi buat simpel, kita query per rencana (biasanya cuma 1 rencana aktif).
     $days_map = [];
     $sqlDays = "SELECT pd.id as day_id, pd.day_number, pd.day_title, pd.is_off,
                        pe.name as ex_name, pe.sets, pe.reps, pe.rest
@@ -43,12 +44,12 @@ while ($plan = $result->fetch_assoc()) {
                 LEFT JOIN plan_exercises pe ON pd.id = pe.day_id
                 WHERE pd.plan_id = ?
                 ORDER BY pd.day_number, pe.id";
-    
+
     $stmtDays = $koneksi->prepare($sqlDays);
     $stmtDays->bind_param("i", $plan_id);
     $stmtDays->execute();
     $resDays = $stmtDays->get_result();
-    
+
     while ($row = $resDays->fetch_assoc()) {
         $dNum = $row['day_number'];
         if (!isset($days_map[$dNum])) {
@@ -76,7 +77,7 @@ while ($plan = $result->fetch_assoc()) {
         $current = strtotime($loop_start);
         $end_ts = strtotime($loop_end);
 
-        // Ambil log completion
+        // Ambil log penyelesaian
         $completed_dates = [];
         $log_sql = "SELECT date FROM workout_logs WHERE user_id = ? AND plan_id = ? AND date BETWEEN ? AND ?";
         $log_stmt = $koneksi->prepare($log_sql);
@@ -94,7 +95,7 @@ while ($plan = $result->fetch_assoc()) {
             // Ambil data dari map
             if (isset($days_map[$day_of_week_num])) {
                 $day_data = $days_map[$day_of_week_num];
-                
+
                 $is_rest = $day_data['is_off'];
                 $is_completed = in_array($date_str, $completed_dates);
 
@@ -110,7 +111,7 @@ while ($plan = $result->fetch_assoc()) {
                     'backgroundColor' => $bg_color,
                     'borderColor' => $bg_color,
                     'extendedProps' => [
-                        'details' => $day_data, // Contains exercises
+                        'details' => $day_data, // Isi latihan
                         'plan_id' => $plan_id,
                         'is_completed' => $is_completed
                     ]

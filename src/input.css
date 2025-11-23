@@ -1,4 +1,15 @@
-﻿/* ============================================
+﻿@import "tailwindcss";
+@source "../views/**/*.php";
+@source "../index.php";
+
+@theme {
+  --font-sans: "Inter", "sans-serif";
+  --color-brand-light: #f97316;
+  --color-brand-DEFAULT: #ea580c;
+  --color-brand-dark: #c2410c;
+}
+
+/* ============================================
    TrainHub - Custom Styles & Responsive Fixes
    Mobile-First Approach
    ============================================ */
@@ -596,15 +607,4 @@ h4 {
     break-inside: avoid;
     border: 1px solid #ddd;
   }
-}
-
-@import "tailwindcss";
-@source "../views/**/*.php";
-@source "../index.php";
-
-@theme {
-  --font-sans: "Inter", "sans-serif";
-  --color-brand-light: #f97316;
-  --color-brand-DEFAULT: #ea580c;
-  --color-brand-dark: #c2410c;
 }

@@ -3,7 +3,7 @@ session_start();
 include '../koneksi.php';
 include '../config.php';
 
-// Pastikan user sudah login
+// Pastiin user udah login
 if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
     header("Location: " . url("/login"));
     exit;
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $minutes_per_session = $_POST['minutes_per_session'];
     $injuries = mysqli_real_escape_string($koneksi, $_POST['injuries']);
 
-    // Cek apakah data profile sudah ada
+    // Cek apakah data profile udah ada
     $checkSql = "SELECT id FROM user_profiles WHERE user_id = '$user_id'";
     $checkResult = $koneksi->query($checkSql);
 

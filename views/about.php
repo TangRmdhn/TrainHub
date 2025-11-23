@@ -14,7 +14,9 @@ include '../config.php';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    </noscript>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -61,7 +63,7 @@ include '../config.php';
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-8">
-                    <a href="<?php echo url('/'); ?>" class="text-2xl font-bold text-white tracking-tight">
+                    <a href="<?= url('/'); ?>" class="text-2xl font-bold text-white tracking-tight">
                         Train<span class="text-orange-500">Hub</span>
                     </a>
                     <div class="hidden md:flex items-center gap-2 text-sm text-gray-300">
@@ -194,7 +196,7 @@ include '../config.php';
                     </svg>
                     View Repository
                 </a>
-                <a href="<?php echo url('/changelog'); ?>"
+                <a href="<?= url('/changelog'); ?>"
                     class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-lg transition font-medium">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />

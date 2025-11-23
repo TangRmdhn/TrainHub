@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Jakarta'); // Set timezone ke WIB (UTC+7)
 header('Content-Type: application/json');
 include '../koneksi.php';
 include '../config.php';
@@ -17,7 +18,7 @@ if (!$plan_id) {
     exit;
 }
 
-// 1. Ambil Data Plan Header
+// 1. Ambil Data Header Rencana
 $sql = "SELECT * FROM user_plans WHERE id = ? AND user_id = ?";
 $stmt = $koneksi->prepare($sql);
 $stmt->bind_param("ii", $plan_id, $user_id);
@@ -31,8 +32,8 @@ if ($result->num_rows === 0) {
 
 $plan = $result->fetch_assoc();
 
-// 2. Ambil Template Days & Exercises
-// Kita ambil semua hari dan exercise, lalu susun dalam array assoc berdasarkan day_number
+// 2. Ambil Template Hari & Latihan
+// Kita ambil semua hari dan latihan, terus susun di array assoc berdasarkan day_number
 $days_map = [];
 
 $sqlDays = "SELECT pd.id as day_id, pd.day_number, pd.day_title, pd.is_off,
@@ -49,7 +50,7 @@ $resDays = $stmtDays->get_result();
 
 while ($row = $resDays->fetch_assoc()) {
     $dNum = $row['day_number'];
-    
+
     if (!isset($days_map[$dNum])) {
         $days_map[$dNum] = [
             'day_title' => $row['day_title'],
@@ -68,7 +69,7 @@ while ($row = $resDays->fetch_assoc()) {
     }
 }
 
-// 3. Ambil Log Completion
+// 3. Ambil Log Penyelesaian
 $completed_dates = [];
 $log_sql = "SELECT date FROM workout_logs WHERE plan_id = ? AND user_id = ?";
 $log_stmt = $koneksi->prepare($log_sql);
@@ -79,21 +80,27 @@ while ($row = $log_result->fetch_assoc()) {
     $completed_dates[] = $row['date'];
 }
 
-// 4. Generate Timeline
+// 4. Bikin Timeline
 $timeline = [];
 $current = strtotime($plan['start_date']);
 $end = strtotime($plan['finish_date']);
 $today = date('Y-m-d');
 
 $day_names_id = [
-    1 => 'SENIN', 2 => 'SELASA', 3 => 'RABU', 4 => 'KAMIS', 5 => 'JUMAT', 6 => 'SABTU', 7 => 'MINGGU'
+    1 => 'SENIN',
+    2 => 'SELASA',
+    3 => 'RABU',
+    4 => 'KAMIS',
+    5 => 'JUMAT',
+    6 => 'SABTU',
+    7 => 'MINGGU'
 ];
 
 while ($current <= $end) {
     $date_str = date('Y-m-d', $current);
     $day_num = date('N', $current); // 1 (Mon) - 7 (Sun)
 
-    // Ambil template untuk hari ini
+    // Ambil template buat hari ini
     $day_data = $days_map[$day_num] ?? [
         'day_title' => 'Unknown',
         'is_off' => false,
@@ -103,7 +110,7 @@ while ($current <= $end) {
     $is_off = $day_data['is_off'];
     $session_title = $day_data['day_title'];
 
-    // Determine Status
+    // Tentuin Status
     $status = 'upcoming';
     $status_label = 'Upcoming';
 
@@ -128,7 +135,7 @@ while ($current <= $end) {
         'is_off' => $is_off,
         'status' => $status,
         'status_label' => $status_label,
-        'exercises' => $day_data['exercises'] // Optional: Include exercises if needed by frontend
+        'exercises' => $day_data['exercises'] // Opsional: Masukin latihan kalo frontend butuh
     ];
 
     $current = strtotime('+1 day', $current);

@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Jakarta'); // Set timezone ke WIB (UTC+7)
 header('Content-Type: application/json');
 include '../koneksi.php';
 include '../config.php';
@@ -12,14 +13,14 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// 1. Total Workouts
+// 1. Total Latihan
 $sql_total = "SELECT COUNT(*) as total FROM workout_logs WHERE user_id = ?";
 $stmt = $koneksi->prepare($sql_total);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $total_workouts = $stmt->get_result()->fetch_assoc()['total'];
 
-// 2. Current Streak
+// 2. Streak Saat Ini
 $sql_dates = "SELECT DISTINCT date FROM workout_logs WHERE user_id = ? ORDER BY date DESC";
 $stmt = $koneksi->prepare($sql_dates);
 $stmt->bind_param("i", $user_id);
@@ -27,8 +28,12 @@ $stmt->execute();
 $result_dates = $stmt->get_result();
 
 $dates = [];
+$today = date('Y-m-d');
 while ($row = $result_dates->fetch_assoc()) {
-    $dates[] = $row['date'];
+    // ambil data hari ini
+    if ($row['date'] <= $today) {
+        $dates[] = $row['date'];
+    }
 }
 
 $streak = 0;
@@ -36,7 +41,7 @@ if (!empty($dates)) {
     $today = date('Y-m-d');
     $yesterday = date('Y-m-d', strtotime('-1 day'));
 
-    // Check if streak is active (last workout today or yesterday)
+    // Cek apakah streak masih aktif (latihan terakhir hari ini atau kemarin)
     if ($dates[0] === $today || $dates[0] === $yesterday) {
         $streak = 1;
         $current_check = $dates[0];
@@ -55,7 +60,7 @@ if (!empty($dates)) {
     }
 }
 
-// 3. Chart Data (Last 30 Days)
+// 3. Data Grafik (30 Hari Terakhir)
 $chart_labels = [];
 $chart_data = [];
 $last_30_days = [];

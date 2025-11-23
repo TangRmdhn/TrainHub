@@ -19,7 +19,9 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    </noscript>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -69,7 +71,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 
     <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 shadow-2xl w-full max-w-2xl">
 
-        <form id="screeningForm" action="<?php echo url('/controllers/screening_controller.php'); ?>" method="POST">
+        <form id="screeningForm" action="<?= url('/controllers/screening_controller.php'); ?>" method="POST">
 
             <div class="step-content active" data-step="1">
                 <h2 class="text-2xl font-bold text-white mb-2">Ceritakan Sedikit Tentang Diri Anda</h2>

@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // 2. Verifikasi Password
         if (password_verify($password, $row['password'])) {
-            // Prevent Session Fixation
+            // Cegah Session Fixation
             session_regenerate_id(true);
 
             // Set Session Login
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmtProfile->bind_param("i", $row['id']);
             $stmtProfile->execute();
             $resultProfile = $stmtProfile->get_result();
-            
+
             $hasProfile = false;
             if ($resultProfile->num_rows > 0) {
                 $profileData = $resultProfile->fetch_assoc();
@@ -43,13 +43,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             if (!$hasProfile) {
-                // Kalau data masih kosong, arahkan ke Screening
+                // Kalo data masih kosong, arahkan ke Screening
                 echo "<script>
                         alert('Login berhasil! Yuk, lengkapi data latihanmu dulu agar AI bisa bekerja.');
                         window.location.href='" . url("/screening") . "';
                       </script>";
             } else {
-                // Kalau data sudah ada, langsung gass ke Dashboard
+                // Kalo data udah ada, langsung gass ke Dashboard
                 header("Location: " . url("/app"));
             }
             exit;

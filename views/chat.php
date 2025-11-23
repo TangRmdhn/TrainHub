@@ -11,9 +11,11 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 $user_id = $_SESSION['user_id'];
 
 // 2. Ambil data profil user
-// 2. Ambil data profil user
-$sql = "SELECT u.*, p.* FROM users u LEFT JOIN user_profiles p ON u.id = p.user_id WHERE u.id = '$user_id'";
-$result = $koneksi->query($sql);
+$sql = "SELECT u.*, p.* FROM users u LEFT JOIN user_profiles p ON u.id = p.user_id WHERE u.id = ?";
+$stmt = $koneksi->prepare($sql);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 if ($result->num_rows == 0) {
     header("Location: " . url("/logout"));
     exit;
@@ -113,13 +115,34 @@ $user_profile_json = json_encode($profile_for_api);
                 transform: scale(1);
             }
         }
-        
+
         /* Markdown Styles inside Chat */
-        .chat-bubble.ai ul { list-style-type: disc; margin-left: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem; }
-        .chat-bubble.ai ol { list-style-type: decimal; margin-left: 1.5rem; margin-top: 0.5rem; margin-bottom: 0.5rem; }
-        .chat-bubble.ai strong { font-weight: 700; color: white; }
-        .chat-bubble.ai p { margin-bottom: 0.5rem; }
-        .chat-bubble.ai p:last-child { margin-bottom: 0; }
+        .chat-bubble.ai ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chat-bubble.ai ol {
+            list-style-type: decimal;
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .chat-bubble.ai strong {
+            font-weight: 700;
+            color: white;
+        }
+
+        .chat-bubble.ai p {
+            margin-bottom: 0.5rem;
+        }
+
+        .chat-bubble.ai p:last-child {
+            margin-bottom: 0;
+        }
     </style>
 </head>
 
@@ -131,18 +154,18 @@ $user_profile_json = json_encode($profile_for_api);
             <div class="flex items-center justify-between h-16">
                 <!-- Left: Logo -->
                 <div class="flex items-center">
-                    <a href="<?php echo url('/app'); ?>" class="text-2xl font-bold text-white tracking-tight">
+                    <a href="<?= url('/app'); ?>" class="text-2xl font-bold text-white tracking-tight">
                         Train<span class="text-orange-500">Hub</span>
                     </a>
                 </div>
 
                 <!-- Center: Desktop Links -->
                 <div class="hidden md:flex space-x-6">
-                    <a href="<?php echo url('/app'); ?>" class="text-gray-300 hover:text-white transition">Dashboard</a>
-                    <a href="<?php echo url('/plans'); ?>" class="text-gray-300 hover:text-white transition">My Plans</a>
-                    <a href="<?php echo url('/calendar'); ?>" class="text-gray-300 hover:text-white transition">Calendar</a>
-                    <a href="<?php echo url('/stats'); ?>" class="text-gray-300 hover:text-white transition">Statistics</a>
-                    <a href="<?php echo url('/chat'); ?>" class="text-orange-500 font-semibold">AI Coach</a>
+                    <a href="<?= url('/app'); ?>" class="text-gray-300 hover:text-white transition">Dashboard</a>
+                    <a href="<?= url('/plans'); ?>" class="text-gray-300 hover:text-white transition">My Plans</a>
+                    <a href="<?= url('/calendar'); ?>" class="text-gray-300 hover:text-white transition">Calendar</a>
+                    <a href="<?= url('/stats'); ?>" class="text-gray-300 hover:text-white transition">Statistics</a>
+                    <a href="<?= url('/chat'); ?>" class="text-orange-500 font-semibold">AI Coach</a>
                 </div>
 
                 <!-- Right: User/Logout (Desktop) -->
@@ -151,7 +174,7 @@ $user_profile_json = json_encode($profile_for_api);
                         <div class="text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
                         <div class="text-xs text-gray-300"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
                     </div>
-                    <a href="<?php echo url('/logout'); ?>" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
+                    <a href="<?= url('/logout'); ?>" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
                         Logout
                     </a>
                 </div>
@@ -168,15 +191,15 @@ $user_profile_json = json_encode($profile_for_api);
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
             <div class="px-4 py-3 space-y-3">
-                <a href="<?php echo url('/app'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Dashboard</a>
-                <a href="<?php echo url('/plans'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
-                <a href="<?php echo url('/calendar'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
-                <a href="<?php echo url('/stats'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
-                <a href="<?php echo url('/chat'); ?>" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">AI Coach</a>
+                <a href="<?= url('/app'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Dashboard</a>
+                <a href="<?= url('/plans'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
+                <a href="<?= url('/calendar'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
+                <a href="<?= url('/stats'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
+                <a href="<?= url('/chat'); ?>" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">AI Coach</a>
                 <div class="pt-3 border-t border-gray-700">
                     <div class="px-3 py-2 text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
                     <div class="px-3 pb-2 text-xs text-gray-300"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
-                    <a href="<?php echo url('/logout'); ?>" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
+                    <a href="<?= url('/logout'); ?>" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
                         Logout
                     </a>
                 </div>
@@ -193,8 +216,8 @@ $user_profile_json = json_encode($profile_for_api);
     <!-- Main Content -->
     <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full flex flex-col h-[calc(100vh-64px)]">
 
-        <div class="flex-grow flex flex-col bg-gray-900 rounded-xl border border-gray-800 shadow-xl overflow-hidden mb-4">
-            
+        <div class="flex-grow flex flex-col bg-gray-900 rounded-xl border border-gray-800 shadow-xl overflow-hidden mb-4 mt-4">
+
             <!-- Chat Header -->
             <div class="bg-gray-800 p-4 border-b border-gray-700 flex items-center gap-3">
                 <div class="bg-orange-600/20 p-2 rounded-full">
@@ -223,10 +246,10 @@ $user_profile_json = json_encode($profile_for_api);
             <!-- Input Area -->
             <div class="p-4 bg-gray-800 border-t border-gray-700">
                 <form id="chat-form" class="flex gap-2">
-                    <input type="text" id="user-input" 
+                    <input type="text" id="user-input"
                         class="flex-grow bg-gray-900 border border-gray-700 text-white text-sm rounded-lg p-3 focus:ring-orange-500 focus:border-orange-500 outline-none transition"
                         placeholder="Tanya sesuatu..." autocomplete="off">
-                    <button type="submit" id="send-btn" 
+                    <button type="submit" id="send-btn"
                         class="bg-orange-600 hover:bg-orange-500 text-white p-3 rounded-lg transition shadow-lg flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
@@ -246,12 +269,9 @@ $user_profile_json = json_encode($profile_for_api);
 
         // User Profile Data from PHP
         const userProfile = <?php echo $user_profile_json; ?>;
-        
-        // API URL HuggingFace
-        // const API_URL = "https://indraprhmbd-trainhub-ai.hf.space/chat";
 
-        // API URL Local
-        const API_URL = "http://127.0.0.1:8000/chat";
+        // API URL FASTAPI 
+        const API_URL = "<?php echo API_URL . '/chat'; ?>";
 
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -286,7 +306,7 @@ $user_profile_json = json_encode($profile_for_api);
                 }
 
                 const data = await response.json();
-                
+
                 // 4. Remove Loading & Add AI Response
                 removeMessage(loadingId);
                 addMessage(data.response, 'ai');
@@ -296,14 +316,14 @@ $user_profile_json = json_encode($profile_for_api);
                 addMessage("Maaf, terjadi kesalahan saat menghubungi server. Coba lagi nanti.", 'ai');
                 console.error(error);
             }
-            
+
             scrollToBottom();
         });
 
         function addMessage(text, sender) {
             const div = document.createElement('div');
             div.className = `chat-bubble ${sender}`;
-            
+
             // Simple Markdown parsing for AI messages
             if (sender === 'ai') {
                 // Convert newlines to <br> first? No, let's keep it simple or use a library if needed.
@@ -316,7 +336,7 @@ $user_profile_json = json_encode($profile_for_api);
             } else {
                 div.textContent = text;
             }
-            
+
             chatContainer.appendChild(div);
         }
 
@@ -340,4 +360,5 @@ $user_profile_json = json_encode($profile_for_api);
         }
     </script>
 </body>
+
 </html>

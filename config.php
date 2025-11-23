@@ -1,14 +1,7 @@
 <?php
 
-/**
- * TrainHub Configuration
- * 
- * Automatically detects environment and sets the correct base path
- * - Production (trainhub.web.id): BASE_PATH = ''
- * - Development (localhost): BASE_PATH = '/trainhub'
- */
 
-// Detect environment based on hostname
+// Deteksi environment berdasarkan hostname
 $hostname = $_SERVER['HTTP_HOST'] ?? 'localhost';
 $isProduction = ($hostname === 'trainhub.web.id' || $hostname === 'www.trainhub.web.id');
 
@@ -19,42 +12,30 @@ if ($isProduction) {
     define('BASE_PATH', '/trainhub');
 }
 
-// API URL Configuration
+// Konfigurasi URL API
 if ($isProduction) {
-    // Production API (Hugging Face Space)
-    define('API_URL', 'https://indraprhmbd-trainhub-ai.hf.space/generate-plan');
+    // API Production (Hugging Face Space)
+    define('API_URL', 'https://samsas-trainhub.hf.space');
 } else {
-    // Local Development API
-    define('API_URL', 'http://127.0.0.1:8000/generate-plan');
+    // API Development Lokal
+    define('API_URL', 'http://127.0.0.1:8000');
 }
 
-/**
- * Helper function to generate URLs with correct base path
- * 
- * @param string $path The path (e.g., '/app', '/login')
- * @return string Full path with base
- */
 function url($path)
 {
-    // Ensure path starts with /
+    // Pastiin path dimulai dengan /
     if (substr($path, 0, 1) !== '/') {
         $path = '/' . $path;
     }
     return BASE_PATH . $path;
 }
 
-/**
- * Helper function for asset URLs (CSS, JS, images)
- * 
- * @param string $path The asset path
- * @return string Full asset path
- */
 function asset($path)
 {
     if (substr($path, 0, 1) !== '/') {
         $path = '/' . $path;
     }
-    // Only add version query string for CSS/JS files to avoid breaking API URLs
+    // Cuma tambahin version query string buat file CSS/JS biar ga break URL API
     if (preg_match('/\.(css|js)$/i', $path)) {
         return BASE_PATH . $path . '?v=' . time();
     }

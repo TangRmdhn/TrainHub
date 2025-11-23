@@ -10,8 +10,7 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 }
 $user_id = $_SESSION['user_id'];
 
-// 2. Ambil data profil user untuk Header
-// 2. Ambil data profil user untuk Header
+// 2. Ambil data profil user buat Header
 $sql = "SELECT u.username, p.fitness_goal FROM users u LEFT JOIN user_profiles p ON u.id = p.user_id WHERE u.id = '$user_id'";
 $result = $koneksi->query($sql);
 if ($result->num_rows == 0) {
@@ -33,13 +32,15 @@ $user = $result->fetch_assoc();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    </noscript>
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
 
-        /* Calendar Grid Styles */
+        /* Style Grid Kalender */
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
@@ -56,7 +57,6 @@ $user = $result->fetch_assoc();
             transition: background-color 0.2s;
             vertical-align: top;
             display: table-cell;
-            /* Override style.css flex */
         }
 
         .calendar-cell:hover {
@@ -117,7 +117,7 @@ $user = $result->fetch_assoc();
             border-left-color: #15803d;
         }
 
-        /* Ensure calendar has minimum width on mobile */
+        /* Pastiin kalender punya lebar minimum di mobile */
         @media (max-width: 640px) {
 
             .calendar-grid,
@@ -154,18 +154,18 @@ $user = $result->fetch_assoc();
             <div class="flex items-center justify-between h-16">
                 <!-- Left: Logo -->
                 <div class="flex items-center">
-                    <a href="<?php echo url('/app'); ?>" class="text-2xl font-bold text-white tracking-tight">
+                    <a href="<?= url('/app'); ?>" class="text-2xl font-bold text-white tracking-tight">
                         Train<span class="text-orange-500">Hub</span>
                     </a>
                 </div>
 
                 <!-- Center: Desktop Links -->
                 <div class="hidden md:flex space-x-6">
-                    <a href="<?php echo url('/app'); ?>" class="text-gray-300 hover:text-white transition">Dashboard</a>
-                    <a href="<?php echo url('/plans'); ?>" class="text-gray-300 hover:text-white transition">My Plans</a>
-                    <a href="<?php echo url('/calendar'); ?>" class="text-orange-500 font-semibold">Calendar</a>
-                    <a href="<?php echo url('/stats'); ?>" class="text-gray-300 hover:text-white transition">Statistics</a>
-                    <a href="<?php echo url('/chat'); ?>" class="text-gray-300 hover:text-white transition">AI Coach</a>
+                    <a href="<?= url('/app'); ?>" class="text-gray-300 hover:text-white transition">Dashboard</a>
+                    <a href="<?= url('/plans'); ?>" class="text-gray-300 hover:text-white transition">My Plans</a>
+                    <a href="<?= url('/calendar'); ?>" class="text-orange-500 font-semibold">Calendar</a>
+                    <a href="<?= url('/stats'); ?>" class="text-gray-300 hover:text-white transition">Statistics</a>
+                    <a href="<?= url('/chat'); ?>" class="text-gray-300 hover:text-white transition">AI Coach</a>
                 </div>
 
                 <!-- Right: User/Logout (Desktop) -->
@@ -174,7 +174,7 @@ $user = $result->fetch_assoc();
                         <div class="text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
                         <div class="text-xs text-gray-300"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
                     </div>
-                    <a href="<?php echo url('/logout'); ?>" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
+                    <a href="<?= url('/logout'); ?>" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
                         Logout
                     </a>
                 </div>
@@ -191,15 +191,15 @@ $user = $result->fetch_assoc();
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
             <div class="px-4 py-3 space-y-3">
-                <a href="<?php echo url('/app'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Dashboard</a>
-                <a href="<?php echo url('/plans'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
-                <a href="<?php echo url('/calendar'); ?>" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Calendar</a>
-                <a href="<?php echo url('/stats'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
-                <a href="<?php echo url('/chat'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">AI Coach</a>
+                <a href="<?= url('/app'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Dashboard</a>
+                <a href="<?= url('/plans'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
+                <a href="<?= url('/calendar'); ?>" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Calendar</a>
+                <a href="<?= url('/stats'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
+                <a href="<?= url('/chat'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">AI Coach</a>
                 <div class="pt-3 border-t border-gray-700">
                     <div class="px-3 py-2 text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
                     <div class="px-3 pb-2 text-xs text-gray-300"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
-                    <a href="<?php echo url('/logout'); ?>" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
+                    <a href="<?= url('/logout'); ?>" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
                         Logout
                     </a>
                 </div>
@@ -243,10 +243,10 @@ $user = $result->fetch_assoc();
             </div>
         </div>
 
-        <!-- Calendar Container -->
+        <!-- Container Kalender -->
         <div class="bg-gray-900 rounded-xl border border-gray-800 shadow-xl overflow-x-auto">
             <table class="w-full border-collapse" style="min-width: 600px;">
-                <!-- Days Header -->
+                <!-- Header Hari -->
                 <thead>
                     <tr class="bg-gray-800 border-b border-gray-700">
                         <th class="py-3 text-center text-xs font-semibold text-gray-300 uppercase" style="width: 14.28%;">Minggu</th>
@@ -258,24 +258,24 @@ $user = $result->fetch_assoc();
                         <th class="py-3 text-center text-xs font-semibold text-gray-300 uppercase" style="width: 14.28%;">Sabtu</th>
                     </tr>
                 </thead>
-                <!-- Calendar Grid -->
+                <!-- Grid Kalender -->
                 <tbody id="calendarGrid">
-                    <!-- Cells will be generated by JS -->
+                    <!-- Sel bakal digenerate pake JS -->
                 </tbody>
             </table>
         </div>
 
     </main>
 
-    <!-- Workout Detail Modal -->
+    <!-- Modal Detail Latihan -->
     <div id="workoutModal" class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center z-50" style="display: none;">
         <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-75"></div>
 
         <div class="modal-container bg-gray-800 w-11/12 md:max-w-md mx-auto rounded-xl shadow-2xl z-50 transform scale-95 transition-transform duration-300 border border-gray-700 flex flex-col max-h-[90vh] overflow-hidden">
 
             <div class="modal-content flex flex-col w-full flex-1 min-h-0 text-left custom-scrollbar">
-                <!-- Title -->
-                <div class="flex justify-between items-center p-6 pb-4 border-b border-gray-700 flex-shrink-0">
+                <!-- Judul -->
+                <div class="flex justify-between items-center p-4 pb-4 border-b border-gray-700 flex-shrink-0">
                     <div>
                         <p class="text-2xl font-bold text-white" id="modal-plan-name">Plan Name</p>
                         <p class="text-sm text-gray-300" id="modal-date">Date</p>
@@ -287,7 +287,7 @@ $user = $result->fetch_assoc();
                     </div>
                 </div>
 
-                <!-- Body -->
+                <!-- Isi -->
                 <div class="p-6 overflow-y-auto flex-grow">
                     <div class="mb-4">
                         <p class="text-sm text-gray-300 uppercase tracking-wider font-bold mb-2">Status</p>
@@ -305,8 +305,8 @@ $user = $result->fetch_assoc();
                 </div>
 
                 <!-- Footer -->
-                <div class="flex justify-end p-6 pt-4 border-t border-gray-700 flex-shrink-0">
-                    <!-- Buttons injected by JS -->
+                <div class="flex justify-end p-4 pt-4 border-t border-gray-700 flex-shrink-0">
+                    <!-- Tombol diinject pake JS -->
                 </div>
             </div>
         </div>
@@ -319,7 +319,7 @@ $user = $result->fetch_assoc();
         const nextMonthBtn = document.getElementById('nextMonth');
         const todayBtn = document.getElementById('todayBtn');
 
-        // Modal Elements
+        // Elemen Modal
         const modal = document.getElementById('workoutModal');
         const modalOverlay = document.querySelector('.modal-overlay');
         const modalCloseBtns = document.querySelectorAll('.modal-close');
@@ -329,7 +329,7 @@ $user = $result->fetch_assoc();
         const modalExercises = document.getElementById('modal-exercises');
 
         let currentDate = new Date();
-        let events = {}; // Store fetched events here: { 'YYYY-MM-DD': [eventData] }
+        let events = {}; // Simpen event yang diambil di sini: { 'YYYY-MM-DD': [eventData] }
 
         // Init
         document.addEventListener('DOMContentLoaded', () => {
@@ -355,7 +355,7 @@ $user = $result->fetch_assoc();
             fetchEvents();
         });
 
-        // Modal Logic
+        // Logika Modal
         function toggleModal() {
             console.log('toggleModal called');
             const body = document.querySelector('body');
@@ -380,14 +380,14 @@ $user = $result->fetch_assoc();
         modalCloseBtns.forEach(btn => btn.addEventListener('click', toggleModal));
 
         async function fetchEvents() {
-            // Calculate start and end date of current view (including padding days)
+            // Hitung tanggal mulai dan akhir view saat ini (termasuk padding days)
             const year = currentDate.getFullYear();
             const month = currentDate.getMonth();
 
             const firstDay = new Date(year, month, 1);
             const lastDay = new Date(year, month + 1, 0);
 
-            // Adjust to get full grid range
+            // Sesuaikan buat dapet range grid penuh
             const startPadding = firstDay.getDay();
             const startDate = new Date(year, month, 1 - startPadding);
 
@@ -398,7 +398,7 @@ $user = $result->fetch_assoc();
             const endStr = endDate.toISOString().split('T')[0];
 
             try {
-                const response = await fetch(`<?php echo url('/controllers/api_calendar.php'); ?>?start=${startStr}&end=${endStr}`);
+                const response = await fetch(`<?= url('/controllers/api_calendar.php'); ?>?start=${startStr}&end=${endStr}`);
                 const data = await response.json();
 
                 // Reset events
@@ -406,7 +406,7 @@ $user = $result->fetch_assoc();
 
                 if (Array.isArray(data)) {
                     data.forEach(event => {
-                        // New API returns events with 'start' property (YYYY-MM-DD)
+                        // API baru balikin event dengan properti 'start' (YYYY-MM-DD)
                         if (!events[event.start]) {
                             events[event.start] = [];
                         }
@@ -414,7 +414,7 @@ $user = $result->fetch_assoc();
                     });
                 }
 
-                // Re-render to show events
+                // Render ulang buat nampilin event
                 renderCalendar();
 
             } catch (error) {
@@ -437,10 +437,10 @@ $user = $result->fetch_assoc();
             const daysInMonth = lastDay.getDate();
             const startDay = firstDay.getDay(); // 0 = Sunday
 
-            // Create array of all cells (42 cells = 6 rows * 7 days)
+            // Buat array semua sel (42 sel = 6 baris * 7 hari)
             const cells = [];
 
-            // Previous Month Padding
+            // Padding Bulan Sebelumnya
             const prevMonthLastDay = new Date(year, month, 0).getDate();
             for (let i = startDay; i > 0; i--) {
                 const day = prevMonthLastDay - i + 1;
@@ -454,7 +454,7 @@ $user = $result->fetch_assoc();
                 });
             }
 
-            // Current Month
+            // Bulan Saat Ini
             const today = new Date();
             for (let i = 1; i <= daysInMonth; i++) {
                 const isToday = i === today.getDate() && month === today.getMonth() && year === today.getFullYear();
@@ -467,7 +467,7 @@ $user = $result->fetch_assoc();
                 });
             }
 
-            // Next Month Padding
+            // Padding Bulan Berikutnya
             const totalCells = startDay + daysInMonth;
             const nextMonthPadding = 42 - totalCells;
             for (let i = 1; i <= nextMonthPadding; i++) {
@@ -481,7 +481,7 @@ $user = $result->fetch_assoc();
                 });
             }
 
-            // Create table rows (6 rows of 7 cells each)
+            // Buat baris tabel (6 baris masing-masing 7 sel)
             for (let row = 0; row < 6; row++) {
                 const tr = document.createElement('tr');
                 for (let col = 0; col < 7; col++) {
@@ -503,7 +503,7 @@ $user = $result->fetch_assoc();
             dateEl.innerText = dayNum;
             cell.appendChild(dateEl);
 
-            // Render Events
+            // Render Event
             if (events[dateStr]) {
                 events[dateStr].forEach(event => {
                     const pill = document.createElement('div');
@@ -526,7 +526,7 @@ $user = $result->fetch_assoc();
 
         function openModal(eventData) {
             console.log('openModal called with:', eventData);
-            // Parse Date
+            // Parse Tanggal
             const dateObj = new Date(eventData.start);
             const options = {
                 weekday: 'long',
@@ -536,7 +536,7 @@ $user = $result->fetch_assoc();
             };
             modalDate.innerText = dateObj.toLocaleDateString('id-ID', options);
 
-            modalPlanName.innerText = eventData.title; // Use session title as header
+            modalPlanName.innerText = eventData.title; // Pake judul sesi sebagai header
 
             // Status
             const isCompleted = eventData.extendedProps.is_completed;
@@ -546,7 +546,7 @@ $user = $result->fetch_assoc();
                 modalStatus.innerHTML = '<span class="text-orange-400 font-medium">⏳ Scheduled</span>';
             }
 
-            // Parse Exercises from extendedProps
+            // Parse Latihan dari extendedProps
             let exercisesHtml = '';
             let exercises = [];
 
@@ -576,12 +576,12 @@ $user = $result->fetch_assoc();
 
             modalExercises.innerHTML = exercisesHtml;
 
-            // Footer Buttons
+            // Tombol Footer
             const footer = document.querySelector('.modal-content .flex.justify-end');
-            // Remove old buttons except Close
+            // Hapus tombol lama kecuali Tutup
             footer.innerHTML = '<button class="modal-close px-4 py-2 bg-gray-800 p-3 rounded-lg text-white hover:bg-gray-700 transition mr-2">Tutup</button>';
 
-            // Re-attach close listener
+            // Pasang lagi listener tutup
             footer.querySelector('.modal-close').addEventListener('click', toggleModal);
 
             if (!isCompleted) {
@@ -602,7 +602,7 @@ $user = $result->fetch_assoc();
             if (!confirm('Tandai latihan ini sebagai selesai?')) return;
 
             try {
-                const response = await fetch('<?php echo url('/controllers/mark_complete.php'); ?>', {
+                const response = await fetch('<?= url('/controllers/mark_complete.php'); ?>', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -617,7 +617,7 @@ $user = $result->fetch_assoc();
 
                 if (result.success) {
                     toggleModal();
-                    // Refresh events
+                    // Refresh event
                     fetchEvents();
                 } else {
                     alert('Gagal: ' + result.message);

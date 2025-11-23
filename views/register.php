@@ -11,7 +11,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -46,7 +48,7 @@
         </h1>
         <p class="text-center text-gray-300 mb-6">Buat akun baru</p>
 
-        <form id="register-form" class="space-y-4" action="<?php echo url('/controllers/regist_controller.php'); ?>" method="POST">
+        <form id="register-form" class="space-y-4" action="<?= url('/controllers/regist_controller.php'); ?>" method="POST">
             <div>
                 <label for="username" class="block text-sm font-medium text-gray-300">Username</label>
                 <input type="text" id="username" name="username" required
@@ -87,7 +89,7 @@
 
         <p class="text-center text-sm text-gray-300 mt-6">
             Sudah punya akun?
-            <a href="<?php echo url('/login'); ?>" class="font-medium text-orange-500 hover:text-orange-400 transition">Masuk di sini</a>
+            <a href="<?= url('/login'); ?>" class="font-medium text-orange-500 hover:text-orange-400 transition">Masuk di sini</a>
         </p>
     </div>
 

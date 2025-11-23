@@ -33,22 +33,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $weekly_schedule = $template['weekly_schedule'] ?? [];
         $coach_note = $template['coach_note'] ?? '';
 
-        // 2. Calculate Finish Date
+        // 2. Hitung Tanggal Selesai
         $duration_days = $duration_weeks * 7;
         $finish_date_string = date('Y-m-d', strtotime($start_date_string . ' + ' . ($duration_days - 1) . ' days'));
 
-        // 3. Insert Plan Header (user_plans)
+        // 3. Insert Header Rencana (user_plans)
         $sqlPlan = "INSERT INTO user_plans (user_id, plan_name, start_date, finish_date, coach_note) VALUES (?, ?, ?, ?, ?)";
         $stmtPlan = $koneksi->prepare($sqlPlan);
         $stmtPlan->bind_param("issss", $user_id, $plan_name_template, $start_date_string, $finish_date_string, $coach_note);
-        
+
         if (!$stmtPlan->execute()) {
             throw new Exception("Error insert Plan: " . $stmtPlan->error);
         }
         $plan_id = $koneksi->insert_id;
         $stmtPlan->close();
 
-        // 4. Insert Days & Exercises
+        // 4. Insert Hari & Latihan
         $sqlDay = "INSERT INTO plan_days (plan_id, day_number, day_title, is_off) VALUES (?, ?, ?, ?)";
         $stmtDay = $koneksi->prepare($sqlDay);
 
@@ -60,14 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $day_title = $day['session_title'] ?? ($day['day_name'] ?? 'Day ' . $day_number);
             $is_off = isset($day['is_off_day']) && $day['is_off_day'] ? 1 : 0;
 
-            // Insert Day
+            // Insert Hari
             $stmtDay->bind_param("iisi", $plan_id, $day_number, $day_title, $is_off);
             if (!$stmtDay->execute()) {
                 throw new Exception("Error insert Day: " . $stmtDay->error);
             }
             $day_id = $koneksi->insert_id;
 
-            // Insert Exercises if not off day
+            // Insert Latihan kalo bukan hari libur
             if (!$is_off && !empty($day['exercises'])) {
                 foreach ($day['exercises'] as $ex) {
                     $name = $ex['name'];

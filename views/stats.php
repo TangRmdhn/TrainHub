@@ -9,7 +9,6 @@ if (!isset($_SESSION['login_status']) || $_SESSION['login_status'] !== true) {
 $user_id = $_SESSION['user_id'];
 
 // Ambil data profil user untuk navbar
-// Ambil data profil user untuk navbar
 $sql = "SELECT u.username, p.fitness_goal FROM users u LEFT JOIN user_profiles p ON u.id = p.user_id WHERE u.id = ?";
 $stmt = $koneksi->prepare($sql);
 $stmt->bind_param("i", $user_id);
@@ -34,7 +33,9 @@ $user = $result->fetch_assoc();
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    </noscript>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -50,18 +51,18 @@ $user = $result->fetch_assoc();
             <div class="flex items-center justify-between h-16">
                 <!-- Left: Logo -->
                 <div class="flex items-center">
-                    <a href="<?php echo url('/app'); ?>" class="text-2xl font-bold text-white tracking-tight">
+                    <a href="<?= url('/app'); ?>" class="text-2xl font-bold text-white tracking-tight">
                         Train<span class="text-orange-500">Hub</span>
                     </a>
                 </div>
 
                 <!-- Center: Desktop Links -->
                 <div class="hidden md:flex space-x-6">
-                    <a href="<?php echo url('/app'); ?>" class="text-gray-300 hover:text-white transition">Dashboard</a>
-                    <a href="<?php echo url('/plans'); ?>" class="text-gray-300 hover:text-white transition">My Plans</a>
-                    <a href="<?php echo url('/calendar'); ?>" class="text-gray-300 hover:text-white transition">Calendar</a>
-                    <a href="<?php echo url('/stats'); ?>" class="text-orange-500 font-semibold">Statistics</a>
-                    <a href="<?php echo url('/chat'); ?>" class="text-gray-300 hover:text-white transition">AI Coach</a>
+                    <a href="<?= url('/app'); ?>" class="text-gray-300 hover:text-white transition">Dashboard</a>
+                    <a href="<?= url('/plans'); ?>" class="text-gray-300 hover:text-white transition">My Plans</a>
+                    <a href="<?= url('/calendar'); ?>" class="text-gray-300 hover:text-white transition">Calendar</a>
+                    <a href="<?= url('/stats'); ?>" class="text-orange-500 font-semibold">Statistics</a>
+                    <a href="<?= url('/chat'); ?>" class="text-gray-300 hover:text-white transition">AI Coach</a>
                 </div>
 
                 <!-- Right: User/Logout (Desktop) -->
@@ -70,7 +71,7 @@ $user = $result->fetch_assoc();
                         <div class="text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
                         <div class="text-xs text-gray-300"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
                     </div>
-                    <a href="<?php echo url('/logout'); ?>" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
+                    <a href="<?= url('/logout'); ?>" class="bg-gray-800 hover:bg-red-900/30 text-gray-300 hover:text-red-400 px-4 py-2 rounded-lg text-sm font-medium transition-all border border-gray-700 hover:border-red-800">
                         Logout
                     </a>
                 </div>
@@ -87,15 +88,15 @@ $user = $result->fetch_assoc();
         <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
             <div class="px-4 py-3 space-y-3">
-                <a href="<?php echo url('/app'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Dashboard</a>
-                <a href="<?php echo url('/plans'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
-                <a href="<?php echo url('/calendar'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
-                <a href="<?php echo url('/stats'); ?>" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Statistics</a>
-                <a href="<?php echo url('/chat'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">AI Coach</a>
+                <a href="<?= url('/app'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Dashboard</a>
+                <a href="<?= url('/plans'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
+                <a href="<?= url('/calendar'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Calendar</a>
+                <a href="<?= url('/stats'); ?>" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Statistics</a>
+                <a href="<?= url('/chat'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">AI Coach</a>
                 <div class="pt-3 border-t border-gray-700">
                     <div class="px-3 py-2 text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
                     <div class="px-3 pb-2 text-xs text-gray-300"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
-                    <a href="<?php echo url('/logout'); ?>" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
+                    <a href="<?= url('/logout'); ?>" class="block px-3 py-2 rounded-lg bg-red-900/30 text-red-400 hover:bg-red-900/50 transition text-center font-medium">
                         Logout
                     </a>
                 </div>
@@ -164,7 +165,7 @@ $user = $result->fetch_assoc();
             const ctx = document.getElementById('activityChart').getContext('2d');
 
             try {
-                const response = await fetch('<?php echo url('/controllers/api_stats.php'); ?>');
+                const response = await fetch('<?= url('/controllers/api_stats.php'); ?>');
                 const data = await response.json();
 
                 if (data.error) {

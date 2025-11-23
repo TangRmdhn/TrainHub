@@ -19,7 +19,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 $plan_id = $data['plan_id'] ?? null;
 
 if ($plan_id) {
-    // Query hapus, pastikan cuma user yang punya yang bisa hapus
+    // Query hapus, pastiin cuma user yang punya yang bisa hapus
     $sql = "DELETE FROM user_plans WHERE id = ? AND user_id = ?";
     $stmt = $koneksi->prepare($sql);
     $stmt->bind_param("ii", $plan_id, $user_id);
