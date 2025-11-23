@@ -1,11 +1,11 @@
 <mxfile host="65bd71144e">
     <diagram name="RAT Diagram" id="rat-trainhub">
-        <mxGraphModel dx="443" dy="503" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+        <mxGraphModel dx="722" dy="704" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="title" value="TrainHub - Relasi Antar Tabel (ERD)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" parent="1" vertex="1">
-                    <mxGeometry x="334.5" y="30" width="500" height="40" as="geometry"/>
+                <mxCell id="title" value="TrainHub - Relasi Antar Tabel" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" parent="1" vertex="1">
+                    <mxGeometry x="280" y="20" width="500" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="table-users" value="&lt;font color=&quot;#050505&quot;&gt;users&lt;/font&gt;" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" parent="1" vertex="1">
                     <mxGeometry x="120" y="120" width="200" height="150" as="geometry"/>
