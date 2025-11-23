@@ -220,8 +220,7 @@ trainhub/
 │   ├── regist_controller.php  # Handler Registrasi
 │   ├── screening_controller.php # Handler Screening
 │   └── logout.php             # Handler Logout
-├── index.php                   # Halaman Landing (Tailwind CSS)
-├── index-bootstrap.php         # Halaman Landing (Bootstrap - Alternative)
+├── index.php                   # Halaman Landing (Bootstrap CSS) 
 ├── koneksi.php                 # Koneksi Database
 ├── koneksi.php.example         # Template config DB
 ├── trainhub_db.sql            # Skema Database
