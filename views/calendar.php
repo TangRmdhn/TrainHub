@@ -165,7 +165,7 @@ $user = $result->fetch_assoc();
                     <a href="<?= url('/plans'); ?>" class="text-gray-300 hover:text-white transition">My Plans</a>
                     <a href="<?= url('/calendar'); ?>" class="text-orange-500 font-semibold">Calendar</a>
                     <a href="<?= url('/stats'); ?>" class="text-gray-300 hover:text-white transition">Statistics</a>
-                    <a href="<?= url('/chat'); ?>" class="text-gray-300 hover:text-white transition">AI Coach</a>
+                    <a href="<?= url('/ai-coach'); ?>" class="text-gray-300 hover:text-white transition">AI Coach</a>
                 </div>
 
                 <!-- Right: User/Logout (Desktop) -->
@@ -195,7 +195,7 @@ $user = $result->fetch_assoc();
                 <a href="<?= url('/plans'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">My Plans</a>
                 <a href="<?= url('/calendar'); ?>" class="block px-3 py-2 rounded-lg text-orange-500 font-semibold bg-gray-900">Calendar</a>
                 <a href="<?= url('/stats'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">Statistics</a>
-                <a href="<?= url('/chat'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">AI Coach</a>
+                <a href="<?= url('/ai-coach'); ?>" class="block px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-gray-700 transition">AI Coach</a>
                 <div class="pt-3 border-t border-gray-700">
                     <div class="px-3 py-2 text-sm font-medium text-white"><?php echo htmlspecialchars($user['username']); ?></div>
                     <div class="px-3 pb-2 text-xs text-gray-300"><?php echo htmlspecialchars($user['fitness_goal']); ?></div>
