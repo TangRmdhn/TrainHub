@@ -4,11 +4,14 @@ TrainHub adalah aplikasi web yang membantu pengguna membuat rencana latihan ming
 
 ## Live Demo
 
-🚀 **[Kunjungi Website Live](https://trainhub.web.id)**
+**[Kunjungi Website Live](https://trainhub.web.id)**
+
+**[Coba AI](https://trainhub.web.id)**
 
 ## Fitur
 
 - **Generator Latihan AI**: Membuat template latihan 7 hari yang dipersonalisasi berdasarkan profil pengguna (tujuan kebugaran, level, peralatan, dll.)
+- **AI Coach Chatbot**: Chat interaktif dengan AI personal trainer yang memahami profil dan goal fitnessmu, siap menjawab pertanyaan seputar latihan, nutrisi, dan memberikan motivasi
 - **Model Template Mingguan**: Menyimpan satu template mingguan dan menerapkannya selama durasi yang ditentukan pengguna (misalnya, 4, 8, 12 minggu)
 - **Kalender Interaktif**: Lihat latihan harian, tandai sebagai selesai, dan lihat detailnya di modal
 - **Pelacakan Penyelesaian Latihan**: Tandai latihan sebagai selesai dan lacak kemajuanmu
@@ -35,7 +38,7 @@ TrainHub adalah aplikasi web yang membantu pengguna membuat rencana latihan ming
 ### 1. Clone repository
 
 ```bash
-git clone https://github.com/TangRmdhn/Praktikum-Web.git
+git clone https://github.com/TangRmdhn/TrainHub.git
 cd trainhub
 ```
 
@@ -220,7 +223,7 @@ trainhub/
 │   ├── regist_controller.php  # Handler Registrasi
 │   ├── screening_controller.php # Handler Screening
 │   └── logout.php             # Handler Logout
-├── index.php                   # Halaman Landing (Bootstrap CSS) 
+├── index.php                   # Halaman Landing (Bootstrap CSS)
 ├── koneksi.php                 # Koneksi Database
 ├── koneksi.php.example         # Template config DB
 ├── trainhub_db.sql            # Skema Database
