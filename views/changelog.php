@@ -20,6 +20,7 @@ include '../config.php';
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
         .commit-card {
@@ -164,7 +165,7 @@ include '../config.php';
     </main>
 
     <script>
-        const GITHUB_API = 'https://api.github.com/repos/TangRmdhn/Praktikum-Web/commits';
+        const GITHUB_API = 'https://api.github.com/repos/TangRmdhn/TrainHub/commits';
         const CACHE_KEY = 'trainhub_changelog_cache';
         const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
