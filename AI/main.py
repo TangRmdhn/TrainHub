@@ -1,4 +1,3 @@
-# main.py
 import os
 import json
 import re
@@ -10,12 +9,10 @@ from typing import Optional
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
-# Load environment variables
 load_dotenv()
 
 app = FastAPI()
 
-# Setup CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -24,7 +21,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# === CONFIG GENAI ===
 api_key = os.getenv("GOOGLE_API_KEY")
 if not api_key:
     print("WARNING: GOOGLE_API_KEY tidak ditemukan di .env!")
@@ -34,7 +30,6 @@ try:
 except Exception as e:
     print(f"Error Init Client: {e}")
 
-# === MODEL DATA ===
 class UserProfile(BaseModel):
     username: str
     gender: str
@@ -49,48 +44,36 @@ class UserProfile(BaseModel):
     injuries: str
 
 def clean_json(raw_text):
-    # """
-    # Membersihkan output dari Gemini agar bisa diparsing sebagai JSON.
-    # Menangani markdown, teks tambahan, dan format aneh.
-    # """
-    print(f"--- RAW AI OUTPUT ---\n{raw_text}\n---------------------")
-    
     try:
-        # 1. Coba load langsung (best case)
+        
         return json.loads(raw_text)
     except json.JSONDecodeError:
         pass
-
-    # 2. Hapus Markdown (```json ... ```)
+    
     pattern = r"```json\s*(.*?)\s*```"
     match = re.search(pattern, raw_text, re.DOTALL)
     if match:
         text_content = match.group(1)
     else:
-        # Kalau gak ada markdown, cari kurung kurawal terluar
+        
         start = raw_text.find('{')
         end = raw_text.rfind('}') + 1
         if start != -1 and end != 0:
             text_content = raw_text[start:end]
         else:
             text_content = raw_text
-
-    # 3. Bersihin trailing commas (biasanya bikin error di JSON standar)
-    # Regex ini hapus koma sebelum kurung tutup/siku tutup
+    
     text_content = re.sub(r',\s*([\]}])', r'\1', text_content)
     
-    # 4. Coba parse lagi setelah pembersihan
     try:
         return json.loads(text_content)
     except json.JSONDecodeError as e:
-        print(f"Error parsing cleaned JSON: {e}")
-        print(f"Cleaned text content: {text_content}")
         raise ValueError("Failed to parse JSON after cleaning.")
 
 @app.post("/generate-plan")
 async def generate_plan(user: UserProfile):
     try:
-        # 1. Construct Prompt
+        
         prompt = f"""
         Buatkan rencana latihan mingguan (weekly workout plan) dalam format JSON untuk pengguna berikut:
         
@@ -136,7 +119,7 @@ async def generate_plan(user: UserProfile):
         4. Urutkan dari Hari 1 sampai Hari 7.
         """
 
-        # 2. Call Gemini
+        
         response = client.models.generate_content(
             model="gemini-2.0-flash",
             contents=[prompt],
@@ -146,7 +129,7 @@ async def generate_plan(user: UserProfile):
             )
         )
 
-        # 3. Parsing Output
+        
         if not response.text:
             raise HTTPException(status_code=500, detail="AI tidak memberikan respon.")
             
@@ -157,17 +140,12 @@ async def generate_plan(user: UserProfile):
         print(f"SERVER ERROR: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Terjadi kesalahan: {str(e)}")
 
-# Jalankan dengan: uvicorn main:app --reload
-
-# === CHATBOT SECTION ===
-
+# Chat Bot
 class ChatRequest(BaseModel):
     user_id: int
     message: str
-    user_profile: dict  # Terima raw dict biar fleksibel
+    user_profile: dict  
 
-# In-memory storage for short-term memory
-# Format: { user_id: [ {"role": "user", "parts": [{"text": "msg"}]}, ... ] }
 chat_sessions = {}
 
 @app.post("/chat")
@@ -177,9 +155,8 @@ async def chat_endpoint(request: ChatRequest):
         user_msg = request.message
         profile = request.user_profile
 
-        # 1. Initialize Session if not exists
         if user_id not in chat_sessions:
-            # System Prompt
+            
             system_prompt = f"""
             Kamu adalah Personal Fitness Coach AI bernama 'TrainHub Coach'.
             Tugasmu adalah membantu user mencapai goal fitness mereka dengan ramah, memotivasi, dan ilmiah.
@@ -201,17 +178,14 @@ async def chat_endpoint(request: ChatRequest):
             5. Gaya bahasa: Santai, suportif, seperti teman gym yang pintar.
             """
             
-            # Fix: parts must be list of dicts with 'text' key
             chat_sessions[user_id] = [
                 {"role": "user", "parts": [{"text": system_prompt}]},
                 {"role": "model", "parts": [{"text": "Siap! Saya mengerti. Halo! Saya siap membantu kamu mencapai goal fitnessmu. Ada yang bisa saya bantu hari ini?"}]}
             ]
 
-        # 2. Append User Message
+        
         chat_sessions[user_id].append({"role": "user", "parts": [{"text": user_msg}]})
-
-        # 3. Call Gemini
-        # Limit history length to prevent token overflow (e.g., last 20 turns)
+        
         history_to_send = chat_sessions[user_id][-20:] 
         
         response = client.models.generate_content(
@@ -226,8 +200,7 @@ async def chat_endpoint(request: ChatRequest):
             ai_reply = "Maaf, saya sedang bingung. Bisa ulangi?"
         else:
             ai_reply = response.text
-
-        # 4. Append AI Reply
+    
         chat_sessions[user_id].append({"role": "model", "parts": [{"text": ai_reply}]})
 
         return {"response": ai_reply}
