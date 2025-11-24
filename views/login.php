@@ -1,4 +1,4 @@
-﻿<?php include '../config.php'; ?>
+<?php include '../config.php'; ?>
 <!DOCTYPE html>
 <html lang="id" class="dark">
 
@@ -49,7 +49,7 @@
         </h1>
         <p class="text-center text-gray-300 mb-6">Selamat datang kembali</p>
 
-        <form id="login-form" class="space-y-4" action="<?= url('../controllers/login_controller.php'); ?>" method="POST">
+        <form id="login-form" class="space-y-4" action="<?= url('/controllers/login_controller.php'); ?>" method="POST">
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
                 <input type="email" id="email" name="email" required

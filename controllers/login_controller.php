@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Email tidak ditemukan
         echo "<script>
                 alert('Email belum terdaftar. Daftar terlebih dahulu!');
-                window.location.href='" . url("/login") . "';
+                window.location.href='" . url("/register") . "';
               </script>";
     }
 
