@@ -24,5 +24,5 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Arahkan kembali ke halaman login
-header("Location: " . url("/login"));
+header("Location: " . url(""));
 exit;
