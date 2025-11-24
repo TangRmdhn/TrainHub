@@ -1,257 +1,161 @@
-# TrainHub - AI-Powered Workout Planner
+<div align="center">
 
-TrainHub adalah aplikasi web yang membantu pengguna membuat rencana latihan mingguan yang dipersonalisasi menggunakan AI (Google Gemini). Aplikasi ini memiliki dashboard untuk mengelola rencana, tampilan kalender untuk melacak latihan, pelacakan statistik, dan generator rencana bertenaga AI.
+# 🏋️‍♂️ TrainHub - AI-Powered Workout Planner
 
-## Live Demo
+**Personalized Workout Plans Powered by Google Gemini AI**
 
-**[Kunjungi Website Live](https://trainhub.web.id)**
+[![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![Google Gemini](https://img.shields.io/badge/Google%20Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
 
-**[Coba AI](https://trainhub.web.id)**
+[Live Demo](https://trainhub.web.id) • [Report Bug](https://github.com/TangRmdhn/TrainHub/issues) • [Request Feature](https://github.com/TangRmdhn/TrainHub/issues)
 
-## Fitur
+</div>
 
-- **Generator Latihan AI**: Membuat template latihan 7 hari yang dipersonalisasi berdasarkan profil pengguna (tujuan kebugaran, level, peralatan, dll.)
-- **AI Coach Chatbot**: Chat interaktif dengan AI personal trainer yang memahami profil dan goal fitnessmu, siap menjawab pertanyaan seputar latihan, nutrisi, dan memberikan motivasi
-- **Model Template Mingguan**: Menyimpan satu template mingguan dan menerapkannya selama durasi yang ditentukan pengguna (misalnya, 4, 8, 12 minggu)
-- **Kalender Interaktif**: Lihat latihan harian, tandai sebagai selesai, dan lihat detailnya di modal
-- **Pelacakan Penyelesaian Latihan**: Tandai latihan sebagai selesai dan lacak kemajuanmu
-- **Dashboard Statistik**: Lihat streak saat ini, total latihan, dan grafik aktivitas 30 hari
-- **Modal Detail Rencana**: Lihat timeline lengkap rencanamu dengan status penyelesaian untuk setiap hari
-- **Responsif Mobile**: Desain yang sepenuhnya responsif dengan menu hamburger untuk perangkat mobile
-- **Dashboard**: Kelola rencana aktif dan buat yang baru
-- **Autentikasi Pengguna**: Sistem login dan registrasi yang aman
+---
 
-## Tech Stack
+## 📖 About The Project
 
-- **Frontend**:
-  - HTML, JavaScript
-  - **CSS Frameworks**:
-    - Tailwind CSS (untuk dashboard & app pages)
-    - Bootstrap 5.3.2 (custom build untuk landing page)
-  - Chart.js (untuk visualisasi statistik)
-- **Backend**: PHP (Native), Python (FastAPI untuk layanan AI)
-- **Database**: MySQL
-- **AI Model**: Google Gemini 2.5 Flash & Google Gemini 2.0 Flash
+**TrainHub** is a web application designed to help users create personalized weekly workout plans using the power of AI (Google Gemini). It features a comprehensive dashboard for managing plans, an interactive calendar for tracking workouts, detailed statistics, and an AI-powered plan generator.
 
-## Panduan Instalasi
+## ✨ Key Features
 
-### 1. Clone repository
+- 🤖 **AI Workout Generator**: Create personalized 7-day workout templates based on your profile (goals, level, equipment).
+- 💬 **AI Coach Chatbot**: Interactive chat with an AI personal trainer for advice on workouts, nutrition, and motivation.
+- 📅 **Weekly Template Model**: Save a weekly template and apply it for a user-defined duration (e.g., 4, 8, 12 weeks).
+- 🗓️ **Interactive Calendar**: View daily workouts, mark them as complete, and see details in a modal.
+- ✅ **Workout Tracking**: Track your progress by marking workouts as done.
+- 📊 **Stats Dashboard**: Monitor your current streak, total workouts, and 30-day activity graph.
+- 📱 **Mobile Responsive**: Fully responsive design for seamless use on all devices.
+- 🔐 **Secure Authentication**: Robust login and registration system.
 
+## 🛠️ Tech Stack
+
+### Frontend
+- **HTML5 & JavaScript**
+- **Tailwind CSS** (Dashboard & App Pages)
+- **Bootstrap 5.3.2** (Landing Page)
+- **Chart.js** (Statistics Visualization)
+
+### Backend
+- **PHP** (Native)
+- **Python** (FastAPI for AI Services)
+
+### Database
+- **MySQL**
+
+### AI Model
+- **Google Gemini 2.5 Flash & Google Gemini 2.0 Flash**
+
+## 🚀 Getting Started
+
+### 1. Clone Repository
 ```bash
 git clone https://github.com/TangRmdhn/TrainHub.git
 cd trainhub
 ```
 
-### 2. Setup Database
-
-- Import skema database:
+### 2. Database Setup
+- Import the database schema:
   ```bash
   mysql -u root -p < trainhub_db.sql
   ```
-- Update `koneksi.php` dengan kredensial databasemu:
+- Update `koneksi.php` with your credentials:
   ```php
   $host = "localhost";
   $user = "root";
-  $password = "password_kamu";
+  $password = "your_password";
   $database = "trainhub_db";
   ```
 
-### 3. Setup Layanan AI Python
+### 3. Python AI Service Setup
 
-#### Masuk ke direktori AI
-
+#### Navigate to AI directory
 ```bash
 cd AI
 ```
 
-#### Buat Virtual Environment (Disarankan)
-
+#### Create Virtual Environment (Recommended)
 ```bash
 python -m venv .venv
 ```
 
-#### Aktifkan Virtual Environment
+#### Activate Virtual Environment
+- **Windows (PowerShell):**
+  ```powershell
+  .\.venv\Scripts\activate
+  ```
+- **Windows (CMD):**
+  ```cmd
+  .venv\Scripts\activate.bat
+  ```
+- **macOS/Linux:**
+  ```bash
+  source .venv/bin/activate
+  ```
 
-**Di Windows (PowerShell):**
-
-```powershell
-.\.venv\Scripts\activate
-```
-
-**Jika muncul error execution policy di PowerShell**, jalankan perintah ini dulu:
-
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-Lalu coba aktifkan lagi.
-
-**Di Windows (Command Prompt):**
-
-```cmd
-.venv\Scripts\activate.bat
-```
-
-**Di macOS/Linux:**
-
-```bash
-source .venv/bin/activate
-```
-
-#### Install Dependencies Python
-
+#### Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-#### Konfigurasi API Key
-
-Buat file `.env` di direktori `AI` dan tambahkan Google API Key kamu:
-
-```
-GOOGLE_API_KEY=api_key_kamu_disini
+#### Configure API Key
+Create a `.env` file in the `AI` directory:
+```env
+GOOGLE_API_KEY=your_api_key_here
 ```
 
-#### Jalankan Server FastAPI
-
+#### Run FastAPI Server
 ```bash
 uvicorn main:app --reload
 ```
+The AI service will run at `http://localhost:8000`.
 
-Layanan AI akan tersedia di `http://localhost:8000`
+### 4. Web Server Setup
+- Host PHP files on a local server (XAMPP, Apache, Nginx).
+- Ensure the server runs on `http://localhost`.
 
-### 4. Setup Web Server
+### 5. Tailwind CSS Setup
+Build the CSS before running the app.
 
-- Host file PHP di server lokal (misalnya, XAMPP, Apache, Nginx)
-- Pastikan web server berjalan di `http://localhost` atau domain pilihanmu
-- Pastikan PHP dan MySQL sudah terkonfigurasi dengan benar
+#### Option A: Standalone CLI
+```powershell
+# Windows
+.\tailwindcss.exe -i .\src\input.css -o .\views\css\tailwind.css --minify
+```
 
-### 5. Setup Tailwind CSS
-
-Proyek ini menggunakan Tailwind CSS. Kamu perlu membuild file CSS sebelum menjalankan aplikasi.
-
-#### Opsi A: Menggunakan Standalone CLI (Tanpa Node.js)
-
-1. Download executable Tailwind CLI:
-
-   - **Windows**: [tailwindcss-windows-x64.exe](https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-windows-x64.exe)
-   - **macOS**: [tailwindcss-macos-x64](https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-x64)
-   - **Linux**: [tailwindcss-linux-x64](https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64)
-
-2. Rename menjadi `tailwindcss.exe` (Windows) atau `tailwindcss` (macOS/Linux) dan taruh di root project
-
-3. Build CSS:
-
-   ```powershell
-   # Windows
-   .\tailwindcss.exe -i .\src\input.css -o .\views\css\tailwind.css --minify
-
-   # macOS/Linux
-   ./tailwindcss -i ./src/input.css -o ./views/css/tailwind.css --minify
-   ```
-
-   Atau gunakan script yang sudah disediakan:
-
-   ```powershell
-   # Windows
-   .\build-css.ps1
-   ```
-
-#### Opsi B: Menggunakan npm (jika ada Node.js)
-
+#### Option B: npm
 ```bash
 npm install -D tailwindcss
 npx tailwindcss -i ./src/input.css -o ./views/css/tailwind.css --minify
 ```
 
-#### Mode Development (Auto-rebuild saat ada perubahan)
+### 6. Access the App
+Open `http://localhost/trainhub` in your browser.
 
-```powershell
-# Windows
-.\watch-css.ps1
-
-# Atau manual
-.\tailwindcss.exe -i .\src\input.css -o .\views\css\tailwind.css --watch
-```
-
-### 6. Akses Aplikasi
-
-- Buka browser dan pergi ke `http://localhost/trainhub`
-- Daftar akun baru atau login
-
-## Cara Penggunaan
-
-1.  **Daftar/Login** ke aplikasi
-2.  **Buat Rencana**: Pergi ke Dashboard dan klik "Generate New Plan"
-3.  **Isi Detail**: Masukkan tujuan kebugaran, level, peralatan yang tersedia, dll.
-4.  **Generate**: Klik "Generate Plan" dan tunggu AI membuatkan latihanmu
-5.  **Simpan Rencana**: Review dan simpan rencana yang sudah dibuat
-6.  **Lacak Progres**:
-    - Lihat jadwalmu di halaman Calendar
-    - Tandai latihan sebagai selesai
-    - Cek statistik dan streak kamu
-    - Lihat timeline detail rencana di halaman Plans
-
-## Struktur Proyek
+## 📂 Project Structure
 
 ```
 trainhub/
-├── AI/                         # Layanan Python FastAPI
-│   ├── main.py                # Aplikasi FastAPI
-│   ├── requirements.txt       # Dependencies Python
-│   └── .env                   # API keys (tidak ada di repo)
-├── views/                      # Halaman Frontend
-│   ├── css/                   # Stylesheets
-│   │   ├── tailwind.css       # Tailwind CSS (untuk app pages)
-│   │   └── bootstrap-landing.min.css # Bootstrap custom build (untuk landing page)
-│   ├── app.php                # Halaman Dashboard
-│   ├── calendar.php           # Tampilan Kalender
-│   ├── plans.php              # Manajemen Rencana
-│   ├── stats.php              # Halaman Statistik
-│   ├── login.php              # Halaman Login
-│   ├── register.php           # Halaman Registrasi
-│   └── screening.php          # Form Screening User
-├── controllers/                # Endpoint API Backend
-│   ├── api_calendar.php       # API Kalender
-│   ├── api_stats.php          # API Statistik
-│   ├── mark_complete.php      # API Penyelesaian Latihan
-│   ├── get_plan_details.php   # API Detail Rencana
-│   ├── delete_plan.php        # API Hapus Rencana
-│   ├── save_plan.php          # API Simpan Rencana
-│   ├── update_plan_date.php   # API Update Tanggal Rencana
-│   ├── login_controller.php   # Handler Login
-│   ├── regist_controller.php  # Handler Registrasi
-│   ├── screening_controller.php # Handler Screening
-│   └── logout.php             # Handler Logout
-├── index.php                   # Halaman Landing (Bootstrap CSS)
-├── koneksi.php                 # Koneksi Database
-├── koneksi.php.example         # Template config DB
-├── trainhub_db.sql            # Skema Database
-└── README.md                   # Dokumentasi
+├── AI/                         # Python FastAPI Service
+├── views/                      # Frontend Views
+│   ├── css/                    # Stylesheets
+│   ├── app.php                 # Dashboard
+│   └── ...
+├── controllers/                # Backend Logic
+├── index.php                   # Landing Page
+├── koneksi.php                 # Database Connection
+├── trainhub_db.sql             # Database Schema
+└── README.md                   # Documentation
 ```
 
-## Troubleshooting
+## 🤝 Contributing
 
-### Error PowerShell Execution Policy
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-Jika muncul error seperti "cannot be loaded because running scripts is disabled", jalankan:
+## 📄 License
 
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-### Masalah Koneksi Database
-
-- Pastikan MySQL berjalan
-- Cek kredensial di `koneksi.php`
-- Pastikan database `trainhub_db` ada
-
-### Layanan AI Tidak Merespon
-
-- Pastikan server FastAPI berjalan di port 8000
-- Cek apakah Google API key valid
-- Pastikan semua dependencies Python sudah terinstall
-
-## Lisensi
-
-[MIT License](LICENSE)
+Distributed under the MIT License. See `LICENSE` for more information.
