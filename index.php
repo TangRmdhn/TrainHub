@@ -166,9 +166,9 @@
                     </p>
                 </div>
 
-                <div class="row g-4">
+                <div class="row g-4 justify-content-center">
                     <!-- Fitur 1: AI Planner -->
-                    <div class="col-12 col-md-6 col-lg-3">
+                    <div class="col-12 col-md-4">
                         <div class="card bg-gray-900 border-gray-800 shadow-lg h-100">
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-center justify-content-center text-orange-500 rounded-3 mb-3" style="width: 3rem; height: 3rem; background-color: rgba(234, 88, 12, 0.15);">
@@ -185,7 +185,7 @@
                     </div>
 
                     <!-- Fitur 2: My Plans -->
-                    <div class="col-12 col-md-6 col-lg-3">
+                    <div class="col-12 col-md-4">
                         <div class="card bg-gray-900 border-gray-800 shadow-lg h-100">
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-center justify-content-center text-orange-500 rounded-3 mb-3" style="width: 3rem; height: 3rem; background-color: rgba(234, 88, 12, 0.15);">
@@ -202,7 +202,7 @@
                     </div>
 
                     <!-- Fitur 3: Calendar Panel -->
-                    <div class="col-12 col-md-6 col-lg-3">
+                    <div class="col-12 col-md-4">
                         <div class="card bg-gray-900 border-gray-800 shadow-lg h-100">
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-center justify-content-center text-orange-500 rounded-3 mb-3" style="width: 3rem; height: 3rem; background-color: rgba(234, 88, 12, 0.15);">
@@ -219,7 +219,7 @@
                     </div>
 
                     <!-- Fitur 4: Progress Tracking -->
-                    <div class="col-12 col-md-6 col-lg-3">
+                    <div class="col-12 col-md-4">
                         <div class="card bg-gray-900 border-gray-800 shadow-lg h-100">
                             <div class="card-body p-4">
                                 <div class="d-flex align-items-center justify-content-center text-orange-500 rounded-3 mb-3" style="width: 3rem; height: 3rem; background-color: rgba(234, 88, 12, 0.15);">
@@ -227,9 +227,26 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h15.75c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 013 19.875v-6.75zM3 8.625C3 8.004 3.504 7.5 4.125 7.5h15.75c.621 0 1.125.504 1.125 1.125v.75c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 013 9.375v-.75zM3 4.125C3 3.504 3.504 3 4.125 3h15.75c.621 0 1.125.504 1.125 1.125v.75c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 013 4.875v-.75z" />
                                     </svg>
                                 </div>
-                                <h3 class="fs-5 fw-semibold text-white mb-2">Lacak Progres</h3>
+                                <h3 class="fs-5 fw-semibold text-white mb-2">Statistics</h3>
                                 <p class="text-gray-400 mb-0">
                                     Lihat kemajuan Anda dari waktu ke waktu dengan grafik total durasi, streak, dan volume latihan.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fitur 5: AI Smart Assistant -->
+                    <div class="col-12 col-md-4">
+                        <div class="card bg-gray-900 border-gray-800 shadow-lg h-100">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center justify-content-center text-orange-500 rounded-3 mb-3" style="width: 3rem; height: 3rem; background-color: rgba(234, 88, 12, 0.15);">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 1.5rem; height: 1.5rem;">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                                    </svg>
+                                </div>
+                                <h3 class="fs-5 fw-semibold text-white mb-2">AI Smart Coach</h3>
+                                <p class="text-gray-400 mb-0">
+                                    Dapatkan jawaban instan untuk pertanyaan seputar nutrisi, teknik latihan, dan tips kesehatan dari AI.
                                 </p>
                             </div>
                         </div>
