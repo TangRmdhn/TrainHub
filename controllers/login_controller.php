@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['email'] = $row['email'];
             $_SESSION['login_status'] = true;
 
-            // 3. CEK SCREENING (LOGIC BARU)
+            // 3. CEK SCREENING
             // Cek di tabel user_profiles
             $stmtProfile = $koneksi->prepare("SELECT fitness_goal FROM user_profiles WHERE user_id = ?");
             $stmtProfile->bind_param("i", $row['id']);

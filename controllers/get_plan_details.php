@@ -1,3 +1,5 @@
+<!-- API untuk mengambil detail rencana -->
+
 <?php
 session_start();
 date_default_timezone_set('Asia/Jakarta'); // Set timezone ke WIB (UTC+7)

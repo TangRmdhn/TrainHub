@@ -1,3 +1,5 @@
+<!-- Untuk Menyimpan plan hasil generate AI -->
+
 <?php
 session_start();
 header('Content-Type: application/json');
@@ -17,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $plan_name_template = mysqli_real_escape_string($koneksi, $_POST['plan_name']);
     $plan_json_template = $_POST['plan_json']; // Ini JSON string 7-hari
     $start_date_string = $_POST['start_date']; // Ini tanggal SENIN
-    $duration_weeks = isset($_POST['duration_weeks']) ? (int)$_POST['duration_weeks'] : 4;
+    $duration_weeks = isset($_POST['duration_weeks']) ?( int)$_POST['duration_weeks'] : 4;
 
     // 1. Decode JSON template dari AI
     $template = json_decode($plan_json_template, true);

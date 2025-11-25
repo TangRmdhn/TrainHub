@@ -1,3 +1,5 @@
+<!-- API untuk logout -->
+
 <?php
 // logout.php
 session_start();

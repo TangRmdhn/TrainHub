@@ -1,3 +1,5 @@
+<!-- API untuk registrasi -->
+
 <?php
 session_start();
 include '../koneksi.php';
