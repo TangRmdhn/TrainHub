@@ -553,7 +553,7 @@ $user_profile_json = json_encode($profile_for_api);
                     <div class="space-y-4">
                         <div class="flex justify-end pt-4 border-t border-gray-700">
                             <button type="submit" id="save-plan-btn" class="w-full md:w-auto bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-8 rounded-lg transition-all shadow-lg">
-                                Terapkan Jadwal Ini 📅
+                                Terapkan Jadwal Ini
                             </button>
                         </div>
                         <p id="save-error" class="text-red-400 text-sm mt-2 hidden text-center"></p>
